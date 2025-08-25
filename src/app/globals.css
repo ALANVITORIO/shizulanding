@@ -1,26 +1,378 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
+/* Variáveis CSS personalizadas */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paleta principal */
+  --primary-50: #faf7f4;
+  --primary-100: #f4ede5;
+  --primary-200: #e8d6c2;
+  --primary-300: #d4a574;
+  --primary-400: #a0845c;
+  --primary-500: #8b6f47;
+  --primary-600: #6b5335;
+  --primary-700: #4a3823;
+  --primary-800: #2c1810;
+
+  /* Acentos */
+  --accent-green-100: #f0f7f0;
+  --accent-green-500: #7a9b76;
+  --accent-green-600: #6b8967;
+
+  /* Neutros quentes */
+  --neutral-50: #f8f6f3;
+  --neutral-100: #f0ede8;
+  --neutral-200: #e5e1dc;
+  --neutral-300: #d0c8bd;
+  --neutral-700: #6b6359;
+  --neutral-800: #4a453e;
+  --neutral-900: #2c2925;
+
+  /* Sombras elegantes */
+  --shadow-sm: 0 2px 4px rgba(44, 41, 37, 0.05);
+  --shadow-md: 0 4px 16px rgba(44, 41, 37, 0.08);
+  --shadow-lg: 0 8px 32px rgba(44, 41, 37, 0.12);
+  --shadow-xl: 0 16px 64px rgba(44, 41, 37, 0.15);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Estilos base */
+* {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--primary-800);
+  background-color: var(--neutral-50);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tipografia aprimorada */
+.font-heading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.font-display {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.05em;
+}
+
+/* Gradientes modernos */
+.gradient-text {
+  color: var(--primary-600); /* Fallback color */
+  background: linear-gradient(
+    135deg,
+    var(--primary-600) 0%,
+    var(--primary-400) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Para navegadores que não suportam background-clip: text */
+@supports not (-webkit-background-clip: text) {
+  .gradient-text {
+    color: var(--primary-600);
+  }
+}
+
+.gradient-text-accent {
+  color: var(--accent-green-600); /* Fallback color */
+  background: linear-gradient(
+    135deg,
+    var(--accent-green-600) 0%,
+    var(--primary-400) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Para navegadores que não suportam background-clip: text */
+@supports not (-webkit-background-clip: text) {
+  .gradient-text-accent {
+    color: var(--accent-green-600);
+  }
+}
+
+.gradient-bg-primary {
+  background: linear-gradient(
+    135deg,
+    var(--primary-500) 0%,
+    var(--primary-400) 100%
+  );
+}
+
+.gradient-bg-accent {
+  background: linear-gradient(
+    135deg,
+    var(--accent-green-600) 0%,
+    var(--accent-green-500) 100%
+  );
+}
+
+.gradient-bg-warm {
+  background: linear-gradient(
+    135deg,
+    var(--primary-100) 0%,
+    var(--neutral-50) 100%
+  );
+}
+
+.gradient-bg-green {
+  background: linear-gradient(135deg, #04b720 0%, #039c1b 100%);
+}
+
+.gradient-bg-pink {
+  background: linear-gradient(135deg, #8c1bab 0%, #7a1896 100%);
+}
+
+/* Componentes base */
+.card-elevated {
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-elevated:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: var(--primary-500);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--primary-600);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-accent {
+  background: var(--accent-green-600);
+  color: white;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-accent:hover {
+  background: var(--accent-green-500);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Animações suaves */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Utilitários */
+.text-balance {
+  text-wrap: balance;
+}
+
+.bg-pattern {
+  background-image: radial-gradient(
+      circle at 25% 25%,
+      rgba(139, 111, 71, 0.02) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 75% 75%,
+      rgba(122, 155, 118, 0.02) 0%,
+      transparent 25%
+    );
+}
+
+/* Classes para imagens otimizadas */
+.image-container-hero {
+  aspect-ratio: 4/5;
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: var(--shadow-xl);
+}
+
+.image-container-standard {
+  aspect-ratio: 3/2;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.image-container-square {
+  aspect-ratio: 1/1;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
+.image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  z-index: 1;
+}
+
+.image-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Backgrounds para artes personalizadas */
+.bg-art-primary {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.bg-art-overlay {
+  background: linear-gradient(
+    135deg,
+    rgba(44, 24, 16, 0.85) 0%,
+    rgba(74, 56, 35, 0.75) 100%
+  );
+}
+
+.bg-art-overlay-light {
+  background: linear-gradient(
+    135deg,
+    rgba(248, 246, 243, 0.95) 0%,
+    rgba(240, 237, 232, 0.9) 100%
+  );
+}
+
+/* Containers específicos para diferentes tipos de arte */
+.hero-art-container {
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.section-art-container {
+  min-height: 60vh;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.card-art-container {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* Máscaras para sobreposição de arte */
+.art-mask-gradient {
+  background: linear-gradient(
+    45deg,
+    var(--primary-500) 0%,
+    transparent 30%,
+    transparent 70%,
+    var(--accent-green-500) 100%
+  );
+  mix-blend-mode: multiply;
+  opacity: 0.1;
+}
+
+.art-mask-dots {
+  background-image: radial-gradient(
+    circle,
+    var(--primary-400) 1px,
+    transparent 1px
+  );
+  background-size: 20px 20px;
+  opacity: 0.05;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+  .btn-primary,
+  .btn-accent {
+    padding: 12px 24px;
+    font-size: 15px;
+  }
+
+  .image-container-hero {
+    aspect-ratio: 3/4;
+  }
+
+  .hero-art-container {
+    background-attachment: scroll;
+  }
+
+  .section-art-container {
+    min-height: 40vh;
+  }
+
+  .card-art-container {
+    height: 250px;
+  }
 }
