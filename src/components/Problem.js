@@ -30,7 +30,7 @@ export default function Problem() {
 
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Image Section */}
+          {/* Image Section (circular mascarada) */}
           <motion.div
             className="relative order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
@@ -38,46 +38,44 @@ export default function Problem() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <div className="relative">
-              {/* Sad overlay effect */}
-              <div className="absolute inset-0 bg-gradient-to-t from-red-900/20 via-transparent to-transparent rounded-3xl z-10"></div>
+            <div className="relative w-[26rem] h-[26rem] md:w-[34rem] md:h-[34rem] mx-auto">
+              {/* Halo / ring */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-red-200/50 via-orange-100/40 to-transparent blur-xl"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-red-500/15 via-transparent to-orange-400/10"></div>
 
-              <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
+              {/* Main circular image */}
+              <div className="absolute inset-0 rounded-full shadow-2xl ring-4 ring-white overflow-hidden">
                 <Image
-                  src="https://picsum.photos/seed/saddog/500/400.jpg"
-                  alt="Shih Tzu precisando de cuidados adequados"
-                  width={500}
-                  height={400}
-                  className="w-full h-auto object-cover"
+                  src="/problema.webp"
+                  alt="Shih Tzu demonstrando sinais que precisam de atenção"
+                  fill
+                  priority={false}
+                  className="object-cover rounded-full select-none"
                 />
+              </div>
 
-                {/* Overlay badge */}
-                <div className="absolute bottom-6 left-6 bg-red-500/90 backdrop-blur-sm text-white px-4 py-2 rounded-full shadow-lg">
-                  <div className="flex items-center gap-2">
-                    <AlertTriangle className="w-4 h-4" />
-                    <span className="font-semibold text-sm">
-                      Precisa de ajuda
-                    </span>
-                  </div>
+              {/* Badge over circle */}
+              <div className="absolute bottom-6 left-6 bg-red-500/90 backdrop-blur-sm text-white px-5 py-2 rounded-full shadow-lg z-10">
+                <div className="flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4" />
+                  <span className="font-semibold text-xs md:text-sm">
+                    Precisa de ajuda
+                  </span>
                 </div>
               </div>
 
-              {/* Floating warning */}
+              {/* Floating warning card */}
               <motion.div
-                className="absolute -top-4 -right-4 bg-red-100 border-2 border-red-200 rounded-2xl p-4 shadow-xl"
-                animate={{ rotate: [0, -2, 2, 0] }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
+                className="absolute -top-8 -right-6 bg-white/90 border border-red-200 rounded-2xl p-4 shadow-xl backdrop-blur-sm w-44"
+                animate={{ y: [0, -8, 0], rotate: [0, -2, 2, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
               >
                 <div className="text-center">
-                  <AlertTriangle className="w-8 h-8 text-red-500 mx-auto mb-2" />
-                  <p className="text-red-700 font-semibold text-sm">
+                  <AlertTriangle className="w-7 h-7 text-red-500 mx-auto mb-1" />
+                  <p className="text-red-700 font-semibold text-xs">
                     Sinais de alerta
                   </p>
-                  <p className="text-red-600 text-xs">
+                  <p className="text-red-600 text-[10px] leading-tight">
                     que você pode estar perdendo
                   </p>
                 </div>
@@ -93,22 +91,29 @@ export default function Problem() {
             transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            {/* Header Badge */}
+            {/* Header with Diva photo recortada */}
             <motion.div
-              className="inline-flex items-center gap-3 bg-red-50 border border-red-200 px-6 py-3 rounded-full"
+              className="flex items-center gap-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
               viewport={{ once: true }}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center">
-                <Heart className="w-5 h-5 text-white" />
+              <div className="relative w-24 h-24 md:w-28 md:h-28 select-none pointer-events-none">
+                <Image
+                  src="/diva.webp"
+                  alt="Diva falando"
+                  fill
+                  className="object-contain drop-shadow-[0_8px_12px_rgba(0,0,0,0.25)]"
+                />
+                {/* Fake cutout glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-400/0 via-white/20 to-orange-200/0 rounded-full mix-blend-overlay"></div>
               </div>
-              <div>
-                <p className="text-red-700 font-semibold text-sm tracking-wide">
+              <div className="bg-red-50/80 backdrop-blur-sm border border-red-200/70 px-6 py-4 rounded-2xl shadow-lg">
+                <p className="text-red-700 font-extrabold text-sm tracking-wide leading-tight">
                   DIVA FALANDO
                 </p>
-                <p className="text-red-600 text-xs">A verdade que dói...</p>
+                <p className="text-red-600 text-xs font-medium">A verdade que dói...</p>
               </div>
             </motion.div>
 

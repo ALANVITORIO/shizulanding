@@ -1,30 +1,38 @@
 'use client';
 import { motion } from 'framer-motion';
 import { Heart, Star, CheckCircle, ArrowRight } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Hero() {
   return (
-    <header className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#FAF7F4] via-white to-[#F4EDE5]">
+    <header className="relative min-h-[750px] lg:h-[750px] flex items-start lg:items-center overflow-hidden">
+      {/* Background image layer */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: "url('/hero.webp')" }}
+        ></div>
+      </div>
+
       {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-[#D4A574]/20 to-[#A0845C]/10 rounded-full blur-xl"></div>
-        <div className="absolute top-40 right-20 w-32 h-32 bg-gradient-to-br from-[#7A9B76]/20 to-[#6B8967]/10 rounded-full blur-xl"></div>
-        <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-gradient-to-br from-[#D4A574]/15 to-[#A0845C]/5 rounded-full blur-xl"></div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-[#D4A574]/25 to-[#A0845C]/10 rounded-full blur-xl"></div>
+        <div className="absolute top-40 right-20 w-32 h-32 bg-gradient-to-br from-[#7A9B76]/25 to-[#6B8967]/10 rounded-full blur-xl"></div>
+        <div className="absolute bottom-20 left-1/4 w-24 h-24 bg-gradient-to-br from-[#D4A574]/20 to-[#A0845C]/10 rounded-full blur-xl"></div>
       </div>
 
       <div className="container mx-auto px-4 md:px-8 lg:px-16 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        {/* Em mobile deixamos um espaço vazio no topo (arte futura) empurrando o texto para baixo. */}
+        <div className="max-w-3xl pr-6 pt-[300px] pb-12 lg:py-16">
           {/* Content Section */}
           <motion.div
-            className="space-y-8"
+            className="space-y-8 bg-white/10 backdrop-blur-[2px] rounded-2xl lg:bg-transparent lg:backdrop-blur-0 p-4 lg:p-0"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
             {/* Brand Badge */}
             <motion.div
-              className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-[#E5E1DC]"
+              className="inline-flex items-center gap-3 bg-white/85 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-[#E5E1DC]/70"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
@@ -62,7 +70,7 @@ export default function Hero() {
 
             {/* Quote Section */}
             <motion.div
-              className="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border-l-4 border-[#8B6F47] shadow-md"
+              className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border-l-4 border-[#8B6F47] shadow-md"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -76,7 +84,7 @@ export default function Hero() {
 
             {/* Trust Indicators */}
             <motion.div
-              className="flex flex-wrap items-center gap-6 text-sm text-[#6B5335]"
+              className="flex flex-wrap items-center gap-6 text-sm text-[#2C1810] drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
@@ -115,88 +123,62 @@ export default function Hero() {
               </p>
             </motion.div>
           </motion.div>
-
-          {/* Image Section */}
-          <motion.div
-            className="relative"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
-          >
-            <div className="relative">
-              {/* Background decoration */}
-              <div className="absolute -top-6 -right-6 w-full h-full bg-gradient-to-br from-[#D4A574]/20 to-[#A0845C]/10 rounded-3xl"></div>
-
-              {/* Main image */}
-              <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden">
-                <Image
-                  src="https://picsum.photos/seed/shihtzu-hero/500/600.jpg"
-                  alt="Shih Tzu adorável e bem cuidado"
-                  width={500}
-                  height={600}
-                  className="w-full h-auto object-cover"
-                  priority
-                />
-
-                {/* Floating badge */}
-                <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-[#7A9B76] rounded-full animate-pulse"></div>
-                    <span className="text-[#2C1810] font-semibold text-sm">
-                      Pet Feliz & Saudável
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating elements */}
-              <motion.div
-                className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl p-4 border border-[#E5E1DC]"
-                animate={{ y: [0, -10, 0] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#7A9B76] to-[#6B8967] rounded-lg flex items-center justify-center">
-                    <CheckCircle className="w-4 h-4 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-[#2C1810] font-semibold text-sm">
-                      Calculadora
-                    </p>
-                    <p className="text-[#6B5335] text-xs">de ração incluída</p>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl p-4 border border-[#E5E1DC]"
-                animate={{ y: [0, 10, 0] }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                  delay: 1.5,
-                }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 bg-gradient-to-br from-[#D4A574] to-[#A0845C] rounded-lg flex items-center justify-center">
-                    <Star className="w-4 h-4 text-white" fill="currentColor" />
-                  </div>
-                  <div>
-                    <p className="text-[#2C1810] font-semibold text-sm">
-                      Checklist
-                    </p>
-                    <p className="text-[#6B5335] text-xs">diário interativo</p>
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
         </div>
+
+        {/* Floating badges restaurados */}
+        <motion.div
+          className="hidden lg:block absolute top-28 right-20 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl border border-[#E5E1DC]"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#7A9B76] to-[#6B8967] rounded-xl flex items-center justify-center">
+              <CheckCircle className="w-4 h-4 text-white" />
+            </div>
+            <div>
+              <p className="text-[#2C1810] font-semibold text-sm leading-tight">
+                Calculadora
+              </p>
+              <p className="text-[#6B5335] text-xs leading-tight">
+                de ração incluída
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="hidden lg:block absolute top-60 right-10 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl border border-[#E5E1DC]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6 }}
+        >
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-br from-[#D4A574] to-[#A0845C] rounded-xl flex items-center justify-center">
+              <Star className="w-4 h-4 text-white" fill="currentColor" />
+            </div>
+            <div>
+              <p className="text-[#2C1810] font-semibold text-sm leading-tight">
+                Checklist
+              </p>
+              <p className="text-[#6B5335] text-xs leading-tight">
+                diário interativo
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="hidden lg:flex absolute bottom-32 right-28 bg-white/95 backdrop-blur-sm px-5 py-2 rounded-full shadow-lg border border-[#E5E1DC] items-center gap-2"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.8 }}
+        >
+          <div className="w-3 h-3 bg-[#7A9B76] rounded-full animate-pulse"></div>
+          <span className="text-[#2C1810] font-semibold text-sm">
+            Pet Feliz & Saudável
+          </span>
+        </motion.div>
       </div>
     </header>
   );
