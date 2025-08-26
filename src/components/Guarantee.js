@@ -79,8 +79,7 @@ export default function Guarantee() {
 
         <div className="mt-8 text-center">
           <p className="italic" style={{ color: '#2c2c2c' }}>
-            "Sua satisfação é nossa prioridade. Queremos que você e seu Shih Tzu
-            sejam completamente felizes!"
+            &quot;Sua satisfação é nossa prioridade. Queremos que você e seu Shih Tzu sejam completamente felizes!&quot;
           </p>
         </div>
       </div>

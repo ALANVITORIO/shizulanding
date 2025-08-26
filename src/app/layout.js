@@ -41,7 +41,10 @@ export default function RootLayout({ children }) {
           crossOrigin="anonymous"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      {/* suppressHydrationWarning: evita warning de hidratação quando extensões do navegador (ex: ColorZilla) injetam atributos como 'cz-shortcut-listen' antes do React hidratar */}
+      <body className="antialiased" suppressHydrationWarning>
+        {children}
+      </body>
     </html>
   );
 }

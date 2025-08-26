@@ -1,5 +1,6 @@
-'use client';
+"use client";
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import {
   Calculator,
   ClipboardCheck,
@@ -381,10 +382,13 @@ export default function Bonus() {
                 <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#E5E1DC]/50 hover:shadow-3xl transition-all duration-500 group backdrop-blur-sm">
                   {/* Mockup image */}
                   <div className="aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
-                    <img
+                    <Image
                       src={tool.mockupImage}
                       alt={`Interface da ${tool.title}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
+                      className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700"
+                      priority={index === 0}
                     />
 
                     {/* Overlay interativo */}
