@@ -68,7 +68,11 @@ export default function Problem() {
               <motion.div
                 className="absolute -top-8 -right-6 bg-white/90 border border-red-200 rounded-2xl p-4 shadow-xl backdrop-blur-sm w-44"
                 animate={{ y: [0, -8, 0], rotate: [0, -2, 2, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                }}
               >
                 <div className="text-center">
                   <AlertTriangle className="w-7 h-7 text-red-500 mx-auto mb-1" />
@@ -113,7 +117,9 @@ export default function Problem() {
                 <p className="text-red-700 font-extrabold text-sm tracking-wide leading-tight">
                   DIVA FALANDO
                 </p>
-                <p className="text-red-600 text-xs font-medium">A verdade que dói...</p>
+                <p className="text-red-600 text-xs font-medium">
+                  A verdade que dói...
+                </p>
               </div>
             </motion.div>
 
