@@ -109,39 +109,6 @@ export default function ImageGallery() {
           ))}
         </div>
 
-        {/* Seção de Arte de Fundo Destacada */}
-        <motion.div
-          className="section-art-container rounded-3xl overflow-hidden mb-16"
-          style={{
-            backgroundImage:
-              'url("https://picsum.photos/seed/hero-bg/1200/600.jpg")',
-          }}
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <div className="bg-art-overlay flex items-center justify-center">
-            <div className="text-center text-white max-w-3xl px-8">
-              <Palette className="w-16 h-16 mx-auto mb-6 text-[#D4A574]" />
-              <h3 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                Espaço Reservado Para Sua Arte Principal
-              </h3>
-              <p className="text-xl text-white/90 mb-8">
-                Aqui você pode colocar sua ilustração principal, logo, ou
-                qualquer arte que represente seu produto
-              </p>
-              <div className="flex justify-center gap-4">
-                <Sparkles className="w-6 h-6 text-[#D4A574]" />
-                <span className="text-[#D4A574] font-semibold">
-                  Arte personalizada aqui
-                </span>
-                <Sparkles className="w-6 h-6 text-[#D4A574]" />
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
         {/* Cards Menores para Artes Complementares */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[1, 2, 3].map((item, index) => (
