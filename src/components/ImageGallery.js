@@ -88,15 +88,8 @@ export default function ImageGallery() {
             >
               {/* Container da imagem com aspect ratio otimizado */}
               <div
-                className={
-                  index === 1
-                    ? 'image-container-square'
-                    : 'image-container-standard'
-                }
+                className={index === 1 ? 'aspect-square' : 'aspect-[3/2]'}
               >
-                <div className="image-overlay"></div>
-
-                {/* Sua arte vai aqui */}
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -109,32 +102,72 @@ export default function ImageGallery() {
           ))}
         </div>
 
-        {/* Cards Menores para Artes Complementares */}
+
+
+        {/* Cards com conteúdo sobre Shih Tzu */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[1, 2, 3].map((item, index) => (
-            <motion.div
-              key={index}
-              className="card-art-container"
-              style={{
-                backgroundImage: `url("https://picsum.photos/seed/card${item}/400/300.jpg")`,
-              }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-art-overlay-light h-full flex items-center justify-center">
-                <div className="text-center p-6">
-                  <h4 className="font-heading text-xl font-bold text-[#2C1810] mb-2">
-                    Arte Complementar {item}
-                  </h4>
-                  <p className="text-[#6B5335] text-sm">
-                    Espaço para elementos visuais secundários
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          <motion.div
+            className="relative group overflow-hidden rounded-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Image
+              src="/shi1.webp"
+              alt="Alimentação do Shih Tzu"
+              width={400}
+              height={300}
+              className="w-full h-64 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <h4 className="text-white font-bold text-lg p-6">
+                Aprenda tudo sobre a alimentação do seu Shih Tzu
+              </h4>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative group overflow-hidden rounded-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Image
+              src="/shi2.webp"
+              alt="Cuidados médicos do Shih Tzu"
+              width={400}
+              height={300}
+              className="w-full h-64 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <h4 className="text-white font-bold text-lg p-6">
+                Aprenda tudo sobre cuidados médicos do seu Shih Tzu
+              </h4>
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="relative group overflow-hidden rounded-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <Image
+              src="/shi3.webp"
+              alt="Truques para Shih Tzu"
+              width={400}
+              height={300}
+              className="w-full h-64 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
+              <h4 className="text-white font-bold text-lg p-6">
+                Quem disse que Shih Tzu não aprende truques. Aprenda técnicas milenares de ensino
+              </h4>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

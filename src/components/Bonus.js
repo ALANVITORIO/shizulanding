@@ -108,7 +108,7 @@ export default function Bonus() {
           className="mb-24"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true, margin: '-50px' }}
         >
           <div className="text-center mb-16">
@@ -116,7 +116,7 @@ export default function Bonus() {
               className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 px-6 py-3 rounded-full mb-8 shadow-sm"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.05, duration: 0.1 }}
+              transition={{ delay: 0.05, duration: 0.2 }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <BookOpen className="w-5 h-5 text-blue-700" />
@@ -241,7 +241,7 @@ export default function Bonus() {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-[#E5E1DC]/50 group backdrop-blur-sm"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.02, duration: 0.1 }}
+                transition={{ delay: index * 0.02, duration: 0.2 }}
                 viewport={{ once: true, margin: '-20px' }}
                 whileHover={{ scale: 1.02, y: -4 }}
               >
@@ -286,7 +286,7 @@ export default function Bonus() {
             className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-3xl p-8 lg:p-12 shadow-sm"
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.1 }}
+            transition={{ delay: 0.1, duration: 0.2 }}
             viewport={{ once: true, margin: '-30px' }}
           >
             <div className="text-center mb-8">
@@ -338,7 +338,7 @@ export default function Bonus() {
           className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.1 }}
+          transition={{ duration: 0.2 }}
           viewport={{ once: true, margin: '-50px' }}
         >
           <motion.div
@@ -374,7 +374,7 @@ export default function Bonus() {
               }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.1 }}
+              transition={{ delay: index * 0.05, duration: 0.2 }}
               viewport={{ once: true, margin: '-30px' }}
             >
               {/* Mockup da ferramenta */}
@@ -512,7 +512,7 @@ export default function Bonus() {
           className="bg-gradient-to-r from-[#F8F6F3] to-[#F4EDE5] border border-[#E5E1DC]/70 p-8 lg:p-12 rounded-3xl mb-20 shadow-sm"
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.1 }}
+          transition={{ delay: 0.1, duration: 0.3 }}
           viewport={{ once: true, margin: '-30px' }}
         >
           <div className="text-center">
