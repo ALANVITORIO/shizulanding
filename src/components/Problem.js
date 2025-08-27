@@ -35,7 +35,7 @@ export default function Problem() {
             className="relative order-2 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.1 }}
             viewport={{ once: true }}
           >
             <div className="relative w-[26rem] h-[26rem] md:w-[34rem] md:h-[34rem] mx-auto">
@@ -92,7 +92,7 @@ export default function Problem() {
             className="order-1 lg:order-2 space-y-8"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.1, delay: 0.2 }}
             viewport={{ once: true }}
           >
             {/* Header with Diva photo recortada */}

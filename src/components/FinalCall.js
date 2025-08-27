@@ -118,7 +118,7 @@ export default function FinalCall() {
                     className="flex items-center gap-4 p-3 bg-green-50/50 rounded-xl border border-green-100/50"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.6 + index * 0.1, duration: 0.6 }}
+                    transition={{ delay: 0.6 + index * 0.1, duration: 0.1 }}
                     viewport={{ once: true }}
                   >
                     <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -136,7 +136,7 @@ export default function FinalCall() {
             className="relative"
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
+            transition={{ delay: 0.6, duration: 0.1 }}
             viewport={{ once: true }}
           >
             <div className="bg-white/90 backdrop-blur-sm rounded-3xl shadow-2xl border-2 border-red-200/50 p-8 md:p-10 relative overflow-hidden">
@@ -170,7 +170,7 @@ export default function FinalCall() {
                     className="flex items-center gap-4 p-3 bg-red-50/50 rounded-xl border border-red-100/50"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.8 + index * 0.1, duration: 0.6 }}
+                    transition={{ delay: 0.8 + index * 0.1, duration: 0.1 }}
                     viewport={{ once: true }}
                   >
                     <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -189,7 +189,7 @@ export default function FinalCall() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
+          transition={{ delay: 1.2, duration: 0.1 }}
           viewport={{ once: true }}
         >
           <div className="bg-gradient-to-r from-gray-900 to-black rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden">

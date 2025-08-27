@@ -65,7 +65,7 @@ export default function HowItWorks() {
           viewport={{ once: true }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#E5E1DC] px-6 py-3 rounded-full mb-6 shadow-lg"
+            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#E5E1DC] px-6 py-3 rounded-full mb-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
@@ -77,10 +77,11 @@ export default function HowItWorks() {
             </span>
           </motion.div>
 
-          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-6">
+          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-6 relative">
             Como Funciona
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-[#D4A574] to-[#A0845C] rounded-full"></div>
           </h2>
-          <p className="text-xl md:text-2xl text-[#6B5335] text-balance">
+          <p className="text-xl md:text-2xl text-[#6B5335] text-balance font-medium">
             Em 4 passos simples:
           </p>
         </motion.div>
@@ -102,19 +103,20 @@ export default function HowItWorks() {
               )}
 
               <div
-                className={`${step.bgColor} p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 relative z-10 group hover:-translate-y-2`}
+                className={`${step.bgColor} p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 relative z-10 group hover:-translate-y-2 border border-white/20 backdrop-blur-sm`}
               >
                 {/* Step number */}
                 <div
-                  className={`w-16 h-16 bg-gradient-to-br ${step.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  className={`w-16 h-16 bg-gradient-to-br ${step.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-300 relative overflow-hidden`}
                 >
+                  <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
                   {step.number}
                 </div>
 
                 {/* Icon */}
                 <div className="flex justify-center mb-4">
                   <div
-                    className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center`}
+                    className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300`}
                   >
                     {step.icon}
                   </div>
@@ -122,13 +124,13 @@ export default function HowItWorks() {
 
                 {/* Content */}
                 <div className="text-center">
-                  <h3 className="font-heading text-xl font-bold text-[#2C1810] mb-3">
+                  <h3 className="font-heading text-xl font-bold text-[#2C1810] mb-3 group-hover:text-[#8B6F47] transition-colors duration-300">
                     {step.title}
                   </h3>
-                  <p className="text-[#6B5335] font-medium mb-3">
+                  <p className="text-[#6B5335] font-medium mb-3 leading-relaxed">
                     {step.description}
                   </p>
-                  <p className="text-[#6B5335] text-sm opacity-75">
+                  <p className="text-[#6B5335] text-sm opacity-75 leading-relaxed">
                     {step.detail}
                   </p>
                 </div>
@@ -144,23 +146,30 @@ export default function HowItWorks() {
 
         {/* Bottom CTA Section */}
         <motion.div
-          className="text-center bg-white/60 backdrop-blur-sm p-12 rounded-3xl shadow-xl border border-[#E5E1DC]"
+          className="text-center bg-white/60 backdrop-blur-sm p-12 rounded-3xl shadow-xl border border-[#E5E1DC] relative overflow-hidden"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          transition={{ delay: 0.6, duration: 0.1 }}
           viewport={{ once: true }}
         >
-          <div className="max-w-2xl mx-auto">
+          {/* Background pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-4 left-4 w-32 h-32 bg-gradient-to-br from-[#D4A574] to-[#A0845C] rounded-full blur-2xl"></div>
+            <div className="absolute bottom-4 right-4 w-24 h-24 bg-gradient-to-br from-[#7A9B76] to-[#6B8967] rounded-full blur-xl"></div>
+          </div>
+
+          <div className="max-w-2xl mx-auto relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
               viewport={{ once: true }}
             >
-              <button className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3 mx-auto mb-6">
-                <Play className="w-5 h-5" />
-                <span>VER DEMONSTRAÇÃO DE 30 SEGUNDOS</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <button className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3 mx-auto mb-6 relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 group-hover:translate-x-full transition-transform duration-700"></div>
+                <Play className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">VER DEMONSTRAÇÃO DE 30 SEGUNDOS</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
               </button>
 
               <div className="flex items-center justify-center gap-2 text-[#6B5335]">

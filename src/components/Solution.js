@@ -9,6 +9,7 @@ import {
   Users,
   ArrowRight,
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Solution() {
   const mainBenefits = [
@@ -68,7 +69,7 @@ export default function Solution() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.1 }}
           viewport={{ once: true }}
         >
           <motion.div
@@ -100,7 +101,7 @@ export default function Solution() {
               className="card-elevated p-8 hover:shadow-2xl group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: index * 0.1, duration: 0.1 }}
               viewport={{ once: true }}
             >
               <div className="flex items-start gap-4 mb-6">
@@ -125,7 +126,7 @@ export default function Solution() {
                   className={`h-full bg-gradient-to-r ${benefit.color} rounded-full`}
                   initial={{ width: 0 }}
                   whileInView={{ width: '100%' }}
-                  transition={{ delay: 0.5 + index * 0.1, duration: 1 }}
+                  transition={{ delay: 0.5 + index * 0.1, duration: 0.1 }}
                   viewport={{ once: true }}
                 />
               </div>
@@ -138,7 +139,7 @@ export default function Solution() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
+          transition={{ delay: 0.4, duration: 0.1 }}
           viewport={{ once: true }}
         >
           {additionalFeatures.map((feature, index) => (
@@ -157,10 +158,10 @@ export default function Solution() {
 
         {/* Bottom CTA Section */}
         <motion.div
-          className="text-center bg-gradient-warm p-12 rounded-3xl shadow-xl"
+          className="text-center"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
+          transition={{ delay: 0.6, duration: 0.1 }}
           viewport={{ once: true }}
         >
           <div className="max-w-3xl mx-auto">
@@ -168,12 +169,21 @@ export default function Solution() {
               Isso é exatamente o que o Guia Interativo faz por você.
             </h3>
 
-            <p className="text-[#6B5335] text-lg mb-8 text-balance">
+            <p className="text-[#6B5335] text-lg mb-12 text-balance">
               Transforme a relação com seu Shih Tzu em questão de dias, não
               meses.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <Image
+              src="/ctadiva.webp"
+              alt="Shih Tzu feliz e saudável"
+              width={300}
+              height={200}
+              className="mx-auto mb-12"
+              priority={false}
+            />
+
+            <div className="flex flex-col gap-4 justify-center items-center">
               <button className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3">
                 <span>QUERO COMEÇAR AGORA</span>
                 <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold">

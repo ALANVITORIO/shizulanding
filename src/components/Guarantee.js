@@ -15,14 +15,14 @@ export default function Guarantee() {
           className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.1 }}
           viewport={{ once: true }}
         >
           <motion.div
             className="inline-flex items-center gap-3 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200/50 px-6 py-3 rounded-full mb-6 shadow-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.1 }}
             viewport={{ once: true }}
           >
             <Shield className="w-5 h-5 text-green-600" />
@@ -58,7 +58,7 @@ export default function Guarantee() {
               className="text-center lg:text-left"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              transition={{ delay: 0.6, duration: 0.1 }}
               viewport={{ once: true }}
             >
               <div className="relative inline-block">

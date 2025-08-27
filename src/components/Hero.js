@@ -35,7 +35,7 @@ export default function Hero() {
               className="inline-flex items-center gap-3 bg-white/85 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-[#E5E1DC]/70"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
+              transition={{ delay: 0.2, duration: 0.1 }}
             >
               <div className="w-10 h-10 bg-gradient-to-br from-[#8B6F47] to-[#A0845C] rounded-full flex items-center justify-center">
                 <Heart className="w-5 h-5 text-white" fill="currentColor" />
@@ -54,7 +54,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.1 }}
             >
               <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#2C1810] leading-tight mb-6 text-balance">
                 O primeiro manual{' '}
@@ -73,7 +73,7 @@ export default function Hero() {
               className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl border-l-4 border-[#8B6F47] shadow-md"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, duration: 0.6 }}
+              transition={{ delay: 0.6, duration: 0.1 }}
             >
               <p className="text-[#4A3823] font-medium italic text-lg leading-relaxed">
                 &ldquo;Da escolha do pet à alimentação e treinamento &mdash;
@@ -87,7 +87,7 @@ export default function Hero() {
               className="flex flex-wrap items-center gap-6 text-sm text-[#2C1810] drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
+              transition={{ delay: 0.8, duration: 0.1 }}
             >
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-4 h-4 text-[#7A9B76]" />
@@ -107,7 +107,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
+              transition={{ delay: 1, duration: 0.1 }}
             >
               <button className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-4 px-8 rounded-full text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3">
                 <span>QUERO VER MEU SHIH TZU TRANSFORMADO</span>

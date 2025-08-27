@@ -37,7 +37,7 @@ export default function Bonus() {
     {
       icon: <Calculator className="w-10 h-10" />,
       title: 'Calculadora de Ração',
-      subtitle: 'Ferramenta Interativa',
+      subtitle: 'BÔNUS #1 - Ferramenta Interativa',
       description: 'Calcule a quantidade ideal de ração para seu Shih Tzu',
       features: [
         'Cálculo por peso e idade',
@@ -52,7 +52,7 @@ export default function Bonus() {
     {
       icon: <ClipboardCheck className="w-10 h-10" />,
       title: 'Checklist Diário',
-      subtitle: 'Rotina Personalizada',
+      subtitle: 'BÔNUS #2 - Rotina Personalizada',
       description: 'Acompanhe todos os cuidados diários do seu pet',
       features: [
         'Lista de tarefas interativa',
@@ -67,7 +67,7 @@ export default function Bonus() {
     {
       icon: <TrendingUp className="w-10 h-10" />,
       title: 'Gráfico de Crescimento',
-      subtitle: 'Acompanhamento Visual',
+      subtitle: 'BÔNUS #3 - Acompanhamento Visual',
       description: 'Monitore o desenvolvimento saudável do seu Shih Tzu',
       features: [
         'Gráficos interativos',
@@ -82,7 +82,7 @@ export default function Bonus() {
     {
       icon: <FileText className="w-10 h-10" />,
       title: 'Bloco de Anotações',
-      subtitle: 'Salvamento Automático',
+      subtitle: 'BÔNUS #4 - Salvamento Automático',
       description: 'Anote tudo sobre seu Shih Tzu - salvo direto no navegador',
       features: [
         'Anotações ilimitadas',
@@ -108,7 +108,7 @@ export default function Bonus() {
           className="mb-24"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.1 }}
           viewport={{ once: true, margin: '-50px' }}
         >
           <div className="text-center mb-16">
@@ -116,20 +116,24 @@ export default function Bonus() {
               className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 px-6 py-3 rounded-full mb-8 shadow-sm"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.05, duration: 0.2 }}
+              transition={{ delay: 0.05, duration: 0.1 }}
               viewport={{ once: true, margin: '-50px' }}
             >
               <BookOpen className="w-5 h-5 text-blue-700" />
               <span className="text-blue-700 font-semibold text-sm tracking-[0.05em] uppercase">
-                CONTEÚDO COMPLETO
+                CONTEÚDO + 4 BÔNUS GRÁTIS
               </span>
             </motion.div>
 
             <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-6 leading-[1.1] tracking-tight">
-              Tudo que Você Vai Aprender
+              Tudo que Você Vai Aprender + 4 Bônus Exclusivos GRÁTIS
             </h2>
             <p className="text-lg md:text-xl lg:text-2xl text-[#6B5335]/90 text-balance max-w-4xl mx-auto leading-relaxed">
-              13 capítulos completos + ferramentas interativas para você se
+              13 capítulos completos +{' '}
+              <span className="gradient-text font-semibold">
+                4 bônus exclusivos GRÁTIS
+              </span>{' '}
+              para você se
               tornar um{' '}
               <span className="gradient-text font-semibold">
                 expert em Shih Tzu
@@ -237,7 +241,7 @@ export default function Bonus() {
                 className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-[#E5E1DC]/50 group backdrop-blur-sm"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.02, duration: 0.2 }}
+                transition={{ delay: index * 0.02, duration: 0.1 }}
                 viewport={{ once: true, margin: '-20px' }}
                 whileHover={{ scale: 1.02, y: -4 }}
               >
@@ -282,13 +286,13 @@ export default function Bonus() {
             className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 rounded-3xl p-8 lg:p-12 shadow-sm"
             initial={{ opacity: 0, scale: 0.98 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
+            transition={{ delay: 0.1, duration: 0.1 }}
             viewport={{ once: true, margin: '-30px' }}
           >
             <div className="text-center mb-8">
               <h3 className="font-display text-2xl lg:text-3xl font-bold text-blue-900 mb-4 leading-tight flex items-center justify-center gap-3">
                 <BarChart3 className="w-7 h-7 text-blue-600" />
-                Resumo do Que Você Receberá
+                Resumo dos Bônus Que Você Receberá
               </h3>
             </div>
 
@@ -322,7 +326,7 @@ export default function Bonus() {
                   4
                 </div>
                 <div className="text-blue-800 font-medium text-sm lg:text-base">
-                  Ferramentas Interativas
+                  Bônus Exclusivos
                 </div>
               </div>
             </div>
@@ -334,33 +338,33 @@ export default function Bonus() {
           className="text-center mb-20"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.1 }}
           viewport={{ once: true, margin: '-50px' }}
         >
           <motion.div
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-50 to-blue-50 border border-purple-200/50 px-6 py-3 rounded-full mb-8 shadow-sm"
+            className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#E5E1DC] px-6 py-3 rounded-full mb-8 shadow-sm"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.05, duration: 0.2 }}
             viewport={{ once: true, margin: '-50px' }}
           >
-            <Zap className="w-5 h-5 text-purple-600" />
-            <span className="text-purple-700 font-semibold text-sm tracking-[0.05em] uppercase flex items-center gap-2">
-              <Settings className="w-4 h-4" />
-              FERRAMENTAS
+            <Sparkles className="w-5 h-5 text-[#D4A574]" />
+            <span className="text-[#8B6F47] font-semibold text-sm tracking-[0.05em] uppercase">
+              BÔNUS EXCLUSIVOS
             </span>
           </motion.div>
 
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold gradient-text mb-6 leading-[1.1] tracking-tight">
-            Ferramentas Interativas
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#2C1810] mb-6 leading-[1.1] tracking-tight">
+            Bônus Exclusivos GRÁTIS
           </h2>
-          <p className="text-lg md:text-xl lg:text-2xl text-[#6B5335]/90 text-balance max-w-4xl mx-auto leading-relaxed">
-            Transforme o cuidado do seu Shih Tzu com{' '}
-            <span className="gradient-text font-semibold">tecnologia</span>
+          <p className="text-lg md:text-xl lg:text-2xl text-[#6B5335] text-balance max-w-4xl mx-auto leading-relaxed">
+            4 bônus profissionais que você recebe{' '}
+            <span className="text-[#8B6F47] font-semibold">gratuitamente</span>{' '}
+            para revolucionar o cuidado do seu Shih Tzu
           </p>
         </motion.div>
 
-        {/* Ferramentas Grid */}
+        {/* Bônus Grid */}
         <div className="space-y-20 lg:space-y-24 mb-20">
           {interactiveTools.map((tool, index) => (
             <motion.div
@@ -370,7 +374,7 @@ export default function Bonus() {
               }`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
+              transition={{ delay: index * 0.05, duration: 0.1 }}
               viewport={{ once: true, margin: '-30px' }}
             >
               {/* Mockup da ferramenta */}
@@ -492,112 +496,216 @@ export default function Bonus() {
                   ))}
                 </div>
 
-                {/* CTA específico */}
-                <motion.button
-                  className={`group bg-gradient-to-r ${tool.primaryColor} text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3 text-lg`}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span>Experimentar Agora</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.button>
+                {/* Indicador de bônus */}
+                <div className="text-center py-4">
+                  <div className={`inline-block bg-gradient-to-r ${tool.primaryColor} px-6 py-2 rounded-full`}>
+                    <span className="text-white font-bold text-sm">BÔNUS INCLUÍDO</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Destaque especial para o Bloco de Anotações */}
+        {/* Sistema Completo de Acompanhamento */}
         <motion.div
-          className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200/50 p-8 lg:p-12 rounded-3xl mb-20 shadow-sm"
+          className="bg-gradient-to-r from-[#F8F6F3] to-[#F4EDE5] border border-[#E5E1DC]/70 p-8 lg:p-12 rounded-3xl mb-20 shadow-sm"
           initial={{ opacity: 0, scale: 0.98 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.3 }}
+          transition={{ delay: 0.1, duration: 0.1 }}
           viewport={{ once: true, margin: '-30px' }}
         >
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <FileText className="w-8 h-8 text-purple-600" />
-              <h3 className="font-display text-2xl font-bold text-purple-900">
-                Bonus Especial: Bloco de Anotações
+              <FileText className="w-8 h-8 text-[#8B6F47]" />
+              <h3 className="font-display text-2xl font-bold text-[#2C1810]">
+                Sistema Completo de Acompanhamento
               </h3>
             </div>
 
-            <p className="text-purple-700 text-lg mb-6">
-              Anote comportamentos, datas importantes, observações veterinárias
-              -{' '}
+            <p className="text-[#6B5335] text-lg mb-8">
+              Tudo que você precisa para cuidar do seu Shih Tzu como um profissional,{' '}
               <span className="font-semibold">
-                tudo salvo automaticamente no seu navegador!
+                sem gastar uma fortuna
               </span>
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-xl">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-2">
-                  <Save className="w-6 h-6 text-purple-600" />
+            <div className="space-y-6">
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-[#E5E1DC]">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <Calculator className="w-6 h-6 text-[#8B6F47]" />
+                    <span className="font-semibold text-[#2C1810]">Calculadora de Ração</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-lg line-through text-gray-500">R$ 47</span>
+                    <span className="text-2xl font-bold text-[#7A9B76] ml-2">GRÁTIS</span>
+                  </div>
                 </div>
-                <p className="text-purple-800 font-medium">
-                  Salvamento Automático
+                <p className="text-[#6B5335] text-sm">
+                  Calcule a quantidade perfeita de ração baseada no peso, idade e atividade do seu pet
                 </p>
               </div>
-              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-xl">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-2">
-                  <Monitor className="w-6 h-6 text-purple-600" />
+
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-[#E5E1DC]">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <ClipboardCheck className="w-6 h-6 text-[#8B6F47]" />
+                    <span className="font-semibold text-[#2C1810]">Checklist Diário</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-lg line-through text-gray-500">R$ 39</span>
+                    <span className="text-2xl font-bold text-[#7A9B76] ml-2">GRÁTIS</span>
+                  </div>
                 </div>
-                <p className="text-purple-800 font-medium">
-                  Sem App Necessário
+                <p className="text-[#6B5335] text-sm">
+                  Lista inteligente de cuidados diários que se adapta ao perfil do seu Shih Tzu
                 </p>
               </div>
-              <div className="bg-white/50 backdrop-blur-sm p-4 rounded-xl">
-                <div className="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-2">
-                  <Lock className="w-6 h-6 text-purple-600" />
+
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-[#E5E1DC]">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <TrendingUp className="w-6 h-6 text-[#8B6F47]" />
+                    <span className="font-semibold text-[#2C1810]">Gráfico de Crescimento</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-lg line-through text-gray-500">R$ 59</span>
+                    <span className="text-2xl font-bold text-[#7A9B76] ml-2">GRÁTIS</span>
+                  </div>
                 </div>
-                <p className="text-purple-800 font-medium">
-                  Dados Locais e Seguros
+                <p className="text-[#6B5335] text-sm">
+                  Acompanhe visualmente o desenvolvimento saudável do seu companheiro
+                </p>
+              </div>
+
+              <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl border border-[#E5E1DC]">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <FileText className="w-6 h-6 text-[#8B6F47]" />
+                    <span className="font-semibold text-[#2C1810]">Bloco de Anotações</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-lg line-through text-gray-500">R$ 34</span>
+                    <span className="text-2xl font-bold text-[#7A9B76] ml-2">GRÁTIS</span>
+                  </div>
+                </div>
+                <p className="text-[#6B5335] text-sm">
+                  Registre tudo sobre seu pet - comportamentos, vacinas, consultas veterinárias
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 p-6 bg-[#F0F7F0] rounded-2xl border-2 border-[#7A9B76]/20">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#6B8967] mb-2">
+                  <span className="line-through text-gray-500 text-xl">R$ 179</span>
+                  <span className="text-[#6B8967] ml-3">TOTAL: GRÁTIS</span>
+                </div>
+                <p className="text-[#6B5335] font-medium">
+                  Você economiza R$ 179 com estes 4 bônus exclusivos!
                 </p>
               </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Seção final com destaque */}
+        {/* CTA Final Poderoso */}
         <motion.div
-          className="text-center bg-gradient-to-r from-[#F8F6F3] to-white p-12 lg:p-16 rounded-3xl shadow-xl border border-[#E5E1DC]/50 backdrop-blur-sm"
-          initial={{ opacity: 0, scale: 0.98 }}
+          className="text-center bg-gradient-to-r from-[#F8F6F3] to-[#F4EDE5] p-12 lg:p-16 rounded-3xl shadow-xl border border-[#E5E1DC]/50 backdrop-blur-sm"
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.1, duration: 0.3 }}
-          viewport={{ once: true, margin: '-30px' }}
+          transition={{ delay: 0.2, duration: 0.2 }}
+          viewport={{ once: true, margin: '-50px' }}
         >
           <div className="max-w-4xl mx-auto">
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <Sparkles className="w-8 h-8 lg:w-10 lg:h-10 text-[#D4A574]" />
-              <h3 className="font-display text-3xl lg:text-4xl font-bold gradient-text leading-tight">
-                4 Ferramentas Interativas Incluídas
-              </h3>
-              <Sparkles className="w-8 h-8 lg:w-10 lg:h-10 text-[#D4A574]" />
-            </div>
+            {/* Urgência */}
+            <motion.div
+              className="inline-flex items-center gap-2 bg-[#D4A574]/20 backdrop-blur-sm border border-[#D4A574]/30 px-4 py-2 rounded-full mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              viewport={{ once: true }}
+            >
+              <span className="w-2 h-2 bg-[#D4A574] rounded-full animate-pulse"></span>
+              <span className="text-[#A0845C] font-semibold text-sm uppercase tracking-wide">
+                Oferta Limitada - Garanta Agora
+              </span>
+            </motion.div>
 
-            <p className="text-xl lg:text-2xl text-[#6B5335]/90 mb-10 text-balance leading-relaxed">
-              Acesso completo às 4 ferramentas que vão revolucionar o cuidado
-              com seu Shih Tzu
-            </p>
+            <motion.h2
+              className="font-display text-3xl lg:text-5xl font-bold text-[#2C1810] mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Não Perca Esta Oportunidade Única!
+            </motion.h2>
 
+            {/* Benefícios principais */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[#8B6F47] mb-2">13</div>
+                <div className="text-[#6B5335] font-medium">Capítulos Completos</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[#8B6F47] mb-2">4</div>
+                <div className="text-[#6B5335] font-medium">Bônus Exclusivos</div>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-[#8B6F47] mb-2">R$ 179</div>
+                <div className="text-[#6B5335] font-medium">Economizados</div>
+              </div>
+            </motion.div>
+
+            {/* Valor destacado */}
+            <motion.div
+              className="bg-white/70 border-2 border-[#D4A574]/30 rounded-2xl p-8 mb-8"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-center">
+                <div className="text-lg text-[#6B5335] mb-3">Valor Normal</div>
+                <div className="text-4xl line-through text-[#6B5335]/60 mb-3">R$ 179</div>
+                <div className="text-6xl font-bold text-[#8B6F47] mb-4">R$ 37</div>
+                <div className="text-2xl text-[#D4A574] font-bold">APENAS HOJE!</div>
+                <div className="text-[#6B5335] font-semibold mt-2">Você recebe TUDO por apenas R$ 37</div>
+              </div>
+            </motion.div>
+
+            {/* CTA Button */}
             <motion.button
-              className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-5 px-10 rounded-full text-xl lg:text-2xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-4 mx-auto"
+              className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-6 px-12 rounded-full text-2xl lg:text-3xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-4 mx-auto mb-6"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              viewport={{ once: true }}
             >
-              <Zap className="w-6 h-6 lg:w-7 lg:h-7" />
-              <span>ACESSAR FERRAMENTAS AGORA</span>
-              <div className="bg-white/25 backdrop-blur-sm px-4 py-2 rounded-full text-lg font-bold shadow-sm">
-                R$ 37
-              </div>
-              <ArrowRight className="w-6 h-6 lg:w-7 lg:h-7 group-hover:translate-x-1 transition-transform duration-300" />
+              <span>QUERO RECEBER TUDO POR R$ 37</span>
+              <ArrowRight className="w-8 h-8 lg:w-10 lg:h-10 group-hover:translate-x-2 transition-transform duration-300" />
             </motion.button>
 
-            <p className="text-[#6B5335]/80 text-base lg:text-lg mt-6 flex items-center justify-center gap-3 font-medium">
-              <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-              Todas as ferramentas funcionam 100% offline
-            </p>
+            <motion.div
+              className="flex items-center justify-center gap-3 text-[#6B5335]"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Shield className="w-5 h-5 text-[#7A9B76]" />
+              <span className="font-medium">100% Seguro • Sem compromisso • Acesso imediato</span>
+            </motion.div>
           </div>
         </motion.div>
       </div>

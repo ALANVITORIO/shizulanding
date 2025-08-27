@@ -61,7 +61,7 @@ export default function Footer() {
                 className="flex items-center justify-center gap-2 bg-white/5 backdrop-blur-sm border border-white/10 px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-300"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
+                transition={{ delay: index * 0.1, duration: 0.1 }}
                 viewport={{ once: true }}
               >
                 <div className="text-[#D4A574]">{feature.icon}</div>
@@ -79,7 +79,7 @@ export default function Footer() {
             className="text-center space-y-4"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.1 }}
             viewport={{ once: true }}
           >
             <p className="text-white/80 text-sm">

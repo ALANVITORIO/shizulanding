@@ -5,6 +5,8 @@ import ImageGallery from '../components/ImageGallery';
 import HowItWorks from '../components/HowItWorks';
 import SocialProof from '../components/SocialProof';
 import Bonus from '../components/Bonus';
+import BonusSummary from '../components/BonusSummary';
+import FAQ from '../components/FAQ';
 import Guarantee from '../components/Guarantee';
 import FinalCall from '../components/FinalCall';
 import Footer from '../components/Footer';
@@ -19,9 +21,11 @@ export default function Home() {
       <HowItWorks />
       <SocialProof />
       <Bonus />
+      <BonusSummary />
       <Guarantee />
       <FinalCall />
-      <Footer />
+  <FAQ />
+  <Footer />
     </div>
   );
 }
