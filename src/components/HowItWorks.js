@@ -86,67 +86,107 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        {/* Roadmap Journey */}
+        <div className="relative max-w-6xl mx-auto">
+          {/* Journey path line */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[#D4A574] via-[#8B6F47] to-[#7A9B76] rounded-full" style={{height: 'calc(100% - 80px)', top: '40px'}}></div>
+          
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="relative"
-              initial={{ opacity: 0, y: 50 }}
+              className="relative flex items-center mb-20 last:mb-0"
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: index * 0.15, duration: 0.1 }}
               viewport={{ once: true }}
             >
-              {/* Connection line */}
-              {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-[#D4A574] to-[#A0845C]/30 z-0 transform translate-x-4"></div>
-              )}
-
-              <div
-                className={`${step.bgColor} p-8 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 relative z-10 group hover:-translate-y-2 border border-white/20 backdrop-blur-sm`}
-              >
-                {/* Step number */}
+              {/* Journey node */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 top-1/2">
                 <div
-                  className={`w-16 h-16 bg-gradient-to-br ${step.color} text-white rounded-2xl flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg group-hover:scale-110 transition-transform duration-300 relative overflow-hidden`}
+                  className={`w-20 h-20 bg-gradient-to-br ${step.color} text-white rounded-full flex items-center justify-center text-2xl font-bold shadow-2xl border-4 border-white`}
                 >
-                  <div className="absolute inset-0 bg-white/10 rounded-2xl"></div>
                   {step.number}
                 </div>
-
-                {/* Icon */}
-                <div className="flex justify-center mb-4">
+              </div>
+              
+              {/* Content card - Left side */}
+              {index % 2 === 0 && (
+                <div className="w-5/12 mr-auto pr-12">
                   <div
-                    className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300`}
+                    className={`${step.bgColor} p-8 rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative`}
                   >
-                    {step.icon}
+                    {/* Icon */}
+                    <div className="flex justify-start mb-6">
+                      <div
+                        className={`w-14 h-14 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-lg`}
+                      >
+                        {step.icon}
+                      </div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="text-left">
+                      <h3 className="font-heading text-2xl font-bold text-[#2C1810] mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-[#6B5335] font-semibold mb-4 text-lg">
+                        {step.description}
+                      </p>
+                      <p className="text-[#6B5335] text-base opacity-80 leading-relaxed">
+                        {step.detail}
+                      </p>
+                    </div>
+                    
+                    {/* Journey arrow */}
+                    <div className="absolute top-1/2 transform -translate-y-1/2 -right-6">
+                      <ArrowRight className="w-8 h-8 text-[#8B6F47]" />
+                    </div>
                   </div>
                 </div>
-
-                {/* Content */}
-                <div className="text-center">
-                  <h3 className="font-heading text-xl font-bold text-[#2C1810] mb-3 group-hover:text-[#8B6F47] transition-colors duration-300">
-                    {step.title}
-                  </h3>
-                  <p className="text-[#6B5335] font-medium mb-3 leading-relaxed">
-                    {step.description}
-                  </p>
-                  <p className="text-[#6B5335] text-sm opacity-75 leading-relaxed">
-                    {step.detail}
-                  </p>
+              )}
+              
+              {/* Content card - Right side */}
+              {index % 2 === 1 && (
+                <div className="w-5/12 ml-auto pl-12">
+                  <div
+                    className={`${step.bgColor} p-8 rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative`}
+                  >
+                    {/* Icon */}
+                    <div className="flex justify-start mb-6">
+                      <div
+                        className={`w-14 h-14 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-lg`}
+                      >
+                        {step.icon}
+                      </div>
+                    </div>
+                    
+                    {/* Content */}
+                    <div className="text-left">
+                      <h3 className="font-heading text-2xl font-bold text-[#2C1810] mb-3">
+                        {step.title}
+                      </h3>
+                      <p className="text-[#6B5335] font-semibold mb-4 text-lg">
+                        {step.description}
+                      </p>
+                      <p className="text-[#6B5335] text-base opacity-80 leading-relaxed">
+                        {step.detail}
+                      </p>
+                    </div>
+                    
+                    {/* Journey arrow */}
+                    <div className="absolute top-1/2 transform -translate-y-1/2 -left-6">
+                      <ArrowRight className="w-8 h-8 text-[#8B6F47] rotate-180" />
+                    </div>
+                  </div>
                 </div>
-
-                {/* Hover indicator */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <ArrowRight className="w-5 h-5 text-[#8B6F47]" />
-                </div>
-              </div>
+              )}
             </motion.div>
           ))}
         </div>
 
         {/* Bottom CTA Section */}
         <motion.div
-          className="text-center bg-white/60 backdrop-blur-sm p-12 rounded-3xl shadow-xl border border-[#E5E1DC] relative overflow-hidden"
+          className="text-center bg-white/60 backdrop-blur-sm p-12 rounded-3xl shadow-xl border border-[#E5E1DC] relative overflow-hidden mt-20"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.6, duration: 0.1 }}
