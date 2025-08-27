@@ -80,10 +80,10 @@ export default function ImageGallery() {
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
-              className="group relative"
+              className="relative"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
+              transition={{ delay: index * 0.1, duration: 0.1 }}
               viewport={{ once: true }}
             >
               {/* Container da imagem com aspect ratio otimizado */}
@@ -94,7 +94,7 @@ export default function ImageGallery() {
                     : 'image-container-standard'
                 }
               >
-                <div className="image-overlay group-hover:opacity-75 transition-opacity duration-300"></div>
+                <div className="image-overlay"></div>
 
                 {/* Sua arte vai aqui */}
                 <Image
@@ -102,26 +102,8 @@ export default function ImageGallery() {
                   alt={image.alt}
                   width={600}
                   height={index === 1 ? 600 : 400}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover"
                 />
-
-                {/* Overlay com informações */}
-                <div className="image-content">
-                  {/* Tag */}
-                  <div className="absolute top-4 left-4 bg-[#8B6F47] text-white px-3 py-1 rounded-full text-xs font-semibold">
-                    {image.tag}
-                  </div>
-
-                  {/* Caption no hover */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="text-white font-semibold mb-1">
-                      {image.caption}
-                    </h3>
-                    <p className="text-white/80 text-sm">
-                      Resultado comprovado
-                    </p>
-                  </div>
-                </div>
               </div>
             </motion.div>
           ))}
