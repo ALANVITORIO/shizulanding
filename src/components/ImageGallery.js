@@ -7,25 +7,25 @@ export default function ImageGallery() {
   // Array para suas imagens - você pode facilmente substituir
   const galleryImages = [
     {
-      src: 'https://picsum.photos/seed/shihtzu1/600/400.jpg',
+      src: '/transformacao1.webp',
       alt: 'Shih Tzu feliz e bem cuidado',
       caption: 'Resultado com alimentação correta',
       tag: 'Antes & Depois',
     },
     {
-      src: 'https://picsum.photos/seed/shihtzu2/600/600.jpg',
+      src: '/transformacao2.webp',
       alt: 'Shih Tzu durante o banho',
       caption: 'Cuidados de higiene adequados',
       tag: 'Rotina',
     },
     {
-      src: 'https://picsum.photos/seed/shihtzu3/600/400.jpg',
+      src: '/transformacao3.webp',
       alt: 'Shih Tzu brincando',
       caption: 'Pet ativo e saudável',
       tag: 'Exercícios',
     },
     {
-      src: 'https://picsum.photos/seed/shihtzu4/600/500.jpg',
+      src: '/transformacao4.webp',
       alt: 'Shih Tzu com tutor',
       caption: 'Vínculo fortalecido',
       tag: 'Relacionamento',
