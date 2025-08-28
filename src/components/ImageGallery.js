@@ -41,11 +41,11 @@ export default function ImageGallery() {
   // Configurações de animação baseadas no dispositivo e preferências
   const animationConfig = {
     duration: reducedMotion ? 0 : isMobile ? 0.3 : 0.5,
-    ease: isMobile ? "easeOut" : [0.25, 0.46, 0.45, 0.94],
+    ease: isMobile ? 'easeOut' : [0.25, 0.46, 0.45, 0.94],
   };
 
   return (
-    <section 
+    <section
       ref={elementRef}
       className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-white relative overflow-hidden"
     >
@@ -113,7 +113,7 @@ export default function ImageGallery() {
                   loading="lazy"
                   style={{ willChange: 'transform' }}
                 />
-                
+
                 {/* Overlay com informações - otimizado para mobile */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
@@ -129,8 +129,6 @@ export default function ImageGallery() {
             </motion.div>
           ))}
         </div>
-
-
 
         {/* Cards com conteúdo sobre Shih Tzu - otimizada para mobile */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
@@ -200,7 +198,8 @@ export default function ImageGallery() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
                 <h4 className="text-white font-bold text-base md:text-lg p-4 md:p-6 leading-tight">
-                  Quem disse que Shih Tzu não aprende truques. Aprenda técnicas milenares de ensino
+                  Quem disse que Shih Tzu não aprende truques. Aprenda técnicas
+                  milenares de ensino
                 </h4>
               </div>
             </div>

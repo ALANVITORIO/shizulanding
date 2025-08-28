@@ -59,11 +59,11 @@ export default function HowItWorks() {
   // Configurações de animação baseadas no dispositivo e preferências
   const animationConfig = {
     duration: reducedMotion ? 0 : isMobile ? 0.3 : 0.5,
-    ease: isMobile ? "easeOut" : [0.25, 0.46, 0.45, 0.94],
+    ease: isMobile ? 'easeOut' : [0.25, 0.46, 0.45, 0.94],
   };
 
   return (
-    <section 
+    <section
       ref={elementRef}
       className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#F8F6F3] to-[#F4EDE5] relative overflow-hidden"
     >
@@ -118,18 +118,24 @@ export default function HowItWorks() {
                   {index < steps.length - 1 && (
                     <div className="absolute left-6 top-20 w-0.5 h-16 bg-gradient-to-b from-[#D4A574] to-[#8B6F47] rounded-full z-0"></div>
                   )}
-                  
-                  <div className={`${step.bgColor} p-5 rounded-xl shadow-lg border border-white/20 backdrop-blur-sm relative z-10`}>
+
+                  <div
+                    className={`${step.bgColor} p-5 rounded-xl shadow-lg border border-white/20 backdrop-blur-sm relative z-10`}
+                  >
                     <div className="flex items-start gap-4">
                       {/* Number badge */}
-                      <div className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg shrink-0`}>
+                      <div
+                        className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-full flex items-center justify-center text-lg font-bold shadow-lg shrink-0`}
+                      >
                         {step.number}
                       </div>
-                      
+
                       {/* Content */}
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-3 mb-2">
-                          <div className={`w-8 h-8 bg-gradient-to-br ${step.color} text-white rounded-lg flex items-center justify-center shadow-md`}>
+                          <div
+                            className={`w-8 h-8 bg-gradient-to-br ${step.color} text-white rounded-lg flex items-center justify-center shadow-md`}
+                          >
                             {step.icon}
                           </div>
                           <h3 className="font-heading text-lg font-bold text-[#2C1810] leading-tight">
@@ -144,7 +150,7 @@ export default function HowItWorks() {
                         </p>
                       </div>
                     </div>
-                    
+
                     {/* Arrow indicator for next step */}
                     {index < steps.length - 1 && (
                       <div className="flex justify-center mt-4">
@@ -159,8 +165,11 @@ export default function HowItWorks() {
             // Layout Desktop: Roadmap alternado original (otimizado)
             <div className="relative">
               {/* Journey path line */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[#D4A574] via-[#8B6F47] to-[#7A9B76] rounded-full" style={{height: 'calc(100% - 80px)', top: '40px'}}></div>
-              
+              <div
+                className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-[#D4A574] via-[#8B6F47] to-[#7A9B76] rounded-full"
+                style={{ height: 'calc(100% - 80px)', top: '40px' }}
+              ></div>
+
               {steps.map((step, index) => (
                 <motion.div
                   key={index}
@@ -171,21 +180,27 @@ export default function HowItWorks() {
                 >
                   {/* Journey node */}
                   <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 top-1/2">
-                    <div className={`w-16 h-16 bg-gradient-to-br ${step.color} text-white rounded-full flex items-center justify-center text-xl font-bold shadow-2xl border-4 border-white`}>
+                    <div
+                      className={`w-16 h-16 bg-gradient-to-br ${step.color} text-white rounded-full flex items-center justify-center text-xl font-bold shadow-2xl border-4 border-white`}
+                    >
                       {step.number}
                     </div>
                   </div>
-                  
+
                   {/* Content card - Left side */}
                   {index % 2 === 0 && (
                     <div className="w-5/12 mr-auto pr-8">
-                      <div className={`${step.bgColor} p-6 rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative`}>
+                      <div
+                        className={`${step.bgColor} p-6 rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative`}
+                      >
                         <div className="flex justify-start mb-4">
-                          <div className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-lg`}>
+                          <div
+                            className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-lg`}
+                          >
                             {step.icon}
                           </div>
                         </div>
-                        
+
                         <div className="text-left">
                           <h3 className="font-heading text-xl font-bold text-[#2C1810] mb-2">
                             {step.title}
@@ -197,24 +212,28 @@ export default function HowItWorks() {
                             {step.detail}
                           </p>
                         </div>
-                        
+
                         <div className="absolute top-1/2 transform -translate-y-1/2 -right-4">
                           <ArrowRight className="w-6 h-6 text-[#8B6F47]" />
                         </div>
                       </div>
                     </div>
                   )}
-                  
+
                   {/* Content card - Right side */}
                   {index % 2 === 1 && (
                     <div className="w-5/12 ml-auto pl-8">
-                      <div className={`${step.bgColor} p-6 rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative`}>
+                      <div
+                        className={`${step.bgColor} p-6 rounded-2xl shadow-xl border border-white/20 backdrop-blur-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 relative`}
+                      >
                         <div className="flex justify-start mb-4">
-                          <div className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-lg`}>
+                          <div
+                            className={`w-12 h-12 bg-gradient-to-br ${step.color} text-white rounded-xl flex items-center justify-center shadow-lg`}
+                          >
                             {step.icon}
                           </div>
                         </div>
-                        
+
                         <div className="text-left">
                           <h3 className="font-heading text-xl font-bold text-[#2C1810] mb-2">
                             {step.title}
@@ -226,7 +245,7 @@ export default function HowItWorks() {
                             {step.detail}
                           </p>
                         </div>
-                        
+
                         <div className="absolute top-1/2 transform -translate-y-1/2 -left-4">
                           <ArrowRight className="w-6 h-6 text-[#8B6F47] rotate-180" />
                         </div>
@@ -262,7 +281,9 @@ export default function HowItWorks() {
                 <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 group-hover:translate-x-full transition-transform duration-700"></div>
                 <Play className="w-4 h-4 md:w-5 md:h-5 relative z-10" />
                 <span className="relative z-10 text-sm md:text-base">
-                  {isMobile ? 'VER DEMONSTRAÇÃO' : 'VER DEMONSTRAÇÃO DE 30 SEGUNDOS'}
+                  {isMobile
+                    ? 'VER DEMONSTRAÇÃO'
+                    : 'VER DEMONSTRAÇÃO DE 30 SEGUNDOS'}
                 </span>
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
               </button>

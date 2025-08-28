@@ -1,7 +1,15 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Quote, Star, ChevronLeft, ChevronRight, Users, Heart, Zap } from 'lucide-react';
+import {
+  Quote,
+  Star,
+  ChevronLeft,
+  ChevronRight,
+  Users,
+  Heart,
+  Zap,
+} from 'lucide-react';
 import Image from 'next/image';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useMobileOptimizations } from '../hooks/useMobileOptimizations';
@@ -10,7 +18,7 @@ import { mobileVariants } from '../utils/mobileAnimations';
 export default function SocialProof() {
   const { elementRef, hasIntersected } = useIntersectionObserver();
   const { isMobile, reducedMotion } = useMobileOptimizations();
-  
+
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   // Testimonials redesenhados para mobile-first
@@ -28,7 +36,7 @@ export default function SocialProof() {
     },
     {
       name: 'Carlos',
-      age: '34 anos', 
+      age: '34 anos',
       text: 'Nunca pensei que alimentar errado pudesse causar tantos problemas. Depois do guia, meu Bento está mais ativo!',
       shortText: 'Bento está mais ativo e saudável que nunca!',
       avatar: 'https://picsum.photos/seed/carlos/120/120.jpg',
@@ -76,11 +84,11 @@ export default function SocialProof() {
   // Configurações de animação baseadas no dispositivo
   const animationConfig = {
     duration: reducedMotion ? 0 : isMobile ? 0.3 : 0.5,
-    ease: isMobile ? "easeOut" : [0.25, 0.46, 0.45, 0.94],
+    ease: isMobile ? 'easeOut' : [0.25, 0.46, 0.45, 0.94],
   };
 
   return (
-    <section 
+    <section
       ref={elementRef}
       className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-white relative overflow-hidden"
     >
@@ -158,11 +166,14 @@ export default function SocialProof() {
                             {testimonial.detail}
                           </p>
                         </div>
-                        
+
                         {/* Rating compacto */}
                         <div className="flex gap-0.5">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="w-3 h-3 text-[#D4A574] fill-current" />
+                            <Star
+                              key={i}
+                              className="w-3 h-3 text-[#D4A574] fill-current"
+                            />
                           ))}
                         </div>
                       </div>
@@ -228,7 +239,10 @@ export default function SocialProof() {
                       {/* Rating */}
                       <div className="flex justify-center lg:justify-start gap-1">
                         {[...Array(currentTestimonial.rating)].map((_, i) => (
-                          <Star key={i} className="w-4 h-4 text-[#D4A574] fill-current" />
+                          <Star
+                            key={i}
+                            className="w-4 h-4 text-[#D4A574] fill-current"
+                          />
                         ))}
                       </div>
                     </div>
@@ -324,7 +338,7 @@ export default function SocialProof() {
                   <br />
                   <span className="text-green-600">seus pets</span>
                 </p>
-                
+
                 {/* Rating compacto */}
                 <div className="flex justify-center items-center gap-1">
                   {[...Array(5)].map((_, i) => (
@@ -358,7 +372,9 @@ export default function SocialProof() {
                 </div>
                 <div className="text-[#6B5335] font-semibold">
                   <span className="text-lg">+500 tutores</span>
-                  <span className="text-sm block -mt-1">já transformaram seus pets</span>
+                  <span className="text-sm block -mt-1">
+                    já transformaram seus pets
+                  </span>
                 </div>
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (

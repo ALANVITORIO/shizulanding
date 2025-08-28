@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import {
@@ -43,7 +43,7 @@ export default function Bonus() {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
@@ -148,8 +148,7 @@ export default function Bonus() {
               <span className="gradient-text font-semibold">
                 4 bônus exclusivos GRÁTIS
               </span>{' '}
-              para você se
-              tornar um{' '}
+              para você se tornar um{' '}
               <span className="gradient-text font-semibold">
                 expert em Shih Tzu
               </span>
@@ -513,16 +512,18 @@ export default function Bonus() {
 
                 {/* Indicador de bônus */}
                 <div className="text-center py-4">
-                  <div className={`inline-block bg-gradient-to-r ${tool.primaryColor} px-6 py-2 rounded-full`}>
-                    <span className="text-white font-bold text-sm">BÔNUS INCLUÍDO</span>
+                  <div
+                    className={`inline-block bg-gradient-to-r ${tool.primaryColor} px-6 py-2 rounded-full`}
+                  >
+                    <span className="text-white font-bold text-sm">
+                      BÔNUS INCLUÍDO
+                    </span>
                   </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-      
 
         {/* Sistema Completo de Acompanhamento */}
         <motion.div
@@ -537,7 +538,7 @@ export default function Bonus() {
               className="inline-flex items-center gap-2 bg-gradient-to-r from-[#8B6F47]/10 to-[#A0845C]/10 border border-[#8B6F47]/20 px-6 py-3 rounded-full mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.1, duration: 0.2 }}
+              transition={{ delFay: 0.1, duration: 0.2 }}
               viewport={{ once: true }}
             >
               <Settings className="w-5 h-5 text-[#8B6F47]" />
@@ -545,12 +546,13 @@ export default function Bonus() {
                 SISTEMA COMPLETO
               </span>
             </motion.div>
-            
+
             <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-[#2C1810] mb-6 leading-tight">
               Sistema Completo de Acompanhamento
             </h2>
             <p className="text-lg md:text-xl text-[#6B5335] text-balance max-w-3xl mx-auto leading-relaxed">
-              Tudo que você precisa para cuidar do seu Shih Tzu como um profissional, sem gastar uma fortuna
+              Tudo que você precisa para cuidar do seu Shih Tzu como um
+              profissional, sem gastar uma fortuna
             </p>
           </div>
 
@@ -558,45 +560,53 @@ export default function Bonus() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12 bonus-grid-mobile">
             {[
               {
-                icon: <Calculator className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
+                icon: (
+                  <Calculator className={isMobile ? 'w-5 h-5' : 'w-8 h-8'} />
+                ),
                 title: 'Calculadora de Ração',
-                description: isMobile 
+                description: isMobile
                   ? 'Calcule a quantidade perfeita baseada no peso, idade e atividade'
                   : 'Calcule a quantidade perfeita de ração baseada no peso, idade e atividade do seu pet',
                 value: 'R$ 47',
                 color: 'from-[#8B6F47] to-[#A0845C]',
-                image: '/calc.webp'
+                image: '/calc.webp',
               },
               {
-                icon: <ClipboardCheck className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
+                icon: (
+                  <ClipboardCheck
+                    className={isMobile ? 'w-5 h-5' : 'w-8 h-8'}
+                  />
+                ),
                 title: 'Checklist Diário',
                 description: isMobile
                   ? 'Lista inteligente que se adapta ao perfil do seu Shih Tzu'
                   : 'Lista inteligente de cuidados diários que se adapta ao perfil do seu Shih Tzu',
                 value: 'R$ 39',
                 color: 'from-[#7A9B76] to-[#6B8967]',
-                image: '/check.webp'
+                image: '/check.webp',
               },
               {
-                icon: <TrendingUp className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
+                icon: (
+                  <TrendingUp className={isMobile ? 'w-5 h-5' : 'w-8 h-8'} />
+                ),
                 title: 'Gráfico de Crescimento',
                 description: isMobile
                   ? 'Acompanhe visualmente o desenvolvimento saudável'
                   : 'Acompanhe visualmente o desenvolvimento saudável do seu companheiro',
                 value: 'R$ 59',
                 color: 'from-[#D4A574] to-[#A0845C]',
-                image: '/grafico.webp'
+                image: '/grafico.webp',
               },
               {
-                icon: <FileText className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
+                icon: <FileText className={isMobile ? 'w-5 h-5' : 'w-8 h-8'} />,
                 title: 'Bloco de Anotações',
                 description: isMobile
                   ? 'Registre comportamentos, vacinas e consultas'
                   : 'Registre tudo sobre seu pet - comportamentos, vacinas, consultas veterinárias',
                 value: 'R$ 34',
                 color: 'from-[#9B7BA3] to-[#7A5B82]',
-                image: '/anotacao.webp'
-              }
+                image: '/anotacao.webp',
+              },
             ].map((bonus, index) => (
               <motion.div
                 key={index}
@@ -608,7 +618,9 @@ export default function Bonus() {
                 whileHover={!isMobile ? { scale: 1.02, y: -4 } : {}}
               >
                 <div className="flex items-start gap-4 mb-4 bonus-content">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${bonus.color} rounded-xl flex items-center justify-center text-white shadow-sm shrink-0 bonus-icon`}>
+                  <div
+                    className={`w-12 h-12 bg-gradient-to-br ${bonus.color} rounded-xl flex items-center justify-center text-white shadow-sm shrink-0 bonus-icon`}
+                  >
                     {bonus.icon}
                   </div>
                   <div className="flex-1 min-w-0 bonus-info">
@@ -639,7 +651,9 @@ export default function Bonus() {
             viewport={{ once: true }}
           >
             <div className="flex items-center justify-center gap-4 text-3xl lg:text-4xl font-bold mb-4 total-amounts">
-              <span className="text-gray-400 line-through total-old">R$ 179</span>
+              <span className="text-gray-400 line-through total-old">
+                R$ 179
+              </span>
               <span className="text-green-600 total-new">TOTAL: GRÁTIS</span>
             </div>
             <p className="text-lg lg:text-xl text-green-700 font-semibold total-description">
@@ -650,7 +664,7 @@ export default function Bonus() {
 
         {/* CTA Final Poderoso */}
         <motion.div
-          className="text-center bg-gradient-to-r from-[#F8F6F3] to-[#F4EDE5] p-12 lg:p-16 rounded-3xl shadow-xl border border-[#E5E1DC]/50 backdrop-blur-sm"
+          className="text-center bg-gradient-to-r from-[#F8F6F3] to-[#F4EDE5] p-12 lg:p-16 rounded-3xl shadow-xl border border-[#E5E1DC]/50 backdrop-blur-sm cta-final-mobile"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.2, duration: 0.2 }}
@@ -659,7 +673,7 @@ export default function Bonus() {
           <div className="max-w-4xl mx-auto">
             {/* Urgência */}
             <motion.div
-              className="inline-flex items-center gap-2 bg-[#D4A574]/20 backdrop-blur-sm border border-[#D4A574]/30 px-4 py-2 rounded-full mb-6"
+              className="inline-flex items-center gap-2 bg-[#D4A574]/20 backdrop-blur-sm border border-[#D4A574]/30 px-4 py-2 rounded-full mb-6 cta-urgency"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
@@ -672,7 +686,7 @@ export default function Bonus() {
             </motion.div>
 
             <motion.h2
-              className="font-display text-3xl lg:text-5xl font-bold text-[#2C1810] mb-6 leading-tight"
+              className="font-display text-3xl lg:text-5xl font-bold text-[#2C1810] mb-6 leading-tight cta-title"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
@@ -683,39 +697,59 @@ export default function Bonus() {
 
             {/* Benefícios principais */}
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10"
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 cta-benefits-mobile"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
               viewport={{ once: true }}
             >
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#8B6F47] mb-2">13</div>
-                <div className="text-[#6B5335] font-medium">Capítulos Completos</div>
+              <div className="text-center benefit-item">
+                <div className="text-4xl font-bold text-[#8B6F47] mb-2 benefit-number">
+                  13
+                </div>
+                <div className="text-[#6B5335] font-medium benefit-label">
+                  Capítulos Completos
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#8B6F47] mb-2">4</div>
-                <div className="text-[#6B5335] font-medium">Bônus Exclusivos</div>
+              <div className="text-center benefit-item">
+                <div className="text-4xl font-bold text-[#8B6F47] mb-2 benefit-number">
+                  4
+                </div>
+                <div className="text-[#6B5335] font-medium benefit-label">
+                  Bônus Exclusivos
+                </div>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#8B6F47] mb-2">R$ 179</div>
-                <div className="text-[#6B5335] font-medium">Economizados</div>
+              <div className="text-center benefit-item">
+                <div className="text-4xl font-bold text-[#8B6F47] mb-2 benefit-number">
+                  R$ 179
+                </div>
+                <div className="text-[#6B5335] font-medium benefit-label">
+                  Economizados
+                </div>
               </div>
             </motion.div>
 
             {/* Valor destacado */}
             <motion.div
-              className="bg-white/70 border-2 border-[#D4A574]/30 rounded-2xl p-8 mb-8"
+              className="bg-white/70 border-2 border-[#D4A574]/30 rounded-2xl p-8 mb-8 cta-price-mobile"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6 }}
               viewport={{ once: true }}
             >
               <div className="text-center">
-                <div className="text-lg text-[#6B5335] mb-3">Valor Normal</div>
-                <div className="text-4xl line-through text-[#6B5335]/60 mb-3">R$ 179</div>
-                <div className="text-6xl font-bold text-[#8B6F47] mb-4">R$ 37</div>
-                <div className="text-2xl text-[#D4A574] font-bold">APENAS HOJE!</div>
+                <div className="text-lg text-[#6B5335] mb-3 price-label">
+                  Valor Normal
+                </div>
+                <div className="text-4xl line-through text-[#6B5335]/60 mb-3 price-old">
+                  R$ 179
+                </div>
+                <div className="text-6xl font-bold text-[#8B6F47] mb-4 price-new">
+                  R$ 37
+                </div>
+                <div className="text-2xl text-[#D4A574] font-bold price-urgency">
+                  APENAS HOJE!
+                </div>
               </div>
             </motion.div>
 
@@ -728,23 +762,25 @@ export default function Bonus() {
               viewport={{ once: true }}
             >
               <motion.button
-                className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-6 px-12 rounded-full text-2xl lg:text-3xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-4"
+                className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-6 px-12 rounded-full text-2xl lg:text-3xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-4 cta-button-mobile"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 <span>QUERO RECEBER TUDO POR R$ 37</span>
                 <ArrowRight className="w-8 h-8 lg:w-10 lg:h-10 group-hover:translate-x-2 transition-transform duration-300" />
               </motion.button>
-              
+
               <motion.div
-                className="flex items-center justify-center gap-3 text-[#6B5335]"
+                className="flex items-center justify-center gap-3 text-[#6B5335] cta-security-mobile"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.8 }}
                 viewport={{ once: true }}
               >
                 <Shield className="w-5 h-5 text-[#7A9B76]" />
-                <span className="font-medium">100% Seguro • Sem compromisso • Acesso imediato</span>
+                <span className="font-medium">
+                  100% Seguro • Sem compromisso • Acesso imediato
+                </span>
               </motion.div>
             </motion.div>
           </div>

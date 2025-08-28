@@ -13,7 +13,7 @@ export function useMobileOptimizations() {
     const handleChange = (e) => setReducedMotion(e.matches);
     mediaQuery.addEventListener('change', handleChange);
 
-    // Check if mobile
+    // Check if mobile""
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
