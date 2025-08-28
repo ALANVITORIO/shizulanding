@@ -287,38 +287,90 @@ export default function SocialProof() {
           )}
         </div>
 
-        {/* Trust Indicator */}
+        {/* Trust Indicator - Redesenhado para mobile */}
         <motion.div
-          className="text-center mt-12"
+          className="mt-8 md:mt-12"
           initial={{ opacity: 0, y: 20 }}
           animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
           transition={{ ...animationConfig, delay: 0.6 }}
         >
-          <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm border border-[#E5E1DC] px-6 py-3 rounded-full shadow-lg">
-            <div className="flex -space-x-2">
-              {testimonials.slice(0, 3).map((testimonial, index) => (
-                <Image
-                  key={index}
-                  src={testimonial.avatar}
-                  alt={testimonial.name}
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 rounded-full border-2 border-white"
-                />
-              ))}
+          {isMobile ? (
+            // Layout Mobile: Stack vertical compacto
+            <div className="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 p-4 rounded-2xl shadow-lg">
+              {/* Avatars em linha */}
+              <div className="flex justify-center items-center gap-2 mb-3">
+                <div className="flex -space-x-2">
+                  {testimonials.slice(0, 4).map((testimonial, index) => (
+                    <Image
+                      key={index}
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 rounded-full border-2 border-white shadow-sm"
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+                <div className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
+                  +500
+                </div>
+              </div>
+
+              {/* Texto principal */}
+              <div className="text-center">
+                <p className="text-green-800 font-bold text-sm leading-tight mb-2">
+                  Tutores já transformaram
+                  <br />
+                  <span className="text-green-600">seus pets</span>
+                </p>
+                
+                {/* Rating compacto */}
+                <div className="flex justify-center items-center gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-3.5 h-3.5 text-yellow-500 fill-current"
+                    />
+                  ))}
+                  <span className="text-green-700 text-xs font-medium ml-1">
+                    4.9/5
+                  </span>
+                </div>
+              </div>
             </div>
-            <span className="text-[#6B5335] font-medium text-sm">
-              +500 tutores já transformaram seus pets
-            </span>
-            <div className="flex gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className="w-4 h-4 text-[#D4A574] fill-current"
-                />
-              ))}
+          ) : (
+            // Layout Desktop: Horizontal elegante
+            <div className="text-center">
+              <div className="inline-flex items-center gap-4 bg-white/90 backdrop-blur-sm border border-[#E5E1DC] px-8 py-4 rounded-full shadow-xl">
+                <div className="flex -space-x-2">
+                  {testimonials.slice(0, 3).map((testimonial, index) => (
+                    <Image
+                      key={index}
+                      src={testimonial.avatar}
+                      alt={testimonial.name}
+                      width={40}
+                      height={40}
+                      className="w-10 h-10 rounded-full border-2 border-white shadow-lg"
+                      loading="lazy"
+                    />
+                  ))}
+                </div>
+                <div className="text-[#6B5335] font-semibold">
+                  <span className="text-lg">+500 tutores</span>
+                  <span className="text-sm block -mt-1">já transformaram seus pets</span>
+                </div>
+                <div className="flex gap-1">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className="w-5 h-5 text-[#D4A574] fill-current"
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
+          )}
         </motion.div>
       </div>
     </section>

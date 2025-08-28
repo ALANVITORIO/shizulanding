@@ -32,7 +32,22 @@ import {
   FileText,
 } from 'lucide-react';
 
+// Hooks para otimização mobile apenas desta seção
+import { useState, useEffect } from 'react';
+
 export default function Bonus() {
+  // Hook simples para detectar mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
   const interactiveTools = [
     {
       icon: <Calculator className="w-10 h-10" />,
@@ -511,7 +526,7 @@ export default function Bonus() {
 
         {/* Sistema Completo de Acompanhamento */}
         <motion.div
-          className="bg-gradient-to-br from-white to-gray-50/80 rounded-3xl p-8 lg:p-12 shadow-2xl border border-[#E5E1DC]/50 mb-20"
+          className="bg-gradient-to-br from-white to-gray-50/80 rounded-3xl p-8 lg:p-12 shadow-2xl border border-[#E5E1DC]/50 mb-20 sistema-completo-container"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.2 }}
@@ -539,37 +554,45 @@ export default function Bonus() {
             </p>
           </div>
 
-          {/* Grid de bônus com valores */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12">
+          {/* Grid de bônus com valores - Otimizado para mobile */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-12 bonus-grid-mobile">
             {[
               {
-                icon: <Calculator className="w-8 h-8" />,
+                icon: <Calculator className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
                 title: 'Calculadora de Ração',
-                description: 'Calcule a quantidade perfeita de ração baseada no peso, idade e atividade do seu pet',
+                description: isMobile 
+                  ? 'Calcule a quantidade perfeita baseada no peso, idade e atividade'
+                  : 'Calcule a quantidade perfeita de ração baseada no peso, idade e atividade do seu pet',
                 value: 'R$ 47',
                 color: 'from-[#8B6F47] to-[#A0845C]',
                 image: '/calc.webp'
               },
               {
-                icon: <ClipboardCheck className="w-8 h-8" />,
+                icon: <ClipboardCheck className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
                 title: 'Checklist Diário',
-                description: 'Lista inteligente de cuidados diários que se adapta ao perfil do seu Shih Tzu',
+                description: isMobile
+                  ? 'Lista inteligente que se adapta ao perfil do seu Shih Tzu'
+                  : 'Lista inteligente de cuidados diários que se adapta ao perfil do seu Shih Tzu',
                 value: 'R$ 39',
                 color: 'from-[#7A9B76] to-[#6B8967]',
                 image: '/check.webp'
               },
               {
-                icon: <TrendingUp className="w-8 h-8" />,
+                icon: <TrendingUp className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
                 title: 'Gráfico de Crescimento',
-                description: 'Acompanhe visualmente o desenvolvimento saudável do seu companheiro',
+                description: isMobile
+                  ? 'Acompanhe visualmente o desenvolvimento saudável'
+                  : 'Acompanhe visualmente o desenvolvimento saudável do seu companheiro',
                 value: 'R$ 59',
                 color: 'from-[#D4A574] to-[#A0845C]',
                 image: '/grafico.webp'
               },
               {
-                icon: <FileText className="w-8 h-8" />,
+                icon: <FileText className={isMobile ? "w-5 h-5" : "w-8 h-8"} />,
                 title: 'Bloco de Anotações',
-                description: 'Registre tudo sobre seu pet - comportamentos, vacinas, consultas veterinárias',
+                description: isMobile
+                  ? 'Registre comportamentos, vacinas e consultas'
+                  : 'Registre tudo sobre seu pet - comportamentos, vacinas, consultas veterinárias',
                 value: 'R$ 34',
                 color: 'from-[#9B7BA3] to-[#7A5B82]',
                 image: '/anotacao.webp'
@@ -577,33 +600,30 @@ export default function Bonus() {
             ].map((bonus, index) => (
               <motion.div
                 key={index}
-                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-[#E5E1DC]/50 shadow-lg hover:shadow-xl transition-all duration-300 group"
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-[#E5E1DC]/50 shadow-lg hover:shadow-xl transition-all duration-300 group bonus-card-mobile"
                 initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.05, duration: 0.2 }}
                 viewport={{ once: true, margin: '-20px' }}
-                whileHover={{ scale: 1.02, y: -4 }}
+                whileHover={!isMobile ? { scale: 1.02, y: -4 } : {}}
               >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${bonus.color} rounded-xl flex items-center justify-center text-white shadow-sm shrink-0`}>
+                <div className="flex items-start gap-4 mb-4 bonus-content">
+                  <div className={`w-12 h-12 bg-gradient-to-br ${bonus.color} rounded-xl flex items-center justify-center text-white shadow-sm shrink-0 bonus-icon`}>
                     {bonus.icon}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-display text-xl lg:text-2xl font-bold text-[#2C1810] mb-2 leading-tight">
-                      {bonus.title}
-                    </h3>
-                    <p className="text-[#6B5335]/90 text-base leading-relaxed">
+                  <div className="flex-1 min-w-0 bonus-info">
+                    <div className="bonus-header">
+                      <h3 className="font-display text-xl lg:text-2xl font-bold text-[#2C1810] mb-2 leading-tight bonus-title">
+                        {bonus.title}
+                      </h3>
+                      <div className="bonus-price-container">
+                        <span className="bonus-price">{bonus.value}</span>
+                        <span className="bonus-free">GRÁTIS</span>
+                      </div>
+                    </div>
+                    <p className="text-[#6B5335]/90 text-base leading-relaxed bonus-description">
                       {bonus.description}
                     </p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl font-bold text-gray-400 line-through">{bonus.value}</div>
-                    <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-4 py-1 rounded-full font-bold text-lg">
-                      GRÁTIS
-                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -612,17 +632,17 @@ export default function Bonus() {
 
           {/* Total e economia */}
           <motion.div
-            className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-2 border-green-500/20 rounded-2xl p-6 lg:p-8 text-center"
+            className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-2 border-green-500/20 rounded-2xl p-6 lg:p-8 text-center bonus-total-mobile"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.3, duration: 0.2 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center justify-center gap-4 text-3xl lg:text-4xl font-bold mb-4">
-              <span className="text-gray-400 line-through">R$ 179</span>
-              <span className="text-green-600">TOTAL: GRÁTIS</span>
+            <div className="flex items-center justify-center gap-4 text-3xl lg:text-4xl font-bold mb-4 total-amounts">
+              <span className="text-gray-400 line-through total-old">R$ 179</span>
+              <span className="text-green-600 total-new">TOTAL: GRÁTIS</span>
             </div>
-            <p className="text-lg lg:text-xl text-green-700 font-semibold">
+            <p className="text-lg lg:text-xl text-green-700 font-semibold total-description">
               Você economiza R$ 179 com estes 4 bônus exclusivos!
             </p>
           </motion.div>
