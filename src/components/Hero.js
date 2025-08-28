@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10">
         {/* Mobile background */}
         <div
-          className="w-full h-full bg-cover bg-center md:hidden"
+          className="w-[390px] h-[750px] bg-cover bg-center md:hidden absolute top-0 left-1/2 transform -translate-x-1/2"
           style={{ backgroundImage: "url('/hero-mobile.webp')" }}
         ></div>
         {/* Desktop background */}
@@ -37,10 +37,10 @@ export default function Hero() {
           <Heart className="w-4 h-4 text-white" fill="currentColor" />
         </div>
         <div>
-          <p className="text-[#8B6F47] font-semibold text-xs tracking-wide">
+          <p className="text-[#8B6F47] font-semibold text-sm tracking-wide">
             GUIA COMPLETO
           </p>
-          <h1 className="font-display text-sm font-bold gradient-text">
+          <h1 className="font-display text-base font-bold gradient-text">
             SHIH TZU
           </h1>
         </div>
@@ -48,10 +48,10 @@ export default function Hero() {
 
       <div className="w-full md:container md:mx-auto px-0 md:px-8 lg:px-16 relative z-10">
         {/* Em mobile deixamos um espaço vazio no topo (arte futura) empurrando o texto para baixo. */}
-        <div className="w-full md:max-w-3xl pr-0 md:pr-6 pt-[600px] md:pt-[300px] pb-12 lg:py-16">
+        <div className="w-full md:max-w-3xl pr-0 md:pr-6 pt-[400px] md:pt-[300px] pb-12 lg:py-16">
           {/* Content Section */}
           <motion.div
-            className="space-y-8 px-4 md:px-0 md:bg-white/10 md:backdrop-blur-[2px] md:rounded-2xl lg:bg-transparent lg:backdrop-blur-0 md:p-4 lg:p-0"
+            className="space-y-8 px-6 md:px-0 md:bg-white/10 md:backdrop-blur-[2px] md:rounded-2xl lg:bg-transparent lg:backdrop-blur-0 md:p-4 lg:p-0"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -82,12 +82,12 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.1 }}
             >
-              <h2 className="font-display text-lg md:text-5xl lg:text-xl font-bold text-[#2C1810] leading-tight mb-6 text-balance">
+              <h2 className="font-display text-xl md:text-5xl lg:text-xl font-bold text-[#2C1810] leading-tight mb-6">
                 O primeiro manual{' '}
                 <span className="gradient-text">100% interativo</span> para
                 tutores de Shih Tzu
               </h2>
-              <h3 className="text-sm md:text-2xl font-medium text-[#6B5335] mb-6 text-balance">
+              <h3 className="text-base md:text-2xl font-medium text-[#6B5335] mb-6 text-balance">
                 (Mesmo que você{' '}
                 <em className="gradient-text-accent font-semibold">nunca</em>{' '}
                 tenha tido um cachorro)
@@ -101,7 +101,7 @@ export default function Hero() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.1 }}
             >
-              <p className="text-[#4A3823] font-medium italic text-sm md:text-lg leading-relaxed">
+              <p className="text-[#4A3823] font-medium italic text-base md:text-lg leading-relaxed">
                 &ldquo;Da escolha do pet à alimentação e treinamento &mdash;
                 tudo que você sempre quis saber e não encontrava em lugar
                 nenhum&rdquo;
@@ -110,7 +110,7 @@ export default function Hero() {
 
             {/* Trust Indicators */}
             <motion.div
-              className="flex flex-wrap items-center gap-6 text-xs md:text-sm text-[#2C1810] drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]"
+              className="flex flex-wrap items-center gap-6 text-sm md:text-sm text-[#2C1810] drop-shadow-[0_1px_1px_rgba(255,255,255,0.6)]"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.1 }}
@@ -135,15 +135,15 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.1 }}
             >
-              <button className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-2 px-4 md:py-4 md:px-8 rounded-full text-sm md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3">
+              <button className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-3">
                 <span>QUERO VER MEU SHIH TZU TRANSFORMADO</span>
-                <div className="bg-white/20 backdrop-blur-sm px-2 py-1 md:px-3 md:py-1 rounded-full text-xs md:text-sm font-semibold">
+                <div className="bg-white/20 backdrop-blur-sm px-2 py-1 md:px-3 md:py-1 rounded-full text-sm md:text-sm font-semibold">
                   R$ 37
                 </div>
                 <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300" />
               </button>
 
-              <p className="text-[#6B5335] text-xs md:text-sm mt-3 flex items-center gap-2">
+              <p className="text-[#6B5335] text-sm md:text-sm mt-3 flex items-center gap-2">
                 <span className="w-2 h-2 bg-[#7A9B76] rounded-full animate-pulse"></span>
                 Mais de 500 tutores já transformaram a vida dos seus pets
               </p>
