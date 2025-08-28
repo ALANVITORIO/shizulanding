@@ -23,7 +23,7 @@ export default function Guarantee() {
             className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200/50 px-4 md:px-6 py-2 md:py-3 rounded-full mb-4 md:mb-6 shadow-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             viewport={{ once: true }}
           >
             <Shield className="w-4 h-4 md:w-5 md:h-5 text-green-600" />
@@ -48,7 +48,7 @@ export default function Guarantee() {
           className="bg-white/90 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl border border-green-100/50 p-4 md:p-8 lg:p-12 relative overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.4 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
           viewport={{ once: true }}
         >
           {/* Decorative elements */}
@@ -61,7 +61,7 @@ export default function Guarantee() {
               className="text-center lg:text-left"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.6, duration: 0.1 }}
+              transition={{ delay: 0.2, duration: 0.1 }}
               viewport={{ once: true }}
             >
               <div className="relative inline-block">
@@ -86,7 +86,7 @@ export default function Guarantee() {
               className="space-y-8"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.8, duration: 0.8 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
               viewport={{ once: true }}
             >
               <div>
@@ -112,7 +112,7 @@ export default function Guarantee() {
                     className="flex items-center gap-4 p-3 bg-green-50/50 rounded-xl border border-green-100/50"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1 + index * 0.1, duration: 0.6 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
                     viewport={{ once: true }}
                   >
                     <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
@@ -132,7 +132,7 @@ export default function Guarantee() {
             className="mt-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.6 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             viewport={{ once: true }}
           >
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200/50 px-6 py-4 rounded-2xl shadow-lg">
@@ -143,65 +143,98 @@ export default function Guarantee() {
             </div>
           </motion.div>
 
-          {/* CTA Button */}
+          {/* CTA SECTION - NOVO DESIGN MODERNO DE STARTUP */}
           <motion.div
-            className="mt-8 md:mt-12 text-center"
+            className="mt-8 md:mt-12 text-center relative"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             viewport={{ once: true }}
           >
-            {/* Urgência/Destacque */}
-            <motion.div
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200/50 px-4 py-2 rounded-full mb-6 text-red-700 font-semibold text-sm"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9, duration: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <span className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span>
-              <span>⏰ Garantia por tempo limitado</span>
-            </motion.div>
+            {/* Container principal com glassmorphism */}
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl max-w-lg mx-auto overflow-hidden">
+              {/* Background gradient decorativo */}
+              <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-emerald-50/30 to-teal-50/50 rounded-3xl"></div>
+              <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-green-200/30 to-emerald-200/20 rounded-full blur-2xl"></div>
 
-            {/* Botão principal redesenhado */}
-            <motion.button
-              className="group relative bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white font-bold py-5 md:py-6 px-8 md:px-12 rounded-2xl text-lg md:text-xl shadow-2xl hover:shadow-green-500/25 transform hover:scale-[1.02] transition-all duration-300 w-full max-w-md mx-auto flex items-center justify-center gap-3 border border-green-500/20"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.0, duration: 0.3 }}
-              viewport={{ once: true }}
-            >
-              {/* Efeito brilho */}
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              {/* Badge de urgência premium */}
+              <motion.div
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg mb-4"
+                animate={{ scale: [1, 1.05, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                🔥 ÚLTIMA CHANCE - OFERTA LIMITADA
+              </motion.div>
 
-              <span className="relative z-10 flex-1 text-center font-black tracking-wide">
-                QUERO TESTAR SEM RISCO
-              </span>
-
-              {/* Badge do preço destacado */}
-              <div className="relative z-10 bg-white text-green-700 px-4 py-2 rounded-xl font-black text-lg shadow-lg">
-                R$ 37
+              {/* Título persuasivo */}
+              <div className="relative z-10 mb-6">
+                <h3 className="text-2xl md:text-3xl font-black text-gray-800 mb-2 leading-tight">
+                  Transforme seu Shih Tzu em
+                  <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                    {' '}
+                    7 dias
+                  </span>
+                </h3>
+                <p className="text-gray-600 font-medium text-base md:text-lg">
+                  ou receba 100% do seu dinheiro de volta
+                </p>
               </div>
 
-              <ArrowRight className="relative z-10 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
-            </motion.button>
+              {/* BOTÃO OVAL CLÁSSICO - CONTRASTE MELHORADO */}
+              <motion.button
+                className="w-full max-w-md mx-auto bg-gradient-to-b from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 active:from-green-700 active:to-green-800 text-white font-black py-5 px-8 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-200 mb-4 text-xl border-4 border-gray-900 relative overflow-hidden"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {/* Brilho superior do botão clássico - mais forte */}
+                <div className="absolute top-1 left-4 right-4 h-4 bg-white/60 rounded-full blur-sm"></div>
 
-            {/* Texto de segurança melhorado */}
-            <motion.div
-              className="mt-4 flex items-center justify-center gap-2 text-green-700"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 1.2, duration: 0.3 }}
-              viewport={{ once: true }}
-            >
-              <Lock className="w-4 h-4" />
-              <span className="text-sm font-semibold">
-                🔒 Pagamento 100% Seguro | ✅ Sem Compromisso | ⚡ Acesso
-                Imediato
-              </span>
-            </motion.div>
+                <div className="relative z-10 flex items-center justify-center gap-4">
+                  {/* Círculo com preço - contraste melhorado */}
+                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-3 border-gray-800 shadow-xl">
+                    <span className="text-gray-900 font-black text-sm">
+                      R$37
+                    </span>
+                  </div>
+
+                  {/* Texto COMPRAR - contraste melhorado */}
+                  <span className="font-black text-2xl tracking-widest drop-shadow-lg text-white">
+                    COMPRAR
+                  </span>
+                </div>
+
+                {/* Efeito de pressão mais visível */}
+                <div className="absolute inset-0 bg-black/30 rounded-full opacity-0 group-active:opacity-100 transition-opacity duration-100"></div>
+              </motion.button>
+
+              {/* Trust badges modernos */}
+              <div className="relative z-10 grid grid-cols-3 gap-2 text-xs font-semibold">
+                <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-2 rounded-lg border border-green-200/50">
+                  <Shield className="w-3 h-3" />
+                  <span>Seguro</span>
+                </div>
+                <div className="flex items-center gap-1 bg-blue-50 text-blue-700 px-2 py-2 rounded-lg border border-blue-200/50">
+                  <CheckCircle className="w-3 h-3" />
+                  <span>Garantido</span>
+                </div>
+                <div className="flex items-center gap-1 bg-purple-50 text-purple-700 px-2 py-2 rounded-lg border border-purple-200/50">
+                  <Lock className="w-3 h-3" />
+                  <span>Protegido</span>
+                </div>
+              </div>
+
+              {/* Linha de benefício final */}
+              <motion.p
+                className="relative z-10 mt-4 text-sm text-gray-600 font-medium"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
+              >
+                ⚡ <strong>Mais de 2.847 tutores</strong> já transformaram seus
+                Shih Tzus
+              </motion.p>
+            </div>
           </motion.div>
         </motion.div>
 
@@ -210,7 +243,7 @@ export default function Guarantee() {
           className="mt-8 md:mt-16 text-center px-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.0, duration: 0.3 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
           viewport={{ once: true }}
         >
           <div className="bg-white/60 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-[#E5E1DC]/50 shadow-lg max-w-2xl mx-auto">
@@ -219,7 +252,7 @@ export default function Guarantee() {
               className="relative mb-4 md:mb-6"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2, duration: 0.3 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
               viewport={{ once: true }}
             >
               <div className="relative w-20 h-20 md:w-24 md:h-24 mx-auto">
@@ -252,7 +285,7 @@ export default function Guarantee() {
               className="text-[#6B5335] font-medium italic text-sm md:text-lg leading-relaxed"
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.3 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
               viewport={{ once: true }}
             >
               &ldquo;Sua satisfação é nossa prioridade. Queremos que você e seu
@@ -264,7 +297,7 @@ export default function Guarantee() {
               className="mt-3 text-[#8B6F47] font-semibold text-sm"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              transition={{ delay: 1.6, duration: 0.3 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
               viewport={{ once: true }}
             >
               <span>Eva</span>

@@ -12,7 +12,7 @@ import {
   Heart,
   Calculator,
   ClipboardCheck,
-  Shield
+  Shield,
 } from 'lucide-react';
 
 export default function FinalCall() {
@@ -58,7 +58,7 @@ export default function FinalCall() {
             className="inline-flex items-center gap-2 md:gap-3 bg-gradient-to-r from-orange-50 to-red-50 border border-orange-200/50 px-4 md:px-6 py-2 md:py-3 rounded-full mb-4 md:mb-6 shadow-lg"
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             viewport={{ once: true }}
           >
             <DollarSign className="w-4 h-4 md:w-5 md:h-5 text-orange-600" />
@@ -69,7 +69,10 @@ export default function FinalCall() {
 
           <h2 className="font-display text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#2C1810] mb-4 md:mb-6 leading-tight px-2">
             Qual é o{' '}
-            <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">Preço da Dúvida</span>?
+            <span className="bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent">
+              Preço da Dúvida
+            </span>
+            ?
           </h2>
           <p className="text-base md:text-xl lg:text-2xl text-[#6B5335] max-w-3xl mx-auto leading-relaxed px-4">
             Pare de arriscar a saúde do seu Shih Tzu por causa de dúvidas
@@ -106,24 +109,41 @@ export default function FinalCall() {
               {/* Benefits compactos */}
               <div className="space-y-3 md:space-y-4">
                 {[
-                  { icon: <Heart className="w-4 h-4 md:w-5 md:h-5" />, text: 'Guia completo' },
-                  { icon: <Calculator className="w-4 h-4 md:w-5 md:h-5" />, text: 'Calculadora de ração' },
-                  { icon: <ClipboardCheck className="w-4 h-4 md:w-5 md:h-5" />, text: 'Checklist diário' },
-                  { icon: <Zap className="w-4 h-4 md:w-5 md:h-5" />, text: 'Todos os bônus' },
-                  { icon: <Shield className="w-4 h-4 md:w-5 md:h-5" />, text: 'Garantia de 7 dias' },
+                  {
+                    icon: <Heart className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Guia completo',
+                  },
+                  {
+                    icon: <Calculator className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Calculadora de ração',
+                  },
+                  {
+                    icon: <ClipboardCheck className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Checklist diário',
+                  },
+                  {
+                    icon: <Zap className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Todos os bônus',
+                  },
+                  {
+                    icon: <Shield className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Garantia de 7 dias',
+                  },
                 ].map((benefit, index) => (
                   <motion.div
                     key={index}
                     className="flex items-center gap-3 md:gap-4 p-2 md:p-3 bg-green-50/50 rounded-xl border border-green-100/50"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3 + index * 0.05, duration: 0.3 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
                     viewport={{ once: true }}
                   >
                     <div className="w-6 h-6 md:w-8 md:h-8 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 text-white">
                       {benefit.icon}
                     </div>
-                    <span className="font-semibold text-[#2C1810] text-sm md:text-base">{benefit.text}</span>
+                    <span className="font-semibold text-[#2C1810] text-sm md:text-base">
+                      {benefit.text}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -135,7 +155,7 @@ export default function FinalCall() {
             className="relative"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
             viewport={{ once: true }}
           >
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl border-2 border-red-200/50 p-4 md:p-8 lg:p-10 relative overflow-hidden">
@@ -158,24 +178,41 @@ export default function FinalCall() {
               {/* Problems compactos */}
               <div className="space-y-3 md:space-y-4">
                 {[
-                  { icon: <AlertTriangle className="w-4 h-4 md:w-5 md:h-5" />, text: 'Erros custosos' },
-                  { icon: <Heart className="w-4 h-4 md:w-5 md:h-5" />, text: 'Pet com problemas' },
-                  { icon: <DollarSign className="w-4 h-4 md:w-5 md:h-5" />, text: 'Gastos com veterinário' },
-                  { icon: <AlertTriangle className="w-4 h-4 md:w-5 md:h-5" />, text: 'Dúvidas constantes' },
-                  { icon: <XCircle className="w-4 h-4 md:w-5 md:h-5" />, text: 'Arrependimento' },
+                  {
+                    icon: <AlertTriangle className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Erros custosos',
+                  },
+                  {
+                    icon: <Heart className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Pet com problemas',
+                  },
+                  {
+                    icon: <DollarSign className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Gastos com veterinário',
+                  },
+                  {
+                    icon: <AlertTriangle className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Dúvidas constantes',
+                  },
+                  {
+                    icon: <XCircle className="w-4 h-4 md:w-5 md:h-5" />,
+                    text: 'Arrependimento',
+                  },
                 ].map((problem, index) => (
                   <motion.div
                     key={index}
                     className="flex items-center gap-3 md:gap-4 p-2 md:p-3 bg-red-50/50 rounded-xl border border-red-100/50"
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.5 + index * 0.05, duration: 0.3 }}
+                    transition={{ delay: 0.2, duration: 0.3 }}
                     viewport={{ once: true }}
                   >
                     <div className="w-6 h-6 md:w-8 md:h-8 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 text-white">
                       {problem.icon}
                     </div>
-                    <span className="font-semibold text-[#2C1810] text-sm md:text-base">{problem.text}</span>
+                    <span className="font-semibold text-[#2C1810] text-sm md:text-base">
+                      {problem.text}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -188,7 +225,7 @@ export default function FinalCall() {
           className="text-center mb-8 md:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.3 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
           viewport={{ once: true }}
         >
           <div className="bg-gradient-to-r from-gray-900 to-black rounded-2xl md:rounded-3xl p-4 md:p-8 lg:p-12 shadow-2xl relative overflow-hidden">
@@ -213,13 +250,19 @@ export default function FinalCall() {
                     <motion.div
                       className="w-12 h-12 md:w-16 md:h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl md:rounded-2xl flex items-center justify-center mb-1 md:mb-2 shadow-lg"
                       animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: index * 0.1,
+                      }}
                     >
                       <span className="text-lg md:text-2xl lg:text-3xl font-bold text-white">
                         {String(item.value).padStart(2, '0')}
                       </span>
                     </motion.div>
-                    <span className="text-xs md:text-sm text-gray-300 font-semibold">{item.label}</span>
+                    <span className="text-xs md:text-sm text-gray-300 font-semibold">
+                      {item.label}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -232,26 +275,26 @@ export default function FinalCall() {
           className="text-center relative"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 0.3 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
           viewport={{ once: true }}
         >
           {/* CTA Principal com novo design */}
           <div className="relative inline-block w-full max-w-md mx-auto mb-6 md:mb-8">
             {/* Glow effect */}
             <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity"></div>
-            
+
             <button className="relative w-full bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white font-black text-center py-5 md:py-6 px-6 md:px-8 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-red-400/30">
               {/* Top badge */}
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-1 rounded-full text-xs font-black shadow-lg">
                 🔥 OFERTA LIMITADA
               </div>
-              
+
               {/* Main text */}
               <div className="flex flex-col items-center gap-2">
                 <span className="text-lg md:text-xl lg:text-2xl font-black leading-tight">
                   QUERO MEU GUIA AGORA!
                 </span>
-                
+
                 {/* Price highlight */}
                 <div className="flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-4 py-2">
                   <span className="text-lg md:text-xl font-black text-yellow-300">
@@ -260,7 +303,7 @@ export default function FinalCall() {
                   <ArrowRight className="w-5 h-5 animate-pulse" />
                 </div>
               </div>
-              
+
               {/* Pulse animation overlay */}
               <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
@@ -270,22 +313,28 @@ export default function FinalCall() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 mb-4 md:mb-6">
             <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-full border border-green-200">
               <Shield className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-700">Compra 100% Segura</span>
+              <span className="text-sm font-semibold text-green-700">
+                Compra 100% Segura
+              </span>
             </div>
-            
+
             <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-full border border-blue-200">
               <Zap className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-700">Acesso Instantâneo</span>
+              <span className="text-sm font-semibold text-blue-700">
+                Acesso Instantâneo
+              </span>
             </div>
-            
+
             <div className="flex items-center gap-2 bg-purple-50 px-3 py-2 rounded-full border border-purple-200">
               <Heart className="w-4 h-4 text-purple-600" />
-              <span className="text-sm font-semibold text-purple-700">Garantia de 7 dias</span>
+              <span className="text-sm font-semibold text-purple-700">
+                Garantia de 7 dias
+              </span>
             </div>
           </div>
 
           {/* Final urgency message */}
-          <motion.div 
+          <motion.div
             className="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-orange-200/50 rounded-xl p-4 max-w-lg mx-auto"
             animate={{ scale: [1, 1.02, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
