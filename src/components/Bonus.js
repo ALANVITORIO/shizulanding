@@ -762,27 +762,12 @@ export default function Bonus() {
               viewport={{ once: true }}
             >
               <motion.button
-                className="w-full max-w-lg mx-auto bg-gradient-to-b from-[#8B6F47] to-[#7A5D3A] hover:from-[#7A5D3A] hover:to-[#6B4E2F] active:from-[#6B4E2F] active:to-[#5C3F24] text-white font-black py-5 px-8 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-200 text-xl border-4 border-[#5C3F24] relative overflow-hidden flex items-center justify-center gap-4"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-6 px-12 rounded-full text-2xl lg:text-3xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-4 cta-button-mobile"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                {/* Brilho superior do botão clássico */}
-                <div className="absolute top-1 left-4 right-4 h-4 bg-white/40 rounded-full blur-sm"></div>
-                
-                <div className="relative z-10 flex items-center justify-center gap-4">
-                  {/* Círculo com preço - estilo marrom */}
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-3 border-[#5C3F24] shadow-xl">
-                    <span className="text-[#5C3F24] font-black text-sm">R$37</span>
-                  </div>
-                  
-                  {/* Texto do botão */}
-                  <span className="font-black text-xl lg:text-2xl tracking-wide drop-shadow-lg text-white">
-                    COMPRAR TUDO
-                  </span>
-                </div>
-
-                {/* Efeito de pressão */}
-                <div className="absolute inset-0 bg-black/30 rounded-full opacity-0 group-active:opacity-100 transition-opacity duration-100"></div>
+                <span>QUERO RECEBER TUDO POR R$ 37</span>
+                <ArrowRight className="w-8 h-8 lg:w-10 lg:h-10 group-hover:translate-x-2 transition-transform duration-300" />
               </motion.button>
 
               <motion.div
