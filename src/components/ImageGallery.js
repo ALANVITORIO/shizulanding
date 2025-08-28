@@ -2,8 +2,14 @@
 import { motion } from 'framer-motion';
 import { Camera, Palette, Sparkles } from 'lucide-react';
 import Image from 'next/image';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useMobileOptimizations } from '../hooks/useMobileOptimizations';
+import { mobileVariants } from '../utils/mobileAnimations';
 
 export default function ImageGallery() {
+  const { elementRef, hasIntersected } = useIntersectionObserver();
+  const { isMobile, reducedMotion } = useMobileOptimizations();
+
   // Array para suas imagens - você pode facilmente substituir
   const galleryImages = [
     {
@@ -32,11 +38,20 @@ export default function ImageGallery() {
     },
   ];
 
+  // Configurações de animação baseadas no dispositivo e preferências
+  const animationConfig = {
+    duration: reducedMotion ? 0 : isMobile ? 0.3 : 0.5,
+    ease: isMobile ? "easeOut" : [0.25, 0.46, 0.45, 0.94],
+  };
+
   return (
-    <section className="py-20 px-4 md:px-8 lg:px-16 bg-white relative overflow-hidden">
-      {/* Background decorativo para suas artes */}
+    <section 
+      ref={elementRef}
+      className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-white relative overflow-hidden"
+    >
+      {/* Background decorativo para suas artes - otimizado para mobile */}
       <div
-        className="absolute inset-0 bg-art-primary"
+        className="absolute inset-0 bg-art-primary opacity-30 md:opacity-50"
         style={{
           backgroundImage:
             'url("https://picsum.photos/seed/background1/1920/1080.jpg")',
@@ -46,57 +61,70 @@ export default function ImageGallery() {
       </div>
 
       <div className="container mx-auto relative z-10">
-        {/* Header */}
+        {/* Header - otimizada para mobile */}
         <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.1 }}
-          viewport={{ once: true }}
+          className="text-center mb-12 md:mb-16"
+          initial={{ opacity: 0, y: isMobile ? 30 : 50 }}
+          animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+          transition={animationConfig}
         >
           <motion.div
-            className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm border border-[#E5E1DC] px-6 py-3 rounded-full mb-6 shadow-lg"
+            className="inline-flex items-center gap-2 md:gap-3 bg-white/90 backdrop-blur-sm border border-[#E5E1DC] px-4 py-2 md:px-6 md:py-3 rounded-full mb-4 md:mb-6 shadow-lg"
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            viewport={{ once: true }}
+            animate={hasIntersected ? { opacity: 1, scale: 1 } : {}}
+            transition={{ ...animationConfig, delay: 0.2 }}
           >
-            <Camera className="w-5 h-5 text-[#8B6F47]" />
-            <span className="text-[#8B6F47] font-semibold text-sm tracking-wide">
+            <Camera className="w-4 h-4 md:w-5 md:h-5 text-[#8B6F47]" />
+            <span className="text-[#8B6F47] font-semibold text-xs md:text-sm tracking-wide">
               GALERIA DE TRANSFORMAÇÕES
             </span>
           </motion.div>
 
-          <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-6">
+          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 md:mb-6 tracking-tight">
             Veja as Transformações
           </h2>
-          <p className="text-xl text-[#6B5335] text-balance max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-[#6B5335] text-balance max-w-2xl mx-auto leading-relaxed">
             Resultados reais de tutores que seguiram nosso guia
           </p>
         </motion.div>
 
-        {/* Grid de Imagens Otimizado */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-16">
+        {/* Grid de Imagens Otimizado para mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 mb-12 md:mb-16">
           {galleryImages.map((image, index) => (
             <motion.div
               key={index}
-              className="relative"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1, duration: 0.1 }}
-              viewport={{ once: true }}
+              className="relative group"
+              initial={{ opacity: 0, y: isMobile ? 25 : 50 }}
+              animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+              transition={{ ...animationConfig, delay: index * 0.1 }}
             >
               {/* Container da imagem com aspect ratio otimizado */}
               <div
-                className={index === 1 ? 'aspect-square' : 'aspect-[3/2]'}
+                className={`relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 ${
+                  index === 1 ? 'aspect-square' : 'aspect-[4/3] md:aspect-[3/2]'
+                }`}
               >
                 <Image
                   src={image.src}
                   alt={image.alt}
-                  width={600}
-                  height={index === 1 ? 600 : 400}
-                  className="w-full h-full object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  style={{ willChange: 'transform' }}
                 />
+                
+                {/* Overlay com informações - otimizado para mobile */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                    <div className="inline-block bg-white/20 backdrop-blur-sm px-2 py-1 md:px-3 md:py-1 rounded-full text-white text-xs md:text-sm font-medium mb-2">
+                      {image.tag}
+                    </div>
+                    <p className="text-white font-semibold text-sm md:text-base leading-tight">
+                      {image.caption}
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
@@ -104,68 +132,77 @@ export default function ImageGallery() {
 
 
 
-        {/* Cards com conteúdo sobre Shih Tzu */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Cards com conteúdo sobre Shih Tzu - otimizada para mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <motion.div
-            className="relative group overflow-hidden rounded-2xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1, duration: 0.1 }}
-            viewport={{ once: true }}
+            className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+            initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
+            animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+            transition={{ ...animationConfig, delay: 0.1 }}
           >
-            <Image
-              src="/shi1.webp"
-              alt="Alimentação do Shih Tzu"
-              width={400}
-              height={300}
-              className="w-full h-64 object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-              <h4 className="text-white font-bold text-lg p-6">
-                Aprenda tudo sobre a alimentação do seu Shih Tzu
-              </h4>
+            <div className="relative h-48 md:h-64">
+              <Image
+                src="/shi1.webp"
+                alt="Alimentação do Shih Tzu"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                style={{ willChange: 'transform' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
+                <h4 className="text-white font-bold text-base md:text-lg p-4 md:p-6 leading-tight">
+                  Aprenda tudo sobre a alimentação do seu Shih Tzu
+                </h4>
+              </div>
             </div>
           </motion.div>
 
           <motion.div
-            className="relative group overflow-hidden rounded-2xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.1 }}
-            viewport={{ once: true }}
+            className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+            initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
+            animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+            transition={{ ...animationConfig, delay: 0.2 }}
           >
-            <Image
-              src="/shi2.webp"
-              alt="Cuidados médicos do Shih Tzu"
-              width={400}
-              height={300}
-              className="w-full h-64 object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-              <h4 className="text-white font-bold text-lg p-6">
-                Aprenda tudo sobre cuidados médicos do seu Shih Tzu
-              </h4>
+            <div className="relative h-48 md:h-64">
+              <Image
+                src="/shi2.webp"
+                alt="Cuidados médicos do Shih Tzu"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                style={{ willChange: 'transform' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
+                <h4 className="text-white font-bold text-base md:text-lg p-4 md:p-6 leading-tight">
+                  Aprenda tudo sobre cuidados médicos do seu Shih Tzu
+                </h4>
+              </div>
             </div>
           </motion.div>
 
           <motion.div
-            className="relative group overflow-hidden rounded-2xl"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.1 }}
-            viewport={{ once: true }}
+            className="relative group overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300"
+            initial={{ opacity: 0, y: isMobile ? 20 : 30 }}
+            animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+            transition={{ ...animationConfig, delay: 0.3 }}
           >
-            <Image
-              src="/shi3.webp"
-              alt="Truques para Shih Tzu"
-              width={400}
-              height={300}
-              className="w-full h-64 object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-              <h4 className="text-white font-bold text-lg p-6">
-                Quem disse que Shih Tzu não aprende truques. Aprenda técnicas milenares de ensino
-              </h4>
+            <div className="relative h-48 md:h-64">
+              <Image
+                src="/shi3.webp"
+                alt="Truques para Shih Tzu"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 33vw, 33vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                style={{ willChange: 'transform' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end">
+                <h4 className="text-white font-bold text-base md:text-lg p-4 md:p-6 leading-tight">
+                  Quem disse que Shih Tzu não aprende truques. Aprenda técnicas milenares de ensino
+                </h4>
+              </div>
             </div>
           </motion.div>
         </div>
