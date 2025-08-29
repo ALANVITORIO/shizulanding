@@ -264,7 +264,7 @@ export default function Guarantee() {
                 {/* Imagem da Diva */}
                 <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white shadow-lg">
                   <Image
-                    src="/diva.webp"
+                    src="/ctadiva.webp"
                     alt="Eva - Especialista em Shih Tzu"
                     fill
                     className="object-cover"

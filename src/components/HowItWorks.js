@@ -1,5 +1,5 @@
 'use client';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Smartphone,
@@ -18,11 +18,18 @@ import { mobileVariants } from '../utils/mobileAnimations';
 export default function HowItWorks() {
   const { elementRef, hasIntersected } = useIntersectionObserver();
   const { isMobile, reducedMotion } = useMobileOptimizations();
-  const [videoOpen, setVideoOpen] = useState(false);
+  const [videoPlaying, setVideoPlaying] = useState(false);
 
-  // Video modal control functions
-  const openVideo = useCallback(() => setVideoOpen(true), []);
-  const closeVideo = useCallback(() => setVideoOpen(false), []);
+  // Video control functions for inline play
+  const playVideo = useCallback((e) => {
+    e?.preventDefault?.();
+    e?.stopPropagation?.();
+    setVideoPlaying(true);
+  }, []);
+  
+  const pauseVideo = useCallback(() => {
+    setVideoPlaying(false);
+  }, []);
 
   const steps = [
     {
@@ -315,110 +322,118 @@ export default function HowItWorks() {
               </h3>
             </motion.div>
             
-            {/* Video Thumbnail */}
+            {/* Video Section - Inline Play */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
               transition={{ ...animationConfig, delay: 0.8 }}
               className="mb-4 md:mb-6"
             >
-              <div 
-                className="relative group cursor-pointer mx-auto max-w-2xl overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
-                onClick={openVideo}
-              >
-                {/* YouTube Thumbnail with High Quality Option */}
-                <div className="relative aspect-video w-full overflow-hidden">
-                  {/* Use YouTube's high-quality thumbnail */}
-                  <img
-                    src="https://img.youtube.com/vi/VZdLTE5nbbY/maxresdefault.jpg"
-                    alt="Demonstração do guia interativo para Shih Tzu"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
-                    onError={(e) => {
-                      // Fallback to medium quality if high quality isn't available
-                      e.target.src = "https://img.youtube.com/vi/VZdLTE5nbbY/mqdefault.jpg"
-                    }}
-                  />
-                  
-                  {/* Overlay gradient */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300"></div>
-                  
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur rounded-full w-14 h-14 md:w-20 md:h-20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <div className="bg-gradient-to-r from-[#8B6F47] to-[#A0845C] rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
-                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" />
+              {!videoPlaying ? (
+                /* Video Thumbnail with Play Button */
+                <div 
+                  className={`relative group cursor-pointer mx-auto overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 ${
+                    isMobile 
+                      ? 'max-w-sm rounded-xl touch-manipulation' 
+                      : 'max-w-2xl rounded-xl md:rounded-2xl'
+                  }`}
+                  onClick={playVideo}
+                  onTouchStart={(e) => {
+                    if (isMobile) {
+                      e.currentTarget.style.transform = 'scale(0.98)';
+                    }
+                  }}
+                  onTouchEnd={(e) => {
+                    if (isMobile) {
+                      e.currentTarget.style.transform = 'scale(1)';
+                    }
+                  }}
+                  style={{
+                    WebkitTapHighlightColor: 'transparent',
+                    touchAction: 'manipulation',
+                  }}
+                >
+                  {/* YouTube Thumbnail */}
+                  <div className="relative aspect-video w-full overflow-hidden">
+                    <img
+                      src="https://img.youtube.com/vi/VZdLTE5nbbY/maxresdefault.jpg"
+                      alt="Demonstração do guia interativo para Shih Tzu"
+                      className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                      onError={(e) => {
+                        e.target.src = "https://img.youtube.com/vi/VZdLTE5nbbY/mqdefault.jpg"
+                      }}
+                    />
+                    
+                    {/* Overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300"></div>
+                    
+                    {/* Play button overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className={`bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 ${
+                        isMobile ? 'w-16 h-16' : 'w-14 h-14 md:w-20 md:h-20'
+                      }`}>
+                        <div className={`bg-gradient-to-r from-[#8B6F47] to-[#A0845C] rounded-full flex items-center justify-center ${
+                          isMobile ? 'w-14 h-14' : 'w-12 h-12 md:w-16 md:h-16'
+                        }`}>
+                          <Play className={`text-white ml-1 ${
+                            isMobile ? 'w-7 h-7' : 'w-6 h-6 md:w-8 md:h-8'
+                          }`} />
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Video duration badge */}
+                    <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md font-medium">
+                      0:30
+                    </div>
+
+                    {/* Video title and device compatibility */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                      <div className="flex items-center justify-between">
+                        <div className="text-white text-left">
+                          <h4 className="font-bold text-base md:text-lg">VER DEMONSTRAÇÃO</h4>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-white/90 text-xs md:text-sm">
+                          <Smartphone className="w-3 h-3 md:w-4 md:h-4" />
+                          <span>Funciona em qualquer dispositivo</span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Video duration badge */}
-                  <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md font-medium">
-                    0:30
+                </div>
+              ) : (
+                /* Inline YouTube Video Player */
+                <div className={`relative mx-auto overflow-hidden shadow-lg rounded-xl ${
+                  isMobile ? 'max-w-sm' : 'max-w-2xl md:rounded-2xl'
+                }`}>
+                  <div className="aspect-video w-full">
+                    <iframe
+                      title="Demonstração do Guia Shih Tzu"
+                      width="100%"
+                      height="100%"
+                      src={`https://www.youtube.com/embed/VZdLTE5nbbY?autoplay=1&rel=0&modestbranding=1${
+                        isMobile ? '&playsinline=1' : ''
+                      }`}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                      allowFullScreen
+                      className="w-full h-full border-0"
+                      style={{
+                        border: 'none',
+                        outline: 'none',
+                      }}
+                    ></iframe>
                   </div>
                 </div>
-
-                {/* Video title and device compatibility */}
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="text-white text-left">
-                      <h4 className="font-bold text-base md:text-lg">VER DEMONSTRAÇÃO</h4>
-                    </div>
-                    <div className="flex items-center gap-1.5 text-white/90 text-xs md:text-sm">
-                      <Smartphone className="w-3 h-3 md:w-4 md:h-4" />
-                      <span>Funciona em qualquer dispositivo</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              )}
               
-              {/* Additional info below thumbnail */}
+              {/* Additional info below video */}
               <p className="text-[#6B5335] text-sm mt-3 max-w-md mx-auto">
-                Clique no vídeo para assistir a demonstração completa do guia interativo
+                {!videoPlaying ? 'Clique no vídeo para assistir a demonstração completa do guia interativo' : ''}
               </p>
             </motion.div>
           </div>
         </motion.div>
 
-        {/* Video Modal - With accessibility, performance optimization, and responsive design */}
-        {videoOpen && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
-            onClick={closeVideo}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="video-title"
-          >
-            <div 
-              className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                onClick={closeVideo}
-                className="absolute top-3 right-3 z-20 w-8 h-8 md:w-10 md:h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black/90 transition-colors"
-                aria-label="Fechar vídeo"
-              >
-                <X className="w-4 h-4 md:w-5 md:h-5" />
-              </button>
-              
-              <div className="aspect-video w-full">
-                <iframe
-                  title="Demonstração do Guia Shih Tzu"
-                  id="video-title"
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/VZdLTE5nbbY?autoplay=1&rel=0&modestbranding=1"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  className="w-full h-full"
-                ></iframe>
-              </div>
-            </div>
-          </motion.div>
-        )}
       </div>
     </section>
   );

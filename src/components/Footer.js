@@ -83,7 +83,7 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <p className="text-white/80 text-sm">
-              &copy; 2024 Guia Interativo Shih Tzu &mdash; Acesso imediato após
+              &copy; 2025 Guia Interativo Shih Tzu &mdash; Acesso imediato após
               pagamento
             </p>
 
@@ -95,11 +95,7 @@ export default function Footer() {
               <span>Contato</span>
             </div>
 
-            <div className="bg-gradient-to-r from-[#7A9B76] to-[#6B8967] px-4 py-2 rounded-full inline-block">
-              <p className="text-white text-xs font-medium">
-                ✨ Transforme a vida do seu Shih Tzu hoje mesmo
-              </p>
-            </div>
+            {/* CTA removed as requested */}
           </motion.div>
         </div>
       </div>
