@@ -6,8 +6,8 @@ import { Shield, CheckCircle, Lock, ArrowRight, Heart } from 'lucide-react';
 export default function Guarantee() {
   return (
     <section className="py-12 md:py-20 px-4 md:px-8 lg:px-16 bg-gradient-to-br from-[#F8F6F3] via-white to-[#F4EDE5] relative overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute top-20 left-10 w-40 h-40 bg-gradient-to-br from-green-200/30 to-emerald-100/20 rounded-full blur-3xl"></div>
+  {/* Background decorations */}
+  {/* removed large pale green decorative circle to ensure no green shows behind the photo */}
       <div className="absolute bottom-20 right-10 w-60 h-60 bg-gradient-to-br from-blue-200/20 to-indigo-100/10 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto max-w-5xl relative z-10">
@@ -43,20 +43,33 @@ export default function Guarantee() {
           </p>
         </motion.div>
 
-        {/* Main Guarantee Card */}
+        {/* Rectangular image placed above the card so it's not clipped by card's rounded overflow */}
+        <div className="flex justify-center -mt-8 relative z-30">
+          <div className="w-full max-w-2xl">
+            <Image
+              src="/comprasegura.webp"
+              alt="Compra 100% segura"
+              width={1000}
+              height={260}
+              className="object-contain w-full h-auto rounded-none"
+            />
+          </div>
+        </div>
+
+        {/* Main Guarantee Card (no boxed appearance on mobile; boxed on md+) */}
         <motion.div
-          className="bg-white/90 backdrop-blur-sm rounded-2xl md:rounded-3xl shadow-2xl border border-green-100/50 p-4 md:p-8 lg:p-12 relative overflow-hidden"
+          className="bg-transparent md:bg-white/90 md:backdrop-blur-sm rounded-none md:rounded-2xl md:shadow-2xl md:border md:border-green-100/50 p-0 md:p-8 lg:p-12 relative overflow-visible md:overflow-hidden"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.3 }}
           viewport={{ once: true }}
         >
-          {/* Decorative elements */}
-          <div className="absolute top-6 right-6 w-20 h-20 bg-gradient-to-br from-green-200/30 to-emerald-100/20 rounded-full blur-xl"></div>
+          {/* Decorative elements (green accent removed to ensure photo shows cleanly) */}
+          {/* removed pale green decorative circle to prevent it showing behind the photo */}
           <div className="absolute bottom-6 left-6 w-16 h-16 bg-gradient-to-br from-blue-200/20 to-indigo-100/10 rounded-full blur-lg"></div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            {/* Shield Icon Section */}
+            {/* Shield/Icon column intentionally left blank — photo moved above the title as a rectangular image */}
             <motion.div
               className="text-center lg:text-left"
               initial={{ opacity: 0, x: -30 }}
@@ -64,21 +77,7 @@ export default function Guarantee() {
               transition={{ delay: 0.2, duration: 0.1 }}
               viewport={{ once: true }}
             >
-              <div className="relative inline-block">
-                <div className="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-green-100 to-emerald-100 rounded-full flex items-center justify-center shadow-xl">
-                  <Shield
-                    className="w-16 h-16 md:w-20 md:h-20 text-green-600"
-                    fill="currentColor"
-                  />
-                </div>
-                <motion.div
-                  className="absolute -top-2 -right-2 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center"
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                >
-                  <CheckCircle className="w-4 h-4 text-white" />
-                </motion.div>
-              </div>
+              <div aria-hidden className="w-full h-full" />
             </motion.div>
 
             {/* Content Section */}
@@ -90,6 +89,8 @@ export default function Guarantee() {
               viewport={{ once: true }}
             >
               <div>
+                {/* no inner image here — only the single rectangular image above the card is used */}
+
                 <h3 className="text-2xl md:text-3xl font-bold text-[#2C1810] mb-4">
                   Teste por 7 dias completos
                 </h3>

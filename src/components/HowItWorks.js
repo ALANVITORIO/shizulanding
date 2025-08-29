@@ -1,4 +1,5 @@
 'use client';
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import {
   Smartphone,
@@ -8,6 +9,7 @@ import {
   Play,
   ArrowRight,
   ArrowDown,
+  X,
 } from 'lucide-react';
 import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 import { useMobileOptimizations } from '../hooks/useMobileOptimizations';
@@ -16,6 +18,11 @@ import { mobileVariants } from '../utils/mobileAnimations';
 export default function HowItWorks() {
   const { elementRef, hasIntersected } = useIntersectionObserver();
   const { isMobile, reducedMotion } = useMobileOptimizations();
+  const [videoOpen, setVideoOpen] = useState(false);
+
+  // Video modal control functions
+  const openVideo = useCallback(() => setVideoOpen(true), []);
+  const closeVideo = useCallback(() => setVideoOpen(false), []);
 
   const steps = [
     {
@@ -258,9 +265,33 @@ export default function HowItWorks() {
           )}
         </div>
 
-        {/* Bottom CTA Section - otimizada para mobile */}
+        {/* Diferencial do Guia - quebra fora do container para largura total */}
         <motion.div
-          className="text-center bg-white/60 backdrop-blur-sm p-6 md:p-12 rounded-2xl md:rounded-3xl shadow-xl border border-[#E5E1DC] relative overflow-hidden mt-12 md:mt-20"
+          className="relative -mx-4 md:-mx-8 lg:-mx-16 mt-16 md:mt-20 mb-12 md:mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+          transition={{ ...animationConfig, delay: 0.5 }}
+        >
+          <div className="bg-gradient-to-br from-[#2C1810] to-[#1A0F08] p-6 md:p-12 lg:p-16 rounded-none md:rounded-2xl lg:rounded-3xl shadow-2xl border-0 md:border border-[#8B6F47]/20 relative overflow-hidden md:max-w-6xl md:mx-auto">
+            {/* Background decorations */}
+            <div className="absolute top-4 right-4 w-32 h-32 md:w-48 md:h-48 bg-gradient-to-br from-[#D4A574]/20 to-[#A0845C]/10 rounded-full blur-2xl"></div>
+            <div className="absolute bottom-4 left-4 w-24 h-24 md:w-40 md:h-40 bg-gradient-to-tr from-[#7A9B76]/20 to-[#6B8967]/10 rounded-full blur-xl"></div>
+            
+            <div className="relative z-10 max-w-4xl">
+              <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed text-left">
+                Diferente de <span className="text-white/50">manuais genéricos</span> ou <span className="text-white/50">livros veterinários</span>, ou até mesmo de <span className="text-white/50">livros que tratam o Shih Tzu como qualquer outra raça</span>,
+              </p>
+              
+              <p className="text-white text-base md:text-lg lg:text-xl leading-relaxed mt-4 md:mt-6">
+                o <span className="font-bold bg-gradient-to-r from-[#D4A574] to-[#A0845C] bg-clip-text text-transparent text-lg md:text-xl lg:text-2xl">Guia Interativo Eva Ensina</span> te direciona através de cada situação que você vai enfrentar <span className="font-bold text-[#D4A574]">exatamente para o porte e personalidade única do seu Shih Tzu.</span>
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Video Demo Section - otimizada para mobile */}
+        <motion.div
+          className="text-center bg-white/60 backdrop-blur-sm p-6 md:p-8 lg:p-12 rounded-2xl md:rounded-3xl shadow-xl border border-[#E5E1DC] relative overflow-hidden mt-12 md:mt-20"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={hasIntersected ? { opacity: 1, scale: 1 } : {}}
           transition={{ ...animationConfig, delay: 0.6 }}
@@ -271,30 +302,123 @@ export default function HowItWorks() {
             <div className="absolute bottom-2 md:bottom-4 right-2 md:right-4 w-16 h-16 md:w-24 md:h-24 bg-gradient-to-br from-[#7A9B76] to-[#6B8967] rounded-full blur-lg md:blur-xl"></div>
           </div>
 
-          <div className="max-w-2xl mx-auto relative z-10">
+          <div className="max-w-3xl mx-auto relative z-10">
+            {/* Demo Video Headline */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
+              transition={{ ...animationConfig, delay: 0.7 }}
+              className="mb-6 md:mb-8"
+            >
+              <h3 className="text-xl md:text-2xl font-bold text-[#2C1810]">
+                Veja uma demonstração rápida do guia
+              </h3>
+            </motion.div>
+            
+            {/* Video Thumbnail */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
               transition={{ ...animationConfig, delay: 0.8 }}
+              className="mb-4 md:mb-6"
             >
-              <button className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 md:gap-3 mx-auto mb-4 md:mb-6 relative overflow-hidden min-h-[44px]">
-                <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 transform -skew-x-12 group-hover:translate-x-full transition-transform duration-700"></div>
-                <Play className="w-4 h-4 md:w-5 md:h-5 relative z-10" />
-                <span className="relative z-10 text-sm md:text-base">
-                  {isMobile
-                    ? 'VER DEMONSTRAÇÃO'
-                    : 'VER DEMONSTRAÇÃO DE 30 SEGUNDOS'}
-                </span>
-                <ArrowRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 transition-transform duration-300 relative z-10" />
-              </button>
+              <div 
+                className="relative group cursor-pointer mx-auto max-w-2xl overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+                onClick={openVideo}
+              >
+                {/* YouTube Thumbnail with High Quality Option */}
+                <div className="relative aspect-video w-full overflow-hidden">
+                  {/* Use YouTube's high-quality thumbnail */}
+                  <img
+                    src="https://img.youtube.com/vi/VZdLTE5nbbY/maxresdefault.jpg"
+                    alt="Demonstração do guia interativo para Shih Tzu"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                    onError={(e) => {
+                      // Fallback to medium quality if high quality isn't available
+                      e.target.src = "https://img.youtube.com/vi/VZdLTE5nbbY/mqdefault.jpg"
+                    }}
+                  />
+                  
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-70 group-hover:opacity-60 transition-opacity duration-300"></div>
+                  
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-white/90 backdrop-blur rounded-full w-14 h-14 md:w-20 md:h-20 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <div className="bg-gradient-to-r from-[#8B6F47] to-[#A0845C] rounded-full w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
+                        <Play className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Video duration badge */}
+                  <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-md font-medium">
+                    0:30
+                  </div>
+                </div>
 
-              <div className="flex items-center justify-center gap-1.5 md:gap-2 text-[#6B5335] text-sm">
-                <Smartphone className="w-4 h-4 md:w-5 md:h-5" />
-                <span>Funciona em qualquer dispositivo</span>
+                {/* Video title and device compatibility */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                  <div className="flex items-center justify-between">
+                    <div className="text-white text-left">
+                      <h4 className="font-bold text-base md:text-lg">VER DEMONSTRAÇÃO</h4>
+                    </div>
+                    <div className="flex items-center gap-1.5 text-white/90 text-xs md:text-sm">
+                      <Smartphone className="w-3 h-3 md:w-4 md:h-4" />
+                      <span>Funciona em qualquer dispositivo</span>
+                    </div>
+                  </div>
+                </div>
               </div>
+              
+              {/* Additional info below thumbnail */}
+              <p className="text-[#6B5335] text-sm mt-3 max-w-md mx-auto">
+                Clique no vídeo para assistir a demonstração completa do guia interativo
+              </p>
             </motion.div>
           </div>
         </motion.div>
+
+        {/* Video Modal - With accessibility, performance optimization, and responsive design */}
+        {videoOpen && (
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 md:p-8"
+            onClick={closeVideo}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="video-title"
+          >
+            <div 
+              className="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={closeVideo}
+                className="absolute top-3 right-3 z-20 w-8 h-8 md:w-10 md:h-10 bg-black/70 rounded-full flex items-center justify-center text-white hover:bg-black/90 transition-colors"
+                aria-label="Fechar vídeo"
+              >
+                <X className="w-4 h-4 md:w-5 md:h-5" />
+              </button>
+              
+              <div className="aspect-video w-full">
+                <iframe
+                  title="Demonstração do Guia Shih Tzu"
+                  id="video-title"
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/VZdLTE5nbbY?autoplay=1&rel=0&modestbranding=1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                  className="w-full h-full"
+                ></iframe>
+              </div>
+            </div>
+          </motion.div>
+        )}
       </div>
     </section>
   );

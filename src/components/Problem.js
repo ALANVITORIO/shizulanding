@@ -135,10 +135,10 @@ export default function Problem() {
               </div>
               <div className="bg-red-50/80 backdrop-blur-sm border border-red-200/70 px-4 py-3 md:px-6 md:py-4 rounded-xl md:rounded-2xl shadow-lg">
                 <p className="text-red-700 font-extrabold text-xs md:text-sm tracking-wide leading-tight">
-                  DIVA FALANDO
+                  NÃO IGNORE
                 </p>
                 <p className="text-red-600 text-xs font-medium">
-                  A verdade que dói...
+                  você pode estar cometendo esses erros
                 </p>
               </div>
             </motion.div>
@@ -196,11 +196,10 @@ export default function Problem() {
               <div className="text-center">
                 <div className="text-3xl md:text-4xl mb-2 md:mb-3">😢</div>
                 <p className="text-[#2C1810] font-semibold text-base md:text-lg mb-1.5 md:mb-2 leading-snug">
-                  Você não sabia... mas seu Shih Tzu sente a diferença!
+                  Você não sabia... mas no Brasil a expectativa de vida dos cães domésticos é de apenas 3 anos!
                 </p>
                 <p className="text-[#6B5335] text-sm leading-relaxed">
-                  Cada erro pode estar afetando a felicidade e saúde do seu
-                  melhor amigo
+                  Seu Shih Tzu pode viver muito mais do que isso!
                 </p>
               </div>
             </motion.div>

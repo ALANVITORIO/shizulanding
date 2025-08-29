@@ -61,32 +61,7 @@ export default function ImageGallery() {
       </div>
 
       <div className="container mx-auto relative z-10">
-        {/* Header - otimizada para mobile */}
-        <motion.div
-          className="text-center mb-12 md:mb-16"
-          initial={{ opacity: 0, y: isMobile ? 30 : 50 }}
-          animate={hasIntersected ? { opacity: 1, y: 0 } : {}}
-          transition={animationConfig}
-        >
-          <motion.div
-            className="inline-flex items-center gap-2 md:gap-3 bg-white/90 backdrop-blur-sm border border-[#E5E1DC] px-4 py-2 md:px-6 md:py-3 rounded-full mb-4 md:mb-6 shadow-lg"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={hasIntersected ? { opacity: 1, scale: 1 } : {}}
-            transition={{ ...animationConfig, delay: 0.2 }}
-          >
-            <Camera className="w-4 h-4 md:w-5 md:h-5 text-[#8B6F47]" />
-            <span className="text-[#8B6F47] font-semibold text-xs md:text-sm tracking-wide">
-              GALERIA DE TRANSFORMAÇÕES
-            </span>
-          </motion.div>
-
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold gradient-text mb-4 md:mb-6 tracking-tight">
-            Veja as Transformações
-          </h2>
-          <p className="text-lg md:text-xl text-[#6B5335] text-balance max-w-2xl mx-auto leading-relaxed">
-            Resultados reais de tutores que seguiram nosso guia
-          </p>
-        </motion.div>
+        {/* Header removed per request - gallery grid begins below */}
 
         {/* Grid de Imagens Otimizado para mobile */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-8 mb-12 md:mb-16">

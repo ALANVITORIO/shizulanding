@@ -782,6 +782,18 @@ export default function Bonus() {
                   100% Seguro • Sem compromisso • Acesso imediato
                 </span>
               </motion.div>
+
+              {/* One-time payment note */}
+              <motion.div
+                className="text-center text-sm text-[#6B5335] mt-2 w-full max-w-md"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.85 }}
+                viewport={{ once: true }}
+              >
+                <strong className="text-[#2C1810]">Pagamento único — acesso vitalício.</strong>
+                <div className="text-[#6B5335]">Não é assinatura. Você não precisa renovar.</div>
+              </motion.div>
             </motion.div>
           </div>
         </motion.div>

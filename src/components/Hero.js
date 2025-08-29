@@ -27,24 +27,18 @@ export default function Hero() {
         <div className="absolute top-64 left-3/4 w-0 h-0 lg:w-24 lg:h-24 bg-gradient-to-br from-[#8B6F47]/20 to-[#A0845C]/5 rounded-full blur-xl"></div>
       </div>
 
-      {/* Badge no topo APENAS para mobile */}
+      {/* Logo no topo APENAS para mobile */}
       <motion.div
-        className="md:hidden inline-flex items-center gap-3 bg-white/95 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg border border-[#E5E1DC]/70 absolute top-4 left-4 z-20"
+        className="md:hidden absolute top-4 left-4 z-20"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, duration: 0.1 }}
       >
-        <div className="w-8 h-8 bg-gradient-to-br from-[#8B6F47] to-[#A0845C] rounded-full flex items-center justify-center">
-          <Heart className="w-4 h-4 text-white" fill="currentColor" />
-        </div>
-        <div>
-          <p className="text-[#8B6F47] font-semibold text-sm tracking-wide">
-            GUIA COMPLETO
-          </p>
-          <h1 className="font-display text-base font-bold gradient-text">
-            SHIH TZU
-          </h1>
-        </div>
+        <img 
+          src="/logodark.webp" 
+          alt="Logo Guia Shih Tzu" 
+          className="h-24 w-auto"
+        />
       </motion.div>
 
       <div className="w-full md:container md:mx-auto px-0 md:px-8 lg:px-16 xl:px-20 relative z-10">
@@ -57,28 +51,19 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
           >
-            {/* Brand Badge - APENAS DESKTOP */}
+            {/* Logo - APENAS DESKTOP */}
             <motion.div
-              className="hidden md:inline-flex items-center gap-3 lg:gap-4 bg-white/85 backdrop-blur-sm px-6 py-3 lg:px-8 lg:py-4 rounded-full shadow-lg lg:shadow-xl border lg:border-2 border-[#E5E1DC]/70"
+              className="hidden md:block"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.1 }}
               whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
             >
-              <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-[#8B6F47] to-[#A0845C] rounded-full flex items-center justify-center">
-                <Heart
-                  className="w-5 h-5 lg:w-6 lg:h-6 text-white"
-                  fill="currentColor"
-                />
-              </div>
-              <div>
-                <p className="text-[#8B6F47] font-semibold text-sm lg:text-base tracking-wide">
-                  GUIA COMPLETO
-                </p>
-                <h1 className="font-display text-lg lg:text-xl font-bold gradient-text">
-                  SHIH TZU
-                </h1>
-              </div>
+              <img 
+                src="/logodark.webp" 
+                alt="Logo Guia Shih Tzu" 
+                className="h-28 lg:h-32 w-auto"
+              />
             </motion.div>
 
             {/* Main Headline */}
@@ -88,29 +73,37 @@ export default function Hero() {
               transition={{ delay: 0.4, duration: 0.1 }}
             >
               <h2 className="font-display text-xl md:text-5xl lg:text-4xl font-bold text-[#2C1810] leading-tight mb-6">
-                O primeiro manual{' '}
+                O primeiro e mais completo manual{' '}
                 <span className="gradient-text">100% interativo</span> para
-                tutores de Shih Tzu
+                apaixonados por Shih Tzu
               </h2>
               <h3 className="text-base md:text-2xl lg:text-2xl font-medium text-[#6B5335] mb-6 text-balance">
-                (Mesmo que você{' '}
-                <em className="gradient-text-accent font-semibold">nunca</em>{' '}
-                tenha tido um cachorro)
+                Aprenda tudo o que você precisa saber sobre seu Shih Tzu,{' '}
+                <em className="gradient-text-accent font-semibold">mesmo que nunca tenha tido um cachorro antes</em>
               </h3>
             </motion.div>
 
-            {/* Quote Section */}
+            {/* Diferenciais Section */}
             <motion.div
               className="md:bg-white/70 md:backdrop-blur-sm md:p-6 lg:p-8 md:rounded-2xl md:border-l-4 lg:border-l-[6px] md:border-[#8B6F47] md:shadow-md lg:shadow-lg"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.1 }}
             >
-              <p className="text-[#4A3823] font-medium italic text-base md:text-lg lg:text-xl leading-relaxed">
-                &ldquo;Da escolha do pet à alimentação e treinamento &mdash;
-                tudo que você sempre quis saber e não encontrava em lugar
-                nenhum&rdquo;
-              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-[#7A9B76]" />
+                  <span className="text-[#4A3823] font-medium text-base md:text-lg">13 capítulos interativos com Quiz</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-[#7A9B76]" />
+                  <span className="text-[#4A3823] font-medium text-base md:text-lg">+4 ferramentas práticas</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-[#7A9B76]" />
+                  <span className="text-[#4A3823] font-medium text-base md:text-lg">Tudo para seu Shih Tzu</span>
+                </div>
+              </div>
             </motion.div>
 
             {/* Trust Indicators */}
@@ -133,7 +126,7 @@ export default function Hero() {
                   className="w-4 h-4 lg:w-5 lg:h-5 text-[#D4A574]"
                   fill="currentColor"
                 />
-                <span>Garantia de 7 dias</span>
+                <span>Pagamento único</span>
               </div>
             </motion.div>
 
@@ -161,85 +154,6 @@ export default function Hero() {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Floating badges restaurados */}
-        <motion.div
-          className="hidden lg:block absolute top-28 right-20 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl border-2 border-[#E5E1DC]"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#7A9B76] to-[#6B8967] rounded-xl flex items-center justify-center">
-              <CheckCircle className="w-5 h-5 text-white" />
-            </div>
-            <div>
-              <p className="text-[#2C1810] font-semibold text-base leading-tight">
-                Calculadora
-              </p>
-              <p className="text-[#6B5335] text-sm leading-tight">
-                de ração incluída
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="hidden lg:block absolute top-60 right-10 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-2xl shadow-xl border-2 border-[#E5E1DC]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-        >
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-[#D4A574] to-[#A0845C] rounded-xl flex items-center justify-center">
-              <Star className="w-5 h-5 text-white" fill="currentColor" />
-            </div>
-            <div>
-              <p className="text-[#2C1810] font-semibold text-base leading-tight">
-                Checklist
-              </p>
-              <p className="text-[#6B5335] text-sm leading-tight">
-                diário interativo
-              </p>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="hidden lg:flex absolute bottom-32 right-28 bg-white/95 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border-2 border-[#E5E1DC] items-center gap-3"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.8 }}
-          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-        >
-          <div className="w-4 h-4 bg-[#7A9B76] rounded-full animate-pulse"></div>
-          <span className="text-[#2C1810] font-semibold text-base">
-            Pet Feliz & Saudável
-          </span>
-        </motion.div>
-
-        {/* Novo badge para desktop */}
-        <motion.div
-          className="hidden lg:flex absolute top-[450px] right-16 bg-white/95 backdrop-blur-sm px-6 py-3 rounded-2xl shadow-xl border-2 border-[#E5E1DC] items-center gap-3"
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.9 }}
-          whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
-        >
-          <div className="w-10 h-10 bg-gradient-to-br from-[#8B6F47] to-[#A0845C] rounded-xl flex items-center justify-center">
-            <Heart className="w-5 h-5 text-white" fill="currentColor" />
-          </div>
-          <div>
-            <p className="text-[#2C1810] font-semibold text-base leading-tight">
-              Guia Completo
-            </p>
-            <p className="text-[#6B5335] text-sm leading-tight">
-              Atualizado 2025
-            </p>
-          </div>
-        </motion.div>
       </div>
     </header>
   );

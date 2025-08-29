@@ -17,8 +17,9 @@ export default function Home() {
       <Hero />
       <Problem />
       <Solution />
+       <HowItWorks />
       <ImageGallery />
-      <HowItWorks />
+     
       <SocialProof />
       <Bonus />
 
