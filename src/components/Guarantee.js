@@ -184,6 +184,7 @@ export default function Guarantee() {
 
               {/* BOTÃO OVAL CLÁSSICO - CONTRASTE MELHORADO */}
               <motion.button
+                onClick={() => window.open('https://pay.kiwify.com.br/992CSb6', '_blank')}
                 className="w-full max-w-md mx-auto bg-gradient-to-b from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 active:from-green-700 active:to-green-800 text-white font-black py-5 px-8 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-200 mb-4 text-xl border-4 border-gray-900 relative overflow-hidden"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -232,7 +233,7 @@ export default function Guarantee() {
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: 0.4, duration: 0.3 }}
               >
-                ⚡ <strong>Mais de 2.847 tutores</strong> já transformaram seus
+                ⚡ <strong>Centenas de tutores</strong> já transformaram seus
                 Shih Tzus
               </motion.p>
             </div>

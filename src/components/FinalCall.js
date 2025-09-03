@@ -13,6 +13,7 @@ import {
   Calculator,
   ClipboardCheck,
   Shield,
+  Lock,
 } from 'lucide-react';
 
 export default function FinalCall() {
@@ -270,7 +271,7 @@ export default function FinalCall() {
           </div>
         </motion.div>
 
-        {/* CTA Section - NOVO DESIGN PREMIUM */}
+        {/* CTA Section - ESTILO COPIADO DA GUARANTEE */}
         <motion.div
           className="text-center relative"
           initial={{ opacity: 0, y: 20 }}
@@ -278,58 +279,78 @@ export default function FinalCall() {
           transition={{ delay: 0.2, duration: 0.3 }}
           viewport={{ once: true }}
         >
-          {/* CTA Principal com novo design */}
-          <div className="relative inline-block w-full max-w-md mx-auto mb-6 md:mb-8">
-            {/* Glow effect */}
-            <div className="absolute -inset-1 bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 rounded-2xl blur-lg opacity-60 group-hover:opacity-80 transition-opacity"></div>
+          {/* Container principal com glassmorphism */}
+          <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-6 md:p-8 border border-white/20 shadow-2xl max-w-lg mx-auto overflow-hidden mb-6 md:mb-8">
+            {/* Background gradient decorativo */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-50/50 via-emerald-50/30 to-teal-50/50 rounded-3xl"></div>
+            <div className="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-green-200/30 to-emerald-200/20 rounded-full blur-2xl"></div>
 
-            <button className="relative w-full bg-gradient-to-r from-orange-500 via-red-500 to-red-600 text-white font-black text-center py-5 md:py-6 px-6 md:px-8 rounded-2xl shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 border border-red-400/30">
-              {/* Top badge */}
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-1 rounded-full text-xs font-black shadow-lg">
-                🔥 OFERTA LIMITADA
-              </div>
+            {/* Badge de urgência premium */}
+            <motion.div
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg mb-4"
+              animate={{ scale: [1, 1.05, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              🔥 ÚLTIMA CHANCE - OFERTA LIMITADA
+            </motion.div>
 
-              {/* Main text */}
-              <div className="flex flex-col items-center gap-2">
-                <span className="text-lg md:text-xl lg:text-2xl font-black leading-tight">
-                  QUERO MEU GUIA AGORA!
+            {/* Título persuasivo */}
+            <div className="relative z-10 mb-6">
+              <h3 className="text-2xl md:text-3xl font-black text-gray-800 mb-2 leading-tight">
+                Transforme seu Shih Tzu em
+                <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+                  {' '}
+                  7 dias
                 </span>
+              </h3>
+              <p className="text-gray-600 font-medium text-base md:text-lg">
+                ou receba 100% do seu dinheiro de volta
+              </p>
+            </div>
 
-                {/* Price highlight */}
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur rounded-full px-4 py-2">
-                  <span className="text-lg md:text-xl font-black text-yellow-300">
-                    APENAS R$ 37
+            {/* BOTÃO OVAL CLÁSSICO - CONTRASTE MELHORADO */}
+            <motion.button
+              onClick={() => window.open('https://pay.kiwify.com.br/992CSb6', '_blank')}
+              className="w-full max-w-md mx-auto bg-gradient-to-b from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 active:from-green-700 active:to-green-800 text-white font-black py-5 px-8 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-200 mb-4 text-xl border-4 border-gray-900 relative overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {/* Brilho superior do botão clássico - mais forte */}
+              <div className="absolute top-1 left-4 right-4 h-4 bg-white/60 rounded-full blur-sm"></div>
+
+              <div className="relative z-10 flex items-center justify-center gap-4">
+                {/* Círculo com preço - contraste melhorado */}
+                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center border-3 border-gray-800 shadow-xl">
+                  <span className="text-gray-900 font-black text-sm">
+                    R$37
                   </span>
-                  <ArrowRight className="w-5 h-5 animate-pulse" />
                 </div>
+
+                {/* Texto COMPRAR - contraste melhorado */}
+                <span className="font-black text-2xl tracking-widest drop-shadow-lg text-white">
+                  COMPRAR
+                </span>
               </div>
 
-              {/* Pulse animation overlay */}
-              <div className="absolute inset-0 rounded-2xl bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            </button>
-          </div>
+              {/* Efeito de pressão mais visível */}
+              <div className="absolute inset-0 bg-black/30 rounded-full opacity-0 group-active:opacity-100 transition-opacity duration-100"></div>
+            </motion.button>
 
-          {/* Security badges */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-6 mb-4 md:mb-6">
-            <div className="flex items-center gap-2 bg-green-50 px-3 py-2 rounded-full border border-green-200">
-              <Shield className="w-4 h-4 text-green-600" />
-              <span className="text-sm font-semibold text-green-700">
-                Compra 100% Segura
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 bg-blue-50 px-3 py-2 rounded-full border border-blue-200">
-              <Zap className="w-4 h-4 text-blue-600" />
-              <span className="text-sm font-semibold text-blue-700">
-                Acesso Instantâneo
-              </span>
-            </div>
-
-            <div className="flex items-center gap-2 bg-purple-50 px-3 py-2 rounded-full border border-purple-200">
-              <Heart className="w-4 h-4 text-purple-600" />
-              <span className="text-sm font-semibold text-purple-700">
-                Garantia de 7 dias
-              </span>
+            {/* Trust badges modernos */}
+            <div className="relative z-10 grid grid-cols-3 gap-2 text-xs font-semibold">
+              <div className="flex items-center gap-1 bg-green-50 text-green-700 px-2 py-2 rounded-lg border border-green-200/50">
+                <Shield className="w-3 h-3" />
+                <span>Seguro</span>
+              </div>
+              <div className="flex items-center gap-1 bg-blue-50 text-blue-700 px-2 py-2 rounded-lg border border-blue-200/50">
+                <CheckCircle className="w-3 h-3" />
+                <span>Garantido</span>
+              </div>
+              <div className="flex items-center gap-1 bg-purple-50 text-purple-700 px-2 py-2 rounded-lg border border-purple-200/50">
+                <Lock className="w-3 h-3" />
+                <span>Protegido</span>
+              </div>
             </div>
           </div>
 

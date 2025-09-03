@@ -136,7 +136,10 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.1 }}
             >
-              <button className="group w-full lg:w-auto lg:min-w-[400px] bg-gradient-to-r from-[#7A9B76] via-[#6B8967] to-[#5A9A58] text-white font-bold py-4 px-6 md:py-4 md:px-8 lg:py-5 lg:px-10 rounded-full text-base md:text-lg lg:text-lg shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 border-2 border-white/20 hover:border-white/30 relative overflow-hidden">
+              <button 
+                onClick={() => window.open('https://pay.kiwify.com.br/992CSb6', '_blank')}
+                className="group w-full lg:w-auto lg:min-w-[400px] bg-gradient-to-r from-[#7A9B76] via-[#6B8967] to-[#5A9A58] text-white font-bold py-4 px-6 md:py-4 md:px-8 lg:py-5 lg:px-10 rounded-full text-base md:text-lg lg:text-lg shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 border-2 border-white/20 hover:border-white/30 relative overflow-hidden"
+              >
                 <span className="relative z-10 font-extrabold tracking-wide">
                   TRANSFORMAR MEU SHIH TZU
                 </span>
@@ -149,7 +152,7 @@ export default function Hero() {
 
               <p className="text-[#6B5335] text-sm md:text-sm lg:text-base mt-3 lg:mt-4 flex items-center gap-2">
                 <span className="w-2 h-2 lg:w-3 lg:h-3 bg-[#7A9B76] rounded-full animate-pulse"></span>
-                Mais de 500 tutores já transformaram a vida dos seus pets
+                Centenas de tutores já transformaram a vida dos seus pets
               </p>
             </motion.div>
           </motion.div>

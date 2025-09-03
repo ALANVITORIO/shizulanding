@@ -762,6 +762,7 @@ export default function Bonus() {
               viewport={{ once: true }}
             >
               <motion.button
+                onClick={() => window.open('https://pay.kiwify.com.br/992CSb6', '_blank')}
                 className="group bg-gradient-to-r from-[#8B6F47] to-[#A0845C] text-white font-bold py-6 px-12 rounded-full text-2xl lg:text-3xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-4 cta-button-mobile"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}

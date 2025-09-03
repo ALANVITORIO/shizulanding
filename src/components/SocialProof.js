@@ -327,14 +327,14 @@ export default function SocialProof() {
                   ))}
                 </div>
                 <div className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded-full">
-                  +500
+                  +100
                 </div>
               </div>
 
               {/* Texto principal */}
               <div className="text-center">
                 <p className="text-green-800 font-bold text-sm leading-tight mb-2">
-                  Tutores já transformaram
+                  Centenas de tutores já transformaram
                   <br />
                   <span className="text-green-600">seus pets</span>
                 </p>
@@ -371,7 +371,7 @@ export default function SocialProof() {
                   ))}
                 </div>
                 <div className="text-[#6B5335] font-semibold">
-                  <span className="text-lg">+500 tutores</span>
+                  <span className="text-lg">Centenas de tutores</span>
                   <span className="text-sm block -mt-1">
                     já transformaram seus pets
                   </span>

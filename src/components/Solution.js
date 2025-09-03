@@ -184,7 +184,7 @@ export default function Solution() {
             </div>
 
             <div className="flex flex-col gap-3 md:gap-4 justify-center items-center">
-              <button className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 md:gap-3 min-h-[44px]">
+              <button onClick={() => window.open('https://pay.kiwify.com.br/992CSb6', '_blank')} className="group bg-gradient-to-r from-[#7A9B76] to-[#6B8967] text-white font-bold py-3 px-6 md:py-4 md:px-8 rounded-full text-base md:text-lg shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-300 flex items-center gap-2 md:gap-3 min-h-[44px]">
                 <span className="text-sm md:text-base">
                   QUERO COMEÇAR AGORA
                 </span>
