@@ -15,9 +15,10 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-pattern">
       <Hero />
+       <HowItWorks />
       <Problem />
       <Solution />
-       <HowItWorks />
+      
       <ImageGallery />
      
       <SocialProof />
