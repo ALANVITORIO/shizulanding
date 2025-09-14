@@ -62,6 +62,12 @@ export default function RootLayout({ children }) {
         </noscript>
         {/* End Meta Pixel Code */}
         
+        {/* Performance Optimizations */}
+        <link rel="preload" href="/hero-mobile.webp" as="image" fetchPriority="high" />
+        <link rel="preload" href="/hero.webp" as="image" fetchPriority="high" />
+        <link rel="dns-prefetch" href="https://connect.facebook.net" />
+        <link rel="dns-prefetch" href="https://www.facebook.com" />
+        
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"

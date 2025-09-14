@@ -8,15 +8,21 @@ export default function Hero() {
       {/* Background image layer */}
       <div className="absolute inset-0 -z-10">
         {/* Mobile background */}
-        <div
-          className="w-[390px] h-[750px] bg-cover bg-center md:hidden absolute top-0 left-1/2 transform -translate-x-1/2"
-          style={{ backgroundImage: "url('/hero-mobile.webp')" }}
-        ></div>
+        <img
+          src="/hero-mobile.webp"
+          alt=""
+          fetchPriority="high"
+          loading="eager"
+          className="w-[390px] h-[750px] object-cover object-center md:hidden absolute top-0 left-1/2 transform -translate-x-1/2"
+        />
         {/* Desktop background */}
-        <div
-          className="w-full h-full bg-cover bg-center hidden md:block lg:bg-no-repeat lg:bg-right"
-          style={{ backgroundImage: "url('/hero.webp')" }}
-        ></div>
+        <img
+          src="/hero.webp"
+          alt=""
+          fetchPriority="high"
+          loading="eager"
+          className="w-full h-full object-cover object-center hidden md:block lg:object-none lg:object-right"
+        />
       </div>
 
       {/* Decorative elements - APENAS DESKTOP */}
