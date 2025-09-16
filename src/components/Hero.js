@@ -9,7 +9,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10">
         {/* Mobile background */}
         <img
-          src="/hero-mobile.webp"
+          src="/hero-mobile2.webp"
           alt=""
           fetchPriority="high"
           loading="eager"
