@@ -109,9 +109,8 @@ export default function Hero() {
                 <span className="gradient-text">100% interativo</span> para
                 apaixonados por Shih Tzu
               </h2>
-              <h3 className="text-sm md:text-2xl lg:text-2xl font-medium text-[#6B5335] mb-2 md:mb-6 text-balance">
-                Aprenda tudo o que você precisa saber sobre seu Shih Tzu,{' '}
-                <em className="gradient-text-accent font-semibold">mesmo que nunca tenha tido um cachorro antes</em>
+              <h3 className="text-[0.65rem] md:text-xl lg:text-xl font-extrabold text-[#6B5335] mb-3 md:mb-6 tracking-normal w-full px-0" style={{letterSpacing: '-0.02em', lineHeight: '1.1'}}>
+                Tudo que você precisa saber para garantir que o seu Shih Tzu tenha <em className="gradient-text-accent font-extrabold">uma vida longa, feliz e saudável ao seu lado</em>
               </h3>
             </motion.div>
 
