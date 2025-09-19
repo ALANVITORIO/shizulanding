@@ -143,7 +143,8 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.1 }}
             >
-              <button 
+              <button
+                data-cta="main-hero-button"
                 onClick={() => window.open('https://pay.kiwify.com.br/992CSb6', '_blank')}
                 className="group w-full lg:w-auto lg:min-w-[400px] bg-gradient-to-r from-[#7A9B76] via-[#6B8967] to-[#5A9A58] text-white font-bold py-3 px-6 md:py-4 md:px-8 lg:py-5 lg:px-10 rounded-full text-sm md:text-lg lg:text-lg shadow-2xl hover:shadow-3xl transform hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 border-2 border-white/20 hover:border-white/30 relative overflow-hidden"
               >
