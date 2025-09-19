@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 export default function QuizResultSection() {
   const [quizData, setQuizData] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     // Ler dados do quiz completed
@@ -22,6 +23,15 @@ export default function QuizResultSection() {
       }
     } catch (error) {
       console.error('Erro ao ler dados do quiz:', error);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const checkMobile = () => setIsMobile(window.innerWidth < 768);
+      checkMobile();
+      window.addEventListener('resize', checkMobile);
+      return () => window.removeEventListener('resize', checkMobile);
     }
   }, []);
 
@@ -45,6 +55,84 @@ export default function QuizResultSection() {
     return 'PARABÉNS';
   };
 
+  // Layout mobile ultra-compacto
+  if (isMobile) {
+    return (
+      <motion.section
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="relative w-full py-2"
+        style={{
+          background: `linear-gradient(135deg, ${getSeverityColor()}15 0%, ${getSeverityColor()}25 100%)`,
+          borderBottom: `3px solid ${getSeverityColor()}`
+        }}
+      >
+        <div className="max-w-sm mx-auto px-3">
+          <div
+            className="bg-white rounded-lg shadow-md overflow-hidden"
+            style={{ border: `2px solid ${getSeverityColor()}` }}
+          >
+            {/* Header compacto */}
+            <div
+              className="px-3 py-2 text-white text-center"
+              style={{ background: `linear-gradient(135deg, ${getSeverityColor()} 0%, ${getSeverityColor()}DD 100%)` }}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-lg">{getSeverityEmoji()}</span>
+                <h1 className="text-sm font-bold">{getSeverityTitle()}</h1>
+              </div>
+            </div>
+
+            {/* Conteúdo ultra-compacto */}
+            <div className="px-3 py-3">
+              {/* Linha única com info principal */}
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-center">
+                  <div className="text-lg font-bold" style={{ color: getSeverityColor() }}>
+                    {quizData.years_lost} anos
+                  </div>
+                  <div className="text-xs text-gray-600">podem ser perdidos</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-lg font-bold" style={{ color: getSeverityColor() }}>
+                    {quizData.score}%
+                  </div>
+                  <div className="text-xs text-gray-600">conhecimento</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-xs text-gray-700 font-semibold">
+                    {quizData.profile}
+                  </div>
+                  <div className="text-xs text-gray-600">perfil</div>
+                </div>
+              </div>
+
+              {/* CTA compacto */}
+              <button
+                onClick={() => {
+                  const firstCTA = document.querySelector('[data-cta="main-hero-button"]');
+                  if (firstCTA) {
+                    firstCTA.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }
+                }}
+                className="w-full py-2 px-3 rounded-md font-bold text-sm text-white transition-all duration-300"
+                style={{ background: `linear-gradient(135deg, ${getSeverityColor()} 0%, ${getSeverityColor()}CC 100%)` }}
+              >
+                🎯 SALVAR {quizData.name.toUpperCase()}
+              </button>
+
+              <p className="text-center text-xs text-gray-500 mt-1">
+                Veja como pode reverter isso ↓
+              </p>
+            </div>
+          </div>
+        </div>
+      </motion.section>
+    );
+  }
+
+  // Layout desktop (mantém o original)
   return (
     <motion.section
       initial={{ opacity: 0, y: 50 }}
