@@ -22,7 +22,7 @@ export default function QuizResultHeader() {
         // Limpar dados após usar para não mostrar em futuras visitas
         setTimeout(() => {
           sessionStorage.removeItem('quizComplete');
-        }, 30000); // Remove após 30 segundos
+        }, 86400000); // Remove após 24 horas
       }
     } catch (error) {
       console.error('Erro ao ler dados do quiz:', error);

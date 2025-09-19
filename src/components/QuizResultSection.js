@@ -16,10 +16,10 @@ export default function QuizResultSection() {
         setQuizData(data);
         setIsVisible(true);
 
-        // Limpar dados após usar (30 segundos)
+        // Limpar dados após usar (24 horas)
         setTimeout(() => {
           sessionStorage.removeItem('quizComplete');
-        }, 30000);
+        }, 86400000);
       }
     } catch (error) {
       console.error('Erro ao ler dados do quiz:', error);

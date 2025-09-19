@@ -134,10 +134,10 @@ function QuestionsContent() {
     <div style={{
       minHeight: '100vh',
       display: 'flex',
-      alignItems: 'center',
+      alignItems: isMobile ? 'flex-start' : 'center',
       justifyContent: 'center',
       background: 'linear-gradient(135deg, #FEF3C7 0%, #FFFFFF 50%, #FEF3C7 100%)',
-      padding: isMobile ? '0.5rem' : isLargeScreen ? '1rem' : '1.5rem',
+      padding: isMobile ? '0.5rem 0.25rem 0.25rem 0.25rem' : isLargeScreen ? '1rem' : '1.5rem',
       position: 'relative'
     }}>
       {/* Loading overlay */}
@@ -274,14 +274,14 @@ function QuestionsContent() {
             </div>
           )}
           
-          <div style={{ padding: isMobile ? '1rem' : isTablet ? '1.5rem' : isLargeScreen ? '2rem' : '2.5rem' }}>
+          <div style={{ padding: isMobile ? '0.75rem' : isTablet ? '1.5rem' : isLargeScreen ? '2rem' : '2.5rem' }}>
             {/* Context (para questões de cenário) */}
             {question.context && (
               <div style={{
                 backgroundColor: '#FEF3C7',
                 borderLeft: '4px solid #F59E0B',
                 padding: isMobile ? '0.75rem' : '1rem',
-                marginBottom: isMobile ? '1rem' : isLargeScreen ? '1rem' : '1.5rem',
+                marginBottom: isMobile ? '0.5rem' : isLargeScreen ? '1rem' : '1.5rem',
                 borderRadius: '0 0.5rem 0.5rem 0',
                 fontStyle: 'italic',
                 color: '#78350F',
@@ -293,7 +293,7 @@ function QuestionsContent() {
             )}
             
             {/* Question Title and Text */}
-            <div style={{ marginBottom: isMobile ? '1rem' : isLargeScreen ? '1rem' : '2rem' }}>
+            <div style={{ marginBottom: isMobile ? '0.75rem' : isLargeScreen ? '1rem' : '2rem' }}>
               <h2 style={{
                 fontSize: isMobile ? '0.875rem' : '1rem',
                 fontWeight: 'bold',
@@ -329,9 +329,8 @@ function QuestionsContent() {
             
             {/* Options */}
             <div style={{
-              display: question.type === 'myth' ? 'grid' : 'flex',
-              gridTemplateColumns: question.type === 'myth' ? (isMobile ? '1fr' : 'repeat(2, 1fr)') : 'none',
-              flexDirection: question.type === 'myth' ? 'none' : 'column',
+              display: 'flex',
+              flexDirection: 'column',
               gap: isMobile ? '0.5rem' : isLargeScreen ? '0.5rem' : '0.75rem'
             }}>
               {question.options.map((option, index) => (
@@ -340,7 +339,7 @@ function QuestionsContent() {
                   onClick={() => !showFeedback && handleSelect(option)}
                   disabled={showFeedback}
                   style={{
-                    padding: isMobile ? '1rem' : isLargeScreen ? '1rem' : '1.25rem',
+                    padding: isMobile ? '0.75rem' : isLargeScreen ? '1rem' : '1.25rem',
                     borderRadius: '0.75rem',
                     border: '2px solid',
                     borderColor: selected === option
@@ -381,8 +380,8 @@ function QuestionsContent() {
                       fontWeight: 'bold',
                       color: '#F59E0B',
                       marginRight: '0.75rem',
-                      fontSize: isMobile ? '1rem' : '1rem',
-                      minWidth: '1.5rem'
+                      fontSize: isMobile ? '0.85rem' : '1rem',
+                      minWidth: '1.2rem'
                     }}>
                       {String.fromCharCode(65 + index) + ') ' + 
                         (question.type === 'myth' 
@@ -391,8 +390,8 @@ function QuestionsContent() {
                     </span>
                     <span style={{
                       flex: 1,
-                      fontSize: isMobile ? '1rem' : '1rem',
-                      lineHeight: '1.4',
+                      fontSize: isMobile ? '0.85rem' : '1rem',
+                      lineHeight: '1.3',
                       color: '#374151'
                     }}>
                       {option.text}
