@@ -6,6 +6,8 @@ export function useMobileOptimizations() {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     // Check if user prefers reduced motion
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
     setReducedMotion(mediaQuery.matches);

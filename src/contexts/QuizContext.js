@@ -177,7 +177,9 @@ const saveState = (state) => {
         n: state.petName?.slice(0, 10) || '',
         a: state.answers.length
       }));
-      window.location.hash = hashData;
+      if (typeof window !== 'undefined') {
+        window.location.hash = hashData;
+      }
     }
   } catch (error) {
     console.warn('Failed to save quiz state:', error);
@@ -199,14 +201,16 @@ const loadState = () => {
     }
 
     // Fallback to URL hash
-    const hash = window.location.hash.slice(1);
-    if (hash) {
-      const data = JSON.parse(atob(hash));
-      return {
-        currentQuestion: data.q || 0,
-        petName: data.n || '',
-        answers: new Array(data.a || 0).fill({})
-      };
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.slice(1);
+      if (hash) {
+        const data = JSON.parse(atob(hash));
+        return {
+          currentQuestion: data.q || 0,
+          petName: data.n || '',
+          answers: new Array(data.a || 0).fill({})
+        };
+      }
     }
   } catch (error) {
     console.warn('Failed to load quiz state:', error);
@@ -238,7 +242,9 @@ export function QuizProvider({ children }) {
     if (state.currentState === QUIZ_STATES.PITCH) {
       try {
         sessionStorage.removeItem(STORAGE_KEY);
-        window.location.hash = '';
+        if (typeof window !== 'undefined') {
+          window.location.hash = '';
+        }
       } catch (error) {
         console.warn('Failed to clear storage:', error);
       }

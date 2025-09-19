@@ -16,6 +16,18 @@ function QuizIntro() {
   const { state, dispatch, actions } = useQuiz();
   const [petName, setPetName] = useState('');
   const [isStarting, setIsStarting] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(1024);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const updateWidth = () => setWindowWidth(window.innerWidth);
+      updateWidth();
+      window.addEventListener('resize', updateWidth);
+      return () => window.removeEventListener('resize', updateWidth);
+    }
+  }, []);
+
+  const isMobile = windowWidth <= 768;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,10 +53,10 @@ function QuizIntro() {
         linear-gradient(135deg, #FEF3C7 0%, #FFFFFF 30%, #F0FDF4 70%, #FEF3C7 100%)
       `,
       display: 'flex',
-      alignItems: window.innerWidth <= 768 ? 'flex-start' : 'center',
+      alignItems: isMobile ? 'flex-start' : 'center',
       justifyContent: 'center',
-      padding: window.innerWidth <= 768 ? '1rem 1rem 1rem 1rem' : '1rem',
-      paddingTop: window.innerWidth <= 768 ? '2rem' : '1rem',
+      padding: isMobile ? '1rem 1rem 1rem 1rem' : '1rem',
+      paddingTop: isMobile ? '2rem' : '1rem',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -81,7 +93,7 @@ function QuizIntro() {
               <div style={{
                 width: '120px',
                 height: '120px',
-                margin: window.innerWidth <= 768 ? '0 auto 1rem' : '0 auto 1.5rem',
+                margin: isMobile ? '0 auto 1rem' : '0 auto 1.5rem',
                 borderRadius: '50%',
                 background: 'linear-gradient(135deg, #F59E0B, #DC2626)',
                 display: 'flex',

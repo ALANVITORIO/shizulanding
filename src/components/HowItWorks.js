@@ -50,7 +50,7 @@ export default function HowItWorks() {
       }
     };
     
-    if (isModalOpen) {
+    if (isModalOpen && typeof window !== 'undefined') {
       window.addEventListener('keydown', handleKeyDown);
       return () => window.removeEventListener('keydown', handleKeyDown);
     }
