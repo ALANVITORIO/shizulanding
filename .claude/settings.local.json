@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "WebFetch(domain:alanvitorio.github.io)"
+      "WebFetch(domain:alanvitorio.github.io)",
+      "Bash(cd:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": [],
     "ask": []

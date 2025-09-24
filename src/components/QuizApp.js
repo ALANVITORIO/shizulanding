@@ -7,7 +7,6 @@ import { calculateLifeImpact } from '../utils/calculateImpact';
 import { questions } from '../data/questions';
 
 import ProgressHeart from './ProgressHeart';
-import UrgencyTimer from './UrgencyTimer';
 import MicroFeedback from './MicroFeedback';
 import SmoothTransition, { FadeTransition } from './SmoothTransition';
 
@@ -38,7 +37,7 @@ function QuizIntro() {
       setTimeout(() => {
         dispatch({
           type: actions.START_QUIZ,
-          payload: { timeLimit: questions[0]?.timeLimit || 30 }
+          payload: {}
         });
       }, 800);
     }
@@ -508,9 +507,21 @@ function QuizQuestion() {
   const { updateMomentum, getStreakBonus } = useMomentum();
   const [showFeedback, setShowFeedback] = useState(false);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(1024);
 
   const question = questions[state.currentQuestion];
   const isLastQuestion = state.currentQuestion >= questions.length - 1;
+  const isMobile = windowWidth <= 768;
+
+  // Mobile detection
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const updateWidth = () => setWindowWidth(window.innerWidth);
+      updateWidth();
+      window.addEventListener('resize', updateWidth);
+      return () => window.removeEventListener('resize', updateWidth);
+    }
+  }, []);
 
   // Preload next question
   useEffect(() => {
@@ -535,7 +546,7 @@ function QuizQuestion() {
     });
 
     // Update momentum
-    updateMomentum(option.impact >= 0, (question.timeLimit || 30) - state.timeLeft);
+    updateMomentum(option.impact >= 0, 0);
 
     // Show feedback
     setShowFeedback(true);
@@ -553,39 +564,28 @@ function QuizQuestion() {
       // Next question
       dispatch({
         type: actions.NEXT_QUESTION,
-        payload: { timeLimit: questions[state.currentQuestion + 1]?.timeLimit || 30 }
+        payload: {}
       });
     }
   }, [isLastQuestion, state.answers, dispatch, actions, state.currentQuestion]);
-
-  const handleTimeout = useCallback(() => {
-    if (selectedAnswer) return;
-
-    // Auto-select worst option on timeout
-    const worstOption = question.options.reduce((worst, current) =>
-      current.impact < worst.impact ? current : worst
-    );
-    handleAnswer(worstOption);
-  }, [selectedAnswer, question.options, handleAnswer]);
 
   return (
     <div style={{
       minHeight: '100vh',
       background: 'linear-gradient(135deg, #FEF3C7 0%, #FFFFFF 50%, #FEF3C7 100%)',
       display: 'flex',
-      alignItems: 'center',
+      alignItems: isMobile ? 'flex-start' : 'center',
       justifyContent: 'center',
-      padding: '1rem'
+      padding: isMobile ? '0.5rem' : '1rem',
+      paddingTop: isMobile ? '0.5rem' : '1rem'
     }}>
-      <div style={{ maxWidth: '56rem', width: '100%' }}>
+      <div style={{
+        maxWidth: isMobile ? '100%' : '56rem',
+        width: '100%',
+        padding: '0'
+      }}>
         {/* Progress Heart */}
         <ProgressHeart />
-
-        {/* Urgency Timer */}
-        <UrgencyTimer
-          timeLimit={question.timeLimit || 30}
-          onTimeout={handleTimeout}
-        />
 
         {/* Streak Bonus */}
         {getStreakBonus() && (
@@ -609,14 +609,17 @@ function QuizQuestion() {
         <SmoothTransition isVisible={!showFeedback} direction="left">
           <div style={{
             backgroundColor: 'white',
-            borderRadius: '1.5rem',
-            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-            overflow: 'hidden'
+            borderRadius: isMobile ? '1rem' : '1.5rem',
+            boxShadow: isMobile
+              ? '0 12px 28px -8px rgba(0, 0, 0, 0.15), 0 4px 8px -2px rgba(0, 0, 0, 0.08)'
+              : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            overflow: 'hidden',
+            margin: isMobile ? '0.25rem' : '0'
           }}>
             {/* Question Image */}
             {question.image && (
               <div style={{
-                height: 'clamp(8rem, 20vw, 12rem)',
+                height: isMobile ? '4rem' : 'clamp(8rem, 20vw, 12rem)',
                 background: `linear-gradient(135deg, #FEF3C7 0%, #F59E0B 100%)`,
                 position: 'relative',
                 overflow: 'hidden'
@@ -633,43 +636,50 @@ function QuizQuestion() {
                 />
                 <div style={{
                   position: 'absolute',
-                  top: '0.75rem',
-                  right: '0.75rem',
+                  top: isMobile ? '0.5rem' : '0.75rem',
+                  right: isMobile ? '0.5rem' : '0.75rem',
                   backgroundColor: question.type === 'myth' ? '#DC2626' : '#7C3AED',
                   color: 'white',
-                  padding: '0.5rem 0.75rem',
+                  padding: isMobile ? '0.375rem 0.625rem' : '0.5rem 0.75rem',
                   borderRadius: '0.5rem',
-                  fontSize: '0.875rem',
-                  fontWeight: 'bold'
+                  fontSize: isMobile ? '0.75rem' : '0.875rem',
+                  fontWeight: 'bold',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.2)'
                 }}>
                   {question.type === 'myth' ? '🧠 MITO/VERDADE' : '⚡ CENÁRIO'}
                 </div>
               </div>
             )}
 
-            <div style={{ padding: 'clamp(1.5rem, 4vw, 2.5rem)' }}>
+            <div style={{
+              padding: isMobile ? '0.875rem' : 'clamp(1.5rem, 4vw, 2.5rem)'
+            }}>
               {/* Context */}
               {question.context && (
                 <div style={{
                   backgroundColor: '#FEF3C7',
                   borderLeft: '4px solid #F59E0B',
-                  padding: '1rem',
-                  marginBottom: '1.5rem',
+                  padding: isMobile ? '0.625rem' : '1rem',
+                  marginBottom: isMobile ? '0.75rem' : '1.5rem',
                   borderRadius: '0 0.5rem 0.5rem 0',
                   fontStyle: 'italic',
-                  color: '#78350F'
+                  color: '#78350F',
+                  fontSize: isMobile ? '0.8rem' : '1rem',
+                  lineHeight: '1.3'
                 }}>
                   {question.context.replace('seu Shih Tzu', state.petName)}
                 </div>
               )}
 
               {/* Question */}
-              <div style={{ marginBottom: '1.5rem' }}>
+              <div style={{
+                marginBottom: isMobile ? '0.75rem' : '1.5rem'
+              }}>
                 <h2 style={{
-                  fontSize: '1rem',
-                  fontWeight: 'bold',
+                  fontSize: isMobile ? '0.7rem' : '1rem',
+                  fontWeight: '600',
                   color: '#6B7280',
-                  marginBottom: '0.5rem',
+                  marginBottom: isMobile ? '0.375rem' : '0.5rem',
                   textTransform: 'uppercase',
                   letterSpacing: '0.05em'
                 }}>
@@ -677,20 +687,22 @@ function QuizQuestion() {
                 </h2>
 
                 <h3 style={{
-                  fontSize: 'clamp(1.125rem, 3vw, 1.5rem)',
-                  fontWeight: 'bold',
+                  fontSize: isMobile ? '0.95rem' : 'clamp(1.125rem, 3vw, 1.5rem)',
+                  fontWeight: '700',
                   color: '#111827',
-                  lineHeight: '1.3'
+                  lineHeight: '1.35',
+                  marginBottom: isMobile ? '0.5rem' : '0.75rem'
                 }}>
                   {question.type === 'myth' ? question.statement : question.question}
                 </h3>
 
                 {question.type === 'myth' && (
                   <p style={{
-                    fontSize: '1.125rem',
+                    fontSize: isMobile ? '0.85rem' : '1.125rem',
                     fontWeight: '600',
                     color: '#D97706',
-                    marginTop: '0.5rem'
+                    marginTop: '0',
+                    lineHeight: '1.35'
                   }}>
                     {question.question}
                   </p>
@@ -700,9 +712,13 @@ function QuizQuestion() {
               {/* Options */}
               <div style={{
                 display: question.type === 'myth' ? 'grid' : 'flex',
-                gridTemplateColumns: question.type === 'myth' ? 'repeat(auto-fit, minmax(250px, 1fr))' : 'none',
+                gridTemplateColumns: question.type === 'myth'
+                  ? isMobile
+                    ? 'repeat(auto-fit, minmax(150px, 1fr))'
+                    : 'repeat(auto-fit, minmax(250px, 1fr))'
+                  : 'none',
                 flexDirection: question.type === 'myth' ? 'none' : 'column',
-                gap: '0.75rem'
+                gap: isMobile ? '0.625rem' : '0.75rem'
               }}>
                 {question.options.map((option, index) => (
                   <button
@@ -710,27 +726,56 @@ function QuizQuestion() {
                     onClick={() => handleAnswer(option)}
                     disabled={selectedAnswer}
                     style={{
-                      padding: 'clamp(1rem, 3vw, 1.5rem)',
-                      borderRadius: '0.75rem',
-                      border: '2px solid #D1D5DB',
+                      padding: isMobile ? '0.75rem 0.875rem' : 'clamp(1rem, 3vw, 1.5rem)',
+                      borderRadius: isMobile ? '0.75rem' : '0.75rem',
+                      border: isMobile ? '2px solid #D1D5DB' : '2px solid #D1D5DB',
                       backgroundColor: 'white',
                       textAlign: 'left',
-                      transition: 'all 0.3s ease',
+                      transition: 'all 0.2s ease',
                       cursor: selectedAnswer ? 'default' : 'pointer',
-                      opacity: selectedAnswer ? 0.6 : 1
+                      opacity: selectedAnswer ? 0.6 : 1,
+                      minHeight: isMobile ? '48px' : 'auto',
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontSize: isMobile ? '0.875rem' : '1rem',
+                      fontWeight: isMobile ? '600' : '500',
+                      lineHeight: '1.2',
+                      boxShadow: isMobile ? '0 1px 4px -1px rgba(0, 0, 0, 0.1)' : 'none'
                     }}
                     onMouseOver={(e) => {
                       if (!selectedAnswer) {
                         e.target.style.borderColor = '#F59E0B';
                         e.target.style.backgroundColor = '#FEFBF2';
-                        e.target.style.transform = 'scale(1.02)';
+                        e.target.style.transform = isMobile ? 'scale(1.015)' : 'scale(1.02)';
+                        if (isMobile) {
+                          e.target.style.boxShadow = '0 4px 12px -2px rgba(0, 0, 0, 0.15)';
+                        }
                       }
                     }}
                     onMouseOut={(e) => {
                       if (!selectedAnswer) {
-                        e.target.style.borderColor = '#D1D5DB';
+                        e.target.style.borderColor = isMobile ? '#D1D5DB' : '#D1D5DB';
                         e.target.style.backgroundColor = 'white';
                         e.target.style.transform = 'scale(1)';
+                        if (isMobile) {
+                          e.target.style.boxShadow = '0 2px 8px -2px rgba(0, 0, 0, 0.1)';
+                        }
+                      }
+                    }}
+                    onTouchStart={(e) => {
+                      if (!selectedAnswer) {
+                        e.target.style.borderColor = '#F59E0B';
+                        e.target.style.backgroundColor = '#FEFBF2';
+                        e.target.style.transform = 'scale(0.98)';
+                      }
+                    }}
+                    onTouchEnd={(e) => {
+                      if (!selectedAnswer) {
+                        setTimeout(() => {
+                          e.target.style.borderColor = '#D1D5DB';
+                          e.target.style.backgroundColor = 'white';
+                          e.target.style.transform = 'scale(1)';
+                        }, 100);
                       }
                     }}
                   >
@@ -857,7 +902,7 @@ function QuizResults() {
         </p>
       </div>
 
-      <style jsx>{`
+      <style jsx global>{`
         @keyframes spin {
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }

@@ -27,7 +27,7 @@ const ACTIONS = {
 
 const initialState = {
   // Estado atual
-  currentState: QUIZ_STATES.INTRO,
+  currentState: QUIZ_STATES.QUESTION,
 
   // Dados do quiz
   petName: '',
@@ -39,11 +39,6 @@ const initialState = {
   isLoading: false,
   showFeedback: false,
   selectedAnswer: null,
-  timeLeft: 30,
-
-  // Performance tracking
-  startTime: null,
-  questionStartTime: null,
 
   // Persuasão
   yearsGained: 0,
@@ -66,15 +61,12 @@ function quizReducer(state, action) {
       return {
         ...state,
         currentState: QUIZ_STATES.QUESTION,
-        startTime: Date.now(),
-        questionStartTime: Date.now(),
-        timeLeft: action.payload?.timeLimit || 30
+        startTime: Date.now()
       };
 
     case ACTIONS.ANSWER_QUESTION:
       const newAnswer = {
         ...action.payload,
-        timeSpent: Math.max(0, (state.timeLeft - (action.payload.timeRemaining || 0))),
         timestamp: Date.now()
       };
 
@@ -102,9 +94,7 @@ function quizReducer(state, action) {
         currentState: QUIZ_STATES.QUESTION,
         currentQuestion: state.currentQuestion + 1,
         showFeedback: false,
-        selectedAnswer: null,
-        questionStartTime: Date.now(),
-        timeLeft: action.payload?.timeLimit || 30
+        selectedAnswer: null
       };
 
     case ACTIONS.SHOW_RESULTS:

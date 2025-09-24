@@ -2,42 +2,69 @@
 
 export const calculateLifeImpact = (answers) => {
   const baseLifeExpectancy = 15; // anos base para Shih Tzu
+  const baseLifeMonths = baseLifeExpectancy * 12; // meses
+  // totalImpact mantido para compatibilidade (soma dos pontos originais)
   let totalImpact = 0;
   let criticalErrors = [];
   let commonMistakes = [];
   let correctAnswers = 0;
   
+  // multiplicativo: cada resposta aplica um fator percentual sobre a expectativa
+  // por padrão: crítico -> -8%, sério -> -4%, moderado -> -2%, neutro/positivo -> 0%/+1%
+  let totalMultiplier = 1;
+  
   answers.forEach((answer) => {
+    // manter soma original para compatibilidade com outras partes do código
     totalImpact += answer.impact;
-    
+
     if (answer.impact === 0) {
       correctAnswers++;
+      // leve ganho por resposta correta (opcional)
+      totalMultiplier *= 1.01;
     } else if (answer.impact <= -3) {
+      // erro crítico: aplica redução de ~8%
       criticalErrors.push({
         question: answer.questionId,
         mistake: answer.text,
         consequence: answer.consequence,
         yearsLost: Math.abs(answer.impact)
       });
+      totalMultiplier *= 0.92; // -8%
     } else if (answer.impact < 0) {
+      // erro comum: decidir entre sério ou moderado pela magnitude
       commonMistakes.push({
         question: answer.questionId,
         mistake: answer.text,
         consequence: answer.consequence,
         yearsLost: Math.abs(answer.impact)
       });
+      // se impact <= -2 consideramos 'sério' (-4%), senão 'moderado' (-2%)
+      if (answer.impact <= -2) totalMultiplier *= 0.96; // -4%
+      else totalMultiplier *= 0.98; // -2%
+    } else if (answer.impact > 0) {
+      // respostas com impacto positivo aumentam levemente a expectativa
+      totalMultiplier *= 1.01;
     }
   });
   
-  // Calcular expectativa de vida final
-  const projectedLifespan = Math.max(2, Math.min(18, baseLifeExpectancy + totalImpact));
-  const yearsLost = Math.max(0, baseLifeExpectancy - projectedLifespan);
+  // Converter multiplicador em expectativa projetada (modelo multiplicativo) usando meses
+  let projectedLifespanMonthsRaw = baseLifeMonths * totalMultiplier;
+  // Clamp para evitar extremos em meses
+  const minMonths = 2 * 12; // 2 anos
+  const maxMonths = 18 * 12; // 18 anos
+  const projectedLifespanMonths = Math.max(minMonths, Math.min(maxMonths, projectedLifespanMonthsRaw));
+  const yearsLostMonths = Math.max(0, baseLifeMonths - projectedLifespanMonths);
+  const projectedLifespan = Number((projectedLifespanMonths / 12).toFixed(1));
+  const yearsLost = Number((yearsLostMonths / 12).toFixed(1));
   
   // Calcular porcentagem de conhecimento
   const percentageKnowledge = Math.max(0, Math.round((correctAnswers / answers.length) * 100));
   
   // Determinar gravidade da situação
-  const severity = getSeverityLevel(totalImpact, criticalErrors.length);
+  // Para compatibilidade com funções que usam "totalImpact" para categorizar,
+  // criamos um scaledImpact aproximado em anos equivalente à perda relativa.
+  const scaledImpact = Number((projectedLifespan - baseLifeExpectancy).toFixed(2));
+  const severity = getSeverityLevel(scaledImpact, criticalErrors.length);
   
   // Calcular estatísticas adicionais
   const avgTimePerQuestion = answers.reduce((sum, answer) => sum + (answer.timeSpent || 0), 0) / answers.length;
@@ -45,10 +72,18 @@ export const calculateLifeImpact = (answers) => {
   
   return {
     // Resultados principais
-    projectedLifespan: Number(projectedLifespan.toFixed(1)),
-    yearsLost: Number(yearsLost.toFixed(1)),
+  // Valores em anos (para compatibilidade)
+  projectedLifespan: projectedLifespan,
+  yearsLost: yearsLost,
+  // Valores em meses (nova propriedade para mensagens e precisão)
+  projectedLifespanMonths: Math.round(projectedLifespanMonths),
+  yearsLostMonths: Math.round(yearsLostMonths),
     percentageKnowledge,
-    totalImpact,
+  totalImpact,
+  // multiplicador composto (útil para debugging/exibição)
+  totalMultiplier: Number(totalMultiplier.toFixed(3)),
+  // impacto convertido para anos (pode ser negativo)
+  impactYears: Number((projectedLifespan - baseLifeExpectancy).toFixed(2)),
     
     // Categorização de erros
     criticalErrors,
@@ -67,7 +102,7 @@ export const calculateLifeImpact = (answers) => {
     recommendations: getRecommendations(criticalErrors, commonMistakes, percentageKnowledge),
     
     // Urgência emocional
-    urgencyMessage: getUrgencyMessage(yearsLost, criticalErrors.length, percentageKnowledge)
+    urgencyMessage: getUrgencyMessage(yearsLostMonths, criticalErrors.length, percentageKnowledge)
   };
 };
 
@@ -200,32 +235,40 @@ const getRecommendations = (criticalErrors, commonMistakes, knowledge) => {
   return recommendations;
 };
 
-const getUrgencyMessage = (yearsLost, criticalErrors, knowledge) => {
-  if (yearsLost >= 8) {
+const formatMonths = (months) => {
+  const m = Math.round(months);
+  if (m === 0) return '0 meses';
+  if (m === 1) return '1 mês';
+  return `${m} meses`;
+};
+
+const getUrgencyMessage = (yearsLostMonths, criticalErrors, knowledge) => {
+  // thresholds em meses
+  if (yearsLostMonths >= 8 * 12) {
     return {
       title: 'EMERGÊNCIA: Seu pet pode perder mais da metade da vida!',
-      message: `Com suas práticas atuais, você pode estar roubando ${yearsLost} anos preciosos do seu companheiro.`,
+      message: `Com suas práticas atuais, você pode estar roubando ${formatMonths(yearsLostMonths)} preciosos do seu companheiro.`,
       emotion: 'CHOQUE',
       color: '#7F1D1D'
     };
-  } else if (yearsLost >= 5) {
+  } else if (yearsLostMonths >= 5 * 12) {
     return {
-      title: 'ALERTA VERMELHO: Anos preciosos sendo perdidos',
-      message: `${yearsLost} anos é tempo demais para perder por erros evitáveis.`,
+      title: 'ALERTA VERMELHO: Meses preciosos sendo perdidos',
+      message: `${formatMonths(yearsLostMonths)} é tempo demais para perder por erros evitáveis.`,
       emotion: 'URGÊNCIA',
       color: '#DC2626'
     };
-  } else if (yearsLost >= 2) {
+  } else if (yearsLostMonths >= 2 * 12) {
     return {
       title: 'ATENÇÃO: Tempo valioso em risco',
-      message: `Mesmo ${yearsLost} anos representam tempo precioso que vocês poderiam ter juntos.`,
+      message: `Mesmo ${formatMonths(yearsLostMonths)} representam tempo precioso que vocês poderiam ter juntos.`,
       emotion: 'PREOCUPAÇÃO',
       color: '#D97706'
     };
-  } else if (yearsLost > 0) {
+  } else if (yearsLostMonths > 0) {
     return {
       title: 'Pequenos ajustes, grandes ganhos',
-      message: `Algumas correções podem garantir que vocês aproveitem cada momento juntos.`,
+      message: `Algumas correções podem garantir que vocês aproveitem cada momento juntos — estimativa: ${formatMonths(yearsLostMonths)}.`,
       emotion: 'OTIMISMO',
       color: '#65A30D'
     };

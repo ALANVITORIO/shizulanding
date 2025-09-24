@@ -3,363 +3,348 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 export default function QuizIntro() {
-  const [petName, setPetName] = useState('');
   const [started, setStarted] = useState(false);
   const [windowWidth, setWindowWidth] = useState(1024);
   const router = useRouter();
-  
+
   useEffect(() => {
     const updateWidth = () => setWindowWidth(window.innerWidth);
     updateWidth();
     window.addEventListener('resize', updateWidth);
     return () => window.removeEventListener('resize', updateWidth);
   }, []);
-  
+
   const isMobile = windowWidth < 768;
-  const isTablet = windowWidth < 1024;
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (petName.trim()) {
-      setStarted(true);
-      setTimeout(() => {
-        router.push(`/quiz/questoes?name=${encodeURIComponent(petName)}`);
-      }, 1000);
-    }
+
+  const handleSubmit = () => {
+    setStarted(true);
+    setTimeout(() => {
+      router.push('/quiz');
+    }, 800);
   };
-  
+
   return (
     <div style={{
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: isMobile ? 'flex-start' : 'center',
-      background: `
-        radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
-        linear-gradient(135deg, #f9fafb 0%, #ffffff 100%)
-      `,
-      padding: isMobile ? '1rem 0.25rem 0.25rem' : isTablet ? '0.5rem' : '0.75rem',
-      position: 'relative',
-      overflowY: 'auto', // Apenas vertical, evitando cortes horizontais
-      boxSizing: 'border-box' // Garante que padding não aumente altura total
+      background: 'linear-gradient(135deg, #f8fafc 0%, #ffffff 100%)',
+      padding: isMobile ? '1rem 1rem 2rem' : '2rem',
+      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      color: '#1f2937'
     }}>
 
+      {/* Logo no topo */}
       <div style={{
-        maxWidth: isMobile ? '100%' : isTablet ? '48rem' : '64rem',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         width: '100%',
-        padding: '0 0.5rem',
-        position: 'relative',
-        zIndex: 1
+        paddingTop: isMobile ? '1rem' : '2rem',
+        marginBottom: isMobile ? '1rem' : '1.5rem'
       }}>
-        {/* Header com urgência - Responsivo */}
-        <div style={{
-          textAlign: 'center',
-          marginBottom: isMobile ? '0.5rem' : isTablet ? '0.75rem' : '1rem',
-          opacity: started ? 0.7 : 1,
-          transform: started ? 'scale(0.98)' : 'scale(1)',
-          transition: 'all 0.8s ease'
+        <img
+          src="/logodark.webp"
+          alt="Logo Guia Shih Tzu"
+          style={{
+            height: isMobile ? '35px' : '45px',
+            width: 'auto'
+          }}
+        />
+      </div>
+
+      {/* Título principal compacto */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: isMobile ? '1.5rem' : '2rem'
+      }}>
+        <h1 style={{
+          fontSize: isMobile ? '1.4rem' : '2rem',
+          fontWeight: '900',
+          margin: '0 0 0.5rem 0',
+          lineHeight: '1.1',
+          color: '#b91c1c',
+          textShadow: '0 2px 4px rgba(185, 28, 28, 0.2)'
         }}>
-          {/* Logo */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            margin: '0 auto 0.5rem'
-          }}>
-            <img
-              src="/logodark.webp"
-              alt="Logo Guia Shih Tzu"
-              style={{
-                height: isMobile ? '40px' : isTablet ? '50px' : '60px',
-                width: 'auto'
-              }}
-            />
-          </div>
+          Teste: Você Está Cuidando<br />Bem do Seu Shih Tzu?
+        </h1>
 
-          <h1 style={{
-            fontSize: isMobile ? '1.25rem' : isTablet ? '1.75rem' : '2.25rem',
-            fontWeight: '900',
-            color: '#111827',
-            marginBottom: isMobile ? '0.5rem' : '0.75rem',
-            lineHeight: '1.05',
-            padding: '0 0.5rem',
-            textShadow: '0 4px 8px rgba(0,0,0,0.1)',
-            animation: 'slideInDown 1s ease-out'
-          }}>
-            Teste: Você Está Cuidando<br />Bem do Seu Shih Tzu?
-          </h1>
+        <p style={{
+          fontSize: isMobile ? '0.875rem' : '1rem',
+          color: '#111827',
+          margin: '0',
+          fontWeight: '600'
+        }}>
+          <span style={{ color: '#b91c1c', fontWeight: '700' }}>A maioria dos tutores</span> ama seus pets,<br />
+          mas sem saber está encurtando a vida deles 💔
+        </p>
+      </div>
 
-          <div style={{
-            background: 'rgba(255, 255, 255, 0.9)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: '20px',
-            padding: isMobile ? '0.5rem' : '0.75rem',
-            margin: '0 auto 0.25rem',
-            maxWidth: '600px',
-            border: '1px solid rgba(255, 255, 255, 0.3)',
-            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',
-            animation: 'slideInUp 1s ease-out 0.3s both'
-          }}>
-            <p style={{
-              fontSize: isMobile ? '1rem' : isTablet ? '1.2rem' : '1.4rem',
-              color: '#374151',
-              padding: '0',
-              lineHeight: '1.5',
-              fontWeight: '600',
-              margin: 0
-            }}>
-              <span style={{
-                fontWeight: '800',
-                color: '#dc2626'
-              }}>A maioria dos tutores</span> ama seus pets,<br />
-              mas sem saber está encurtando a vida deles 💔
-            </p>
-          </div>
+      {/* Aviso */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: isMobile ? '1rem' : '1.5rem'
+      }}>
+        <div style={{
+          display: 'inline-block',
+          backgroundColor: '#fee2e2',
+          color: '#991b1b',
+          padding: isMobile ? '0.5rem 1rem' : '0.75rem 1.5rem',
+          borderRadius: '25px',
+          fontSize: isMobile ? '0.75rem' : '0.875rem',
+          fontWeight: '700',
+          border: '2px solid #fca5a5',
+          marginBottom: isMobile ? '0.75rem' : '1rem'
+        }}>
+          ⚠️ AVISO: Este teste pode revelar cuidados que você não sabia
         </div>
-        
-        {/* Card principal - Responsivo */}
-        <div style={{
-          backgroundColor: 'white',
-          borderRadius: '1.5rem',
-          boxShadow: started 
-            ? '0 10px 25px -5px rgba(0, 0, 0, 0.1)' 
-            : '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-          padding: isMobile ? '0.75rem' : isTablet ? '1rem' : '1.25rem',
-          margin: '0 auto',
-          transform: started ? 'scale(0.98)' : 'scale(1)',
-          transition: 'all 0.8s ease'
+
+        <h2 style={{
+          fontSize: isMobile ? '0.9rem' : '1.1rem',
+          fontWeight: '800',
+          color: '#111827',
+          margin: 0
         }}>
-          <div style={{ textAlign: 'center', marginBottom: isMobile ? '0.5rem' : '0.75rem' }}>
-            <div style={{
-              display: 'inline-block',
-              backgroundColor: '#FEE2E2',
-              color: '#991B1B',
-              padding: isMobile ? '0.375rem 0.75rem' : '0.5rem 1rem',
-              borderRadius: '9999px',
-              marginBottom: '0.5rem',
-              fontSize: isMobile ? '0.75rem' : '0.875rem',
-              fontWeight: '600',
-              animation: started ? 'none' : 'pulse 2s infinite'
-            }}>
-              ⚠️ AVISO: Este teste pode revelar cuidados que você não sabia
-            </div>
-            
-            <h2 style={{
-              fontSize: isMobile ? '0.875rem' : isTablet ? '1rem' : '1.125rem',
-              fontWeight: 'bold',
-              marginBottom: isMobile ? '0.25rem' : '0.5rem',
-              lineHeight: '1.1',
-              color: '#111827'
-            }}>
-              Descubra em <span style={{ color: '#2563eb' }}>30 segundos</span> se você está
-            </h2>
-            
-            {/* Grid responsivo */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(2, 1fr)', // Layout sempre em 2 colunas para economizar espaço
-              gap: isMobile ? '0.25rem' : '0.5rem',
-              marginTop: isMobile ? '0.25rem' : '0.5rem'
-            }}>
-              <div style={{
-                backgroundColor: '#F0FDF4',
-                padding: isMobile ? '0.375rem' : isTablet ? '0.5rem' : '0.75rem',
-                borderRadius: '0.75rem',
-                textAlign: 'center',
-                border: '1px solid #BBF7D0'
-              }}>
-                <div style={{ fontSize: isMobile ? '2rem' : '2.5rem', marginBottom: '0.5rem' }}>✅</div>
-                <p style={{
-                  fontWeight: '600',
-                  color: '#166534',
-                  fontSize: isMobile ? '0.875rem' : '1rem',
-                  margin: '0'
-                }}>Cuidando bem</p>
-                <p style={{
-                  fontSize: isMobile ? '0.75rem' : '0.875rem',
-                  color: '#6B7280',
-                  margin: '0.25rem 0 0 0'
-                }}>e prolongando a vida</p>
-              </div>
-              <div style={{
-                backgroundColor: '#FEF2F2',
-                padding: isMobile ? '0.375rem' : isTablet ? '0.5rem' : '0.75rem',
-                borderRadius: '0.75rem',
-                textAlign: 'center',
-                border: '1px solid #FECACA'
-              }}>
-                <div style={{ fontSize: isMobile ? '2rem' : '2.5rem', marginBottom: '0.5rem' }}>❌</div>
-                <p style={{
-                  fontWeight: '600',
-                  color: '#991B1B',
-                  fontSize: isMobile ? '0.875rem' : '1rem',
-                  margin: '0'
-                }}>Cometendo erros</p>
-                <p style={{
-                  fontSize: isMobile ? '0.75rem' : '0.875rem',
-                  color: '#6B7280',
-                  margin: '0.25rem 0 0 0'
-                }}>que encurtam anos</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Formulário - Responsivo */}
-          <form onSubmit={handleSubmit} style={{ marginBottom: isMobile ? '0.5rem' : '0.75rem' }}>
-            <div style={{ marginBottom: isMobile ? '0.5rem' : '0.75rem' }}>
-              <label style={{
-                display: 'block',
-                fontSize: isMobile ? '0.875rem' : '1rem',
-                fontWeight: '600',
-                color: '#374151',
-                marginBottom: '0.5rem'
-              }}>
-                Qual o nome do seu Shih Tzu? 🐕
-              </label>
-              <input
-                type="text"
-                value={petName}
-                onChange={(e) => setPetName(e.target.value)}
-                placeholder="Digite o nome..."
-                style={{
-                  width: '100%',
-                  padding: isMobile ? '0.875rem' : '1rem 1.25rem',
-                  border: '2px solid #e5e7eb',
-                  borderRadius: '0.75rem',
-                  fontSize: isMobile ? '1rem' : '1.125rem',
-                  outline: 'none',
-                  transition: 'all 0.3s ease',
-                  boxSizing: 'border-box',
-                  fontFamily: 'inherit'
-                }}
-                onFocus={(e) => {
-                  e.target.style.borderColor = '#2563eb';
-                  e.target.style.boxShadow = '0 0 0 3px rgba(37, 99, 235, 0.1)';
-                }}
-                onBlur={(e) => {
-                  e.target.style.borderColor = '#e5e7eb';
-                  e.target.style.boxShadow = 'none';
-                }}
-                required
-                disabled={started}
-              />
-            </div>
-            
-            <button
-              type="submit"
-              disabled={started}
-              style={{
-                width: '100%',
-                padding: isMobile ? '1rem' : '1.25rem',
-                borderRadius: '0.75rem',
-                fontWeight: 'bold',
-                fontSize: isMobile ? '1rem' : '1.125rem',
-                transition: 'all 0.3s ease',
-                border: 'none',
-                cursor: started ? 'default' : 'pointer',
-                background: started
-                  ? '#059669'
-                  : 'linear-gradient(135deg, #2563eb, #1d4ed8)',
-                color: 'white',
-                boxShadow: started 
-                  ? '0 4px 6px -1px rgba(0, 0, 0, 0.1)' 
-                  : '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
-                transform: started ? 'scale(0.98)' : 'scale(1)',
-                opacity: started ? 0.8 : 1
-              }}
-              onMouseOver={(e) => {
-                if (!started) {
-                  e.target.style.background = 'linear-gradient(135deg, #1d4ed8, #1e40af)';
-                  e.target.style.transform = 'scale(1.02)';
-                  e.target.style.boxShadow = '0 10px 15px -3px rgba(37, 99, 235, 0.3)';
-                }
-              }}
-              onMouseOut={(e) => {
-                if (!started) {
-                  e.target.style.background = 'linear-gradient(135deg, #2563eb, #1d4ed8)';
-                  e.target.style.transform = 'scale(1)';
-                  e.target.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
-                }
-              }}
-            >
-              {started ? '✓ Iniciando Teste...' : 'Descobrir em 30 Segundos →'}
-            </button>
-          </form>
-          
-          {/* Estatísticas compactas + Disclaimer */}
+          Descubra em <span style={{ color: '#b91c1c' }}>30 segundos</span> se você está
+        </h2>
+      </div>
+
+      {/* Comparação VS - sem box */}
+      <div style={{
+        position: 'relative',
+        marginBottom: isMobile ? '1.5rem' : '2rem',
+        padding: isMobile ? '0.75rem 1rem' : '1rem'
+      }}>
+        {/* Linha divisória sutil */}
+        <div style={{
+          position: 'absolute',
+          top: '50%',
+          left: '25%',
+          right: '25%',
+          height: '1px',
+          background: 'linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.1) 80%, transparent 100%)',
+          transform: 'translateY(-50%)'
+        }} />
+
+        <div style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          position: 'relative'
+        }}>
           <div style={{
-            paddingTop: isMobile ? '0.5rem' : '0.75rem',
-            borderTop: '1px solid #E5E7EB'
+            textAlign: 'center',
+            flex: 1,
+            padding: isMobile ? '0.5rem' : '0.75rem'
           }}>
             <div style={{
               display: 'flex',
-              justifyContent: 'space-around',
+              justifyContent: 'center',
               alignItems: 'center',
-              textAlign: 'center',
-              flexWrap: 'nowrap',
-              gap: isMobile ? '0.125rem' : '0.25rem'
+              marginBottom: isMobile ? '0.5rem' : '0.75rem',
+              filter: 'drop-shadow(0 2px 6px rgba(5, 150, 105, 0.4))'
             }}>
-              <div style={{ 
-                flex: '1 1 0', // Flex igual para todos
-              }}>
-                <p style={{
-                  fontSize: isMobile ? '0.75rem' : isTablet ? '0.9rem' : '1.125rem',
-                  fontWeight: 'bold',
-                  color: '#f97316',
-                  margin: '0',
-                  lineHeight: '1'
-                }}>10 anos</p>
-                <p style={{
-                  fontSize: isMobile ? '0.4rem' : isTablet ? '0.45rem' : '0.55rem',
-                  color: '#6B7280',
-                  margin: '0.15rem 0 0 0',
-                }}>Cuidado básico</p>
-              </div>
-              <div style={{ 
-                flex: '1 1 0', // Flex igual para todos
-              }}>
-                <p style={{
-                  fontSize: isMobile ? '0.75rem' : isTablet ? '0.9rem' : '1.125rem',
-                  fontWeight: 'bold',
-                  color: '#059669',
-                  margin: '0',
-                  lineHeight: '1'
-                }}>16 anos</p>
-                <p style={{
-                  fontSize: isMobile ? '0.4rem' : isTablet ? '0.45rem' : '0.55rem',
-                  color: '#6B7280',
-                  margin: '0.15rem 0 0 0'
-                }}>Cuidado ideal</p>
-              </div>
-              <div style={{
-                flex: '1 1 0', // Flex igualmente distribuído
-              }}>
-                <p style={{
-                  fontSize: isMobile ? '0.75rem' : isTablet ? '0.9rem' : '1.125rem',
-                  fontWeight: 'bold',
-                  color: '#DC2626',
-                  margin: '0',
-                  lineHeight: '1'
-                }}>6 anos</p>
-                <p style={{
-                  fontSize: isMobile ? '0.4rem' : isTablet ? '0.45rem' : '0.55rem',
-                  color: '#6B7280',
-                  margin: '0.15rem 0 0 0'
-                }}>Perdidos por erros</p>
-              </div>
+              <svg width={isMobile ? "36" : "42"} height={isMobile ? "36" : "42"} viewBox="0 0 24 24" fill="none">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#047857" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
             </div>
-            {/* Disclaimer integrado */}
-            <p style={{
-              textAlign: 'center',
-              fontSize: isMobile ? '0.375rem' : isTablet ? '0.4rem' : '0.5rem',
-              color: '#6B7280',
-              marginTop: isMobile ? '0.25rem' : '0.375rem',
-              padding: '0',
-              lineHeight: '1.1'
+            <div style={{
+              fontSize: isMobile ? '0.85rem' : '0.95rem',
+              color: '#064e3b',
+              fontWeight: '900',
+              lineHeight: '1.1',
+              marginBottom: '0.15rem'
             }}>
-              * Teste baseado em dados veterinários. Não substitui consulta profissional.
-            </p>
+              Cuidando bem
+            </div>
+            <div style={{
+              fontSize: isMobile ? '0.7rem' : '0.8rem',
+              color: '#374151',
+              fontWeight: '600',
+              lineHeight: '1.2'
+            }}>
+              e prolongando a vida
+            </div>
           </div>
+
+          <div style={{
+            textAlign: 'center',
+            fontSize: isMobile ? '2rem' : '3rem',
+            color: '#1f2937',
+            fontWeight: '700',
+            textShadow: '0 2px 4px rgba(31, 41, 55, 0.2)'
+          }}>VS</div>
+
+          <div style={{
+            textAlign: 'center',
+            flex: 1,
+            padding: isMobile ? '0.5rem' : '0.75rem'
+          }}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginBottom: isMobile ? '0.5rem' : '0.75rem',
+              filter: 'drop-shadow(0 2px 6px rgba(220, 38, 38, 0.4))'
+            }}>
+              <svg width={isMobile ? "36" : "42"} height={isMobile ? "36" : "42"} viewBox="0 0 24 24" fill="none">
+                <path d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#b91c1c" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </div>
+            <div style={{
+              fontSize: isMobile ? '0.85rem' : '0.95rem',
+              color: '#7f1d1d',
+              fontWeight: '900',
+              lineHeight: '1.1',
+              marginBottom: '0.15rem'
+            }}>
+              Cometendo erros
+            </div>
+            <div style={{
+              fontSize: isMobile ? '0.7rem' : '0.8rem',
+              color: '#374151',
+              fontWeight: '600',
+              lineHeight: '1.2'
+            }}>
+              que encurtam anos
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Privacy badge - linha simples */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: isMobile ? '1.5rem' : '2rem',
+        borderTop: '2px solid #d1d5db',
+        borderBottom: '2px solid #d1d5db',
+        padding: '0.75rem 0'
+      }}>
+        <div style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          fontSize: isMobile ? '0.75rem' : '0.875rem',
+          color: '#0369a1',
+          fontWeight: '700',
+          textTransform: 'uppercase',
+          letterSpacing: '0.5px'
+        }}>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+            <path d="M8 1L3 3v4c0 3.5 2.36 6.82 5.5 7.64C11.64 13.82 14 10.5 14 7V3L8 1z" fill="#0369a1"/>
+          </svg>
+          100% Anônimo • Não coletamos dados
+        </div>
+      </div>
+
+      {/* CTA Button - área restante */}
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        paddingTop: isMobile ? '1rem' : '2rem'
+      }}>
+        <button
+          onClick={handleSubmit}
+          disabled={started}
+          style={{
+            width: '100%',
+            background: started
+              ? 'linear-gradient(135deg, #22c55e, #16a34a)'
+              : 'linear-gradient(135deg, #dc2626, #b91c1c)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '12px',
+            padding: isMobile ? '1.25rem' : '1.5rem',
+            fontSize: isMobile ? '1.1rem' : '1.3rem',
+            fontWeight: '900',
+            cursor: started ? 'default' : 'pointer',
+            textTransform: 'uppercase',
+            letterSpacing: '1px',
+            boxShadow: started
+              ? '0 8px 16px rgba(34, 197, 94, 0.3)'
+              : '0 8px 20px rgba(220, 38, 38, 0.4)',
+            transform: started ? 'scale(0.98)' : 'scale(1)',
+            transition: 'all 0.3s ease'
+          }}
+          onMouseOver={(e) => {
+            if (!started) {
+              e.target.style.transform = 'scale(1.02)';
+              e.target.style.boxShadow = '0 12px 28px rgba(220, 38, 38, 0.5)';
+            }
+          }}
+          onMouseOut={(e) => {
+            if (!started) {
+              e.target.style.transform = 'scale(1)';
+              e.target.style.boxShadow = '0 8px 20px rgba(220, 38, 38, 0.4)';
+            }
+          }}
+        >
+          {started ? '🚀 Iniciando...' : 'Descobrir em 30 Segundos →'}
+        </button>
+
+        {/* Estatísticas pequenas */}
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: isMobile ? '1rem' : '2rem',
+          marginTop: '1rem',
+          marginBottom: '0.75rem'
+        }}>
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: isMobile ? '0.9rem' : '1rem',
+              fontWeight: '800',
+              color: '#b91c1c',
+              lineHeight: '1'
+            }}>10</div>
+            <div style={{
+              fontSize: isMobile ? '0.55rem' : '0.6rem',
+              color: '#4b5563',
+              textTransform: 'uppercase',
+              fontWeight: '600'
+            }}>Cuidado básico</div>
+          </div>
+
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: isMobile ? '0.9rem' : '1rem',
+              fontWeight: '800',
+              color: '#047857',
+              lineHeight: '1'
+            }}>16</div>
+            <div style={{
+              fontSize: isMobile ? '0.55rem' : '0.6rem',
+              color: '#4b5563',
+              textTransform: 'uppercase',
+              fontWeight: '600'
+            }}>Cuidado ideal</div>
+          </div>
+
+          <div style={{ textAlign: 'center' }}>
+            <div style={{
+              fontSize: isMobile ? '0.9rem' : '1rem',
+              fontWeight: '800',
+              color: '#d97706',
+              lineHeight: '1'
+            }}>6</div>
+            <div style={{
+              fontSize: isMobile ? '0.55rem' : '0.6rem',
+              color: '#4b5563',
+              textTransform: 'uppercase',
+              fontWeight: '600'
+            }}>Perdidos</div>
+          </div>
+        </div>
+
+        <div style={{
+          textAlign: 'center',
+          fontSize: isMobile ? '0.6rem' : '0.7rem',
+          color: '#4b5563',
+          fontWeight: '600'
+        }}>
+          Baseado em dados veterinários • Não substitui consulta profissional
         </div>
       </div>
     </div>

@@ -202,11 +202,40 @@ function ResultsContent() {
       <>
         {/* Loading Overlay */}
         {isLoading && (
-          <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
-            <div className="text-center text-white">
-              <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2">🚀 Preparando seus resultados...</h2>
-              <p className="text-lg opacity-90">Carregando dados completos de {petName}</p>
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 50
+          }}>
+            <div style={{
+              textAlign: 'center',
+              color: 'white'
+            }}>
+              <div style={{
+                width: '64px',
+                height: '64px',
+                border: '4px solid white',
+                borderTop: '4px solid transparent',
+                borderRadius: '50%',
+                animation: 'spin 1s linear infinite',
+                margin: '0 auto 1rem auto'
+              }}></div>
+              <h2 style={{
+                fontSize: 'clamp(1.5rem, 5vw, 1.875rem)',
+                fontWeight: 'bold',
+                marginBottom: '0.5rem'
+              }}>🚀 Preparando seus resultados...</h2>
+              <p style={{
+                fontSize: '1.125rem',
+                opacity: 0.9
+              }}>Carregando dados completos de {petName}</p>
             </div>
           </div>
         )}
@@ -220,7 +249,7 @@ function ResultsContent() {
           padding: '2rem'
         }}>
         <div style={{
-          maxWidth: '48rem',
+          maxWidth: window.innerWidth <= 768 ? 'none' : '48rem',
           width: '100%',
           textAlign: 'center'
         }}>
@@ -240,40 +269,143 @@ function ResultsContent() {
           </div>
 
           <h1 className="text-2xl md:text-4xl font-bold text-green-800 mb-8 leading-tight">
-            Parabéns! Quiz completo! 🎉
+            🎯 Método COMPROVADO em 30 segundos!
           </h1>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border-2 border-green-500 mb-8">
-            <div className="text-4xl md:text-5xl mb-6">
-              🎯
-            </div>
-
-            <h2 className="text-xl md:text-3xl font-bold text-gray-900 mb-6">
-              VER RESULTADOS
-            </h2>
-
-            <p className="text-base md:text-xl text-gray-700 leading-relaxed mb-6">
-              Em apenas <span style={{ fontWeight: 'bold', color: '#10B981' }}>30 segundos</span> você:
+          <div style={{ padding: '0 0.25rem' }}>
+            <p style={{
+              fontSize: 'clamp(1.2rem, 4vw, 1.4rem)',
+              fontWeight: '700',
+              color: '#1F2937',
+              marginBottom: '2rem',
+              textAlign: 'left',
+              lineHeight: '1.4'
+            }}>
+              Você acabou de experimentar nosso método interativo e <span style={{ color: '#059669' }}>FUNCIONOU</span>, certo?
             </p>
 
-            <div className="text-left max-w-2xl mx-auto bg-green-50 rounded-2xl p-6 md:p-8 mb-8">
-              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontSize: '1.5rem' }}>✅</span>
-                <span className="text-sm md:text-base">Descobriu erros que nem sabia que existiam</span>
-              </div>
-              <div style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontSize: '1.5rem' }}>🧠</span>
-                <span className="text-sm md:text-base">Aprendeu de forma rápida e eficaz</span>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontSize: '1.5rem' }}>🎮</span>
-                <span className="text-sm md:text-base">Comprovou que o método interativo FUNCIONA</span>
-              </div>
+            <h3 style={{
+              fontSize: 'clamp(1.4rem, 5vw, 1.7rem)',
+              fontWeight: '900',
+              color: '#DC2626',
+              marginBottom: '1rem',
+              lineHeight: '1.2'
+            }}>
+              Mas pense assim...
+            </h3>
+
+            <p style={{
+              fontSize: 'clamp(1.1rem, 4vw, 1.25rem)',
+              color: '#4B5563',
+              marginBottom: '0.5rem',
+              fontWeight: '500'
+            }}>
+              Esse quiz teve apenas <span style={{ fontWeight: '800', color: '#DC2626' }}>7 perguntas básicas</span>.
+            </p>
+
+            <p style={{
+              fontSize: 'clamp(1.25rem, 4.5vw, 1.4rem)',
+              fontWeight: '800',
+              color: '#111827',
+              marginBottom: '1.5rem',
+              lineHeight: '1.3'
+            }}>
+              Imagine aprender <span style={{ color: '#059669' }}>TUDO sobre Shih Tzu</span> dessa mesma forma:
+            </p>
+
+            <div style={{ marginBottom: '2rem' }}>
+              <p style={{
+                fontSize: 'clamp(1.05rem, 3.8vw, 1.2rem)',
+                color: '#374151',
+                fontWeight: '600',
+                lineHeight: '1.4',
+                marginBottom: '0.75rem'
+              }}>
+                📚 Conhecimentos que datam mais de <strong style={{ color: '#B45309' }}>1500 anos</strong>
+              </p>
+              <p style={{
+                fontSize: 'clamp(1.05rem, 3.8vw, 1.2rem)',
+                color: '#374151',
+                fontWeight: '600',
+                lineHeight: '1.4',
+                marginBottom: '0.75rem'
+              }}>
+                🐕 Comportamento, saúde, cuidados essenciais
+              </p>
+              <p style={{
+                fontSize: 'clamp(1.05rem, 3.8vw, 1.2rem)',
+                color: '#374151',
+                fontWeight: '600',
+                lineHeight: '1.4'
+              }}>
+                🎯 <strong style={{ color: '#DC2626' }}>Cada capítulo</strong> termina com um quiz interativo
+              </p>
             </div>
 
-            <p className="text-base md:text-lg text-green-600 font-bold mb-8">
-              Imagine aprender TUDO sobre Shih Tzus assim! 🚀
-            </p>
+            <h3 style={{
+              fontSize: 'clamp(1.4rem, 5vw, 1.7rem)',
+              fontWeight: '900',
+              color: '#111827',
+              marginBottom: '1rem',
+              lineHeight: '1.2',
+              textAlign: 'left'
+            }}>
+              Por que isso é 100% superior?
+            </h3>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <p style={{
+                fontSize: 'clamp(1.05rem, 4vw, 1.2rem)',
+                color: '#6B7280',
+                fontWeight: '500',
+                marginBottom: '0.75rem',
+                lineHeight: '1.3'
+              }}>
+                ❌ PDF chato = Você lê e esquece
+              </p>
+              <p style={{
+                fontSize: 'clamp(1.05rem, 4vw, 1.2rem)',
+                color: '#111827',
+                fontWeight: '700',
+                lineHeight: '1.3'
+              }}>
+                ✅ <strong>Método interativo</strong> = Você aprende DE VERDADE
+              </p>
+            </div>
+
+            <div style={{ marginBottom: '1.5rem' }}>
+              <p style={{
+                fontSize: 'clamp(0.95rem, 3.5vw, 1.05rem)',
+                color: '#6B7280',
+                marginBottom: '0.5rem',
+                lineHeight: '1.3'
+              }}>
+                ▶ Linguagem simples e direta
+              </p>
+              <p style={{
+                fontSize: 'clamp(0.95rem, 3.5vw, 1.05rem)',
+                color: '#6B7280',
+                marginBottom: '0.5rem',
+                lineHeight: '1.3'
+              }}>
+                ▶ Capítulos organizados por tema
+              </p>
+              <p style={{
+                fontSize: 'clamp(0.95rem, 3.5vw, 1.05rem)',
+                color: '#6B7280',
+                marginBottom: '0.5rem',
+                lineHeight: '1.3'
+              }}>
+                ▶ Testou seu conhecimento a cada passo
+              </p>
+              <p style={{
+                fontSize: 'clamp(0.95rem, 3.5vw, 1.05rem)',
+                color: '#6B7280',
+                lineHeight: '1.3'
+              }}>
+                ▶ Evita erros que nem sabia que existiam
+              </p>
+            </div>
 
             {/* BOTÃO PARA IR DIRETO PRA LANDING */}
             <button
@@ -305,8 +437,20 @@ function ResultsContent() {
               }`}
             >
               {isLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem'
+                }}>
+                  <div style={{
+                    width: '20px',
+                    height: '20px',
+                    border: '2px solid white',
+                    borderTop: '2px solid transparent',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                  }}></div>
                   CARREGANDO RESULTADOS...
                 </span>
               ) : (
@@ -320,6 +464,13 @@ function ResultsContent() {
           </p>
         </div>
         </div>
+
+        <style jsx global>{`
+          @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+          }
+        `}</style>
       </>
     );
   }
@@ -327,37 +478,46 @@ function ResultsContent() {
 
 export default function QuizResults() {
   return (
-    <Suspense fallback={
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #FEF3C7 0%, #FFFFFF 50%, #FEF3C7 100%)'
-      }}>
+    <>
+      <Suspense fallback={
         <div style={{
-          textAlign: 'center'
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #FEF3C7 0%, #FFFFFF 50%, #FEF3C7 100%)'
         }}>
           <div style={{
-            width: '60px',
-            height: '60px',
-            border: '4px solid #FED7AA',
-            borderTop: '4px solid #EA580C',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite',
-            margin: '0 auto 24px auto'
-          }}></div>
-          <div style={{
-            fontSize: '1.5rem',
-            color: '#78350F',
-            fontWeight: 'bold'
+            textAlign: 'center'
           }}>
-            Preparando seus resultados...
+            <div style={{
+              width: '60px',
+              height: '60px',
+              border: '4px solid #FED7AA',
+              borderTop: '4px solid #EA580C',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite',
+              margin: '0 auto 24px auto'
+            }}></div>
+            <div style={{
+              fontSize: '1.5rem',
+              color: '#78350F',
+              fontWeight: 'bold'
+            }}>
+              Preparando seus resultados...
+            </div>
           </div>
         </div>
-      </div>
-    }>
-      <ResultsContent />
-    </Suspense>
+      }>
+        <ResultsContent />
+      </Suspense>
+
+      <style jsx global>{`
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+      `}</style>
+    </>
   );
 }

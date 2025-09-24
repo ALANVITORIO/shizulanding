@@ -53,11 +53,11 @@ export default function ProgressHeart() {
       {/* Progress Text */}
       <div style={{
         textAlign: 'center',
-        fontSize: '0.875rem',
-        fontWeight: 'bold',
-        color: '#374151'
+        fontSize: '0.7rem',
+        fontWeight: '600',
+        color: '#6B7280'
       }}>
-        Pergunta {currentQuestion + 1} de {questions.length}
+        {currentQuestion + 1}/{questions.length}
       </div>
 
       {/* Years Gained Counter */}
@@ -77,15 +77,6 @@ export default function ProgressHeart() {
         </div>
       )}
 
-      {/* Lives Impacted */}
-      <div style={{
-        marginTop: '0.25rem',
-        fontSize: '0.75rem',
-        color: '#6B7280',
-        textAlign: 'center'
-      }}>
-        🎯 {state.livesImpacted} pets ajudados hoje
-      </div>
 
       <style jsx>{`
         @keyframes heartbeat {
