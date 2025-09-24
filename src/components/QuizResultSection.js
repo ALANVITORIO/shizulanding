@@ -1,6 +1,7 @@
-'use client';
+"use client";
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { getQuizComplete } from '../utils/quizStorage';
 
 export default function QuizResultSection() {
   const [quizData, setQuizData] = useState(null);
@@ -8,18 +9,11 @@ export default function QuizResultSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Ler dados do quiz completed
     try {
-      const storedData = sessionStorage.getItem('quizComplete');
-      if (storedData) {
-        const data = JSON.parse(storedData);
+      const data = getQuizComplete();
+      if (data) {
         setQuizData(data);
         setIsVisible(true);
-
-        // Limpar dados após usar (24 horas)
-        setTimeout(() => {
-          sessionStorage.removeItem('quizComplete');
-        }, 86400000);
       }
     } catch (error) {
       console.error('Erro ao ler dados do quiz:', error);

@@ -1,7 +1,8 @@
-'use client';
+"use client";
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { calculateLifeImpact } from '../../../utils/calculateImpact';
+import { setQuizComplete } from '../../../utils/quizStorage';
 
 function ResultsContent() {
   const [results, setResults] = useState(null);
@@ -413,8 +414,8 @@ function ResultsContent() {
                 // Mostrar loading imediatamente
                 setIsLoading(true);
 
-                // Salvar dados no sessionStorage
-                sessionStorage.setItem('quizComplete', JSON.stringify({
+                // Salvar dados persistentes por 15 dias
+                setQuizComplete({
                   quiz: 'complete',
                   score: results.percentageKnowledge,
                   name: petName,
@@ -422,7 +423,7 @@ function ResultsContent() {
                   profile: results.profile.type,
                   severity: results.severity.level,
                   timestamp: Date.now()
-                }));
+                }, 15);
 
                 // Delay para mostrar loading, depois redirecionar
                 setTimeout(() => {

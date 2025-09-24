@@ -1,28 +1,21 @@
-'use client';
+"use client";
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { getQuizComplete } from '../utils/quizStorage';
 
 export default function QuizResultHeader() {
   const [quizData, setQuizData] = useState(null);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Ler dados do quiz completed
     try {
-      const storedData = sessionStorage.getItem('quizComplete');
-      if (storedData) {
-        const data = JSON.parse(storedData);
+      const data = getQuizComplete();
+      if (data) {
         setQuizData(data);
-
         // Mostrar com delay para efeito dramático
         setTimeout(() => {
           setIsVisible(true);
         }, 500);
-
-        // Limpar dados após usar para não mostrar em futuras visitas
-        setTimeout(() => {
-          sessionStorage.removeItem('quizComplete');
-        }, 86400000); // Remove após 24 horas
       }
     } catch (error) {
       console.error('Erro ao ler dados do quiz:', error);
